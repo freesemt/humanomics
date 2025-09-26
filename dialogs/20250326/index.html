@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>2025-03-26</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  /* https://kkawazoe.github.io/blog/2020/05/23/insert-formula-into-hugo-part2/ */
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left", // version 2 で css で変更していた 数式の表示位置の設定
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        /* これを記述しないと インライン数式(例. ${}_n \mathrm{ P }_k$) が機能しない */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+body { line-height:1.7; }
+</style>
+<body>
+<pre>
+<h3 id="index">■ 今回 3/26 の話題</h3>
+<table width="100%">
+<tr>
+<td width="20%" valign="top"><pre>
+  1. <a href="#recognition-of-cliamate-change-problems">気候変動問題の認識</a>
+  2. <a href="#recognition-of-cliamate-change-problems">核エネルギー発電</a>
+  3. <a href="#involuntary-non-regular-employment">不本意非正規雇用</a>
+  4. <a href="#labor-share-in-japan">日本の労働分配率</a>
+  5. <a href="honjo-2019.html">本荘 2019 詳細検討</a>
+  6. <a href="#financial-informetion-of-listed-companies">上場企業の決算情報</a>
+  7. <a href="#study-on-heizo-takanaka">竹中平蔵研究</a>
+</pre></td>
+<td>
+  <table width="100%">
+    <tr>
+      <td align="center" width="33%">
+        Sandra Gathmann<br>
+        <img src="figs/Sandra_Gathmann.jpg" width="80%"><br>
+        <small>from <a href="https://www.youtube.com/watch?v=Ax9DgKKh_ls">Is conflict in the Arctic a real threat or just hype?</a></small>
+      </td>
+      <td align="center" width="33%">
+        Sabine Hossenfelder<br>
+        <img src="figs/Sabine_Hossenfelder.jpg" width="80%"><br>
+        <small>from <a href="https://www.youtube.com/watch?v=NZv5zBNIhvE">Scientists Misreport Climate Cause of LA Wildfires</a></small>
+      </td>
+      <td align="center" width="33%">
+        藤原 新<br>
+        <img src="figs/Arata_Fujiwara.jpg" width="80%">
+        <br><small>from <a href="https://koyu.rikkyo.ac.jp/magazine/interview/laboratory/463.html">立教大学校友会</a></small>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="33%">
+        Neil deGrasse Tyson<br>
+        <img src="../20250314/figs/Neil_deGrasse_Tyson.jpg" width="80%">
+        <br><small>from <a href="https://en.wikipedia.org/wiki/Neil_deGrasse_Tyson">Wikipedia</a></small>
+      </td>
+      <td align="center" width="33%">
+        Kathryn Huff<br>
+        <img src="../20250314/figs/Kathryn_Huff.jpg" width="80%">
+        <br><small>from <a href="https://npre.illinois.edu/people/profile/kdhuff">The Grainger College of Engineering</a></small>
+      </td>
+      <td align="center" width="33%">
+        Rachel Phillips<br>
+        <img src="../20250314/figs/Rachel_Phillips.jpg" width="80%">
+        <br><small>from <a href="https://www.geogirlscience.com/about">About Rachel Phillips - GEO GIRL</a></small>
+      </td>
+    </tr>
+    <tr>
+      <td align="center" width="33%">
+        岩田 規久男<br>
+        <img src="figs/Kikuo_Iwata.jpg" width="80%">
+        <br><small>from <a href="https://www.jmca.jp/prod/11868">日本経営合理化協会</a></small>
+      </td>
+      <td align="center" width="33%">
+        竹中 平蔵<br>
+        <img src="figs/Heizō_Takenaka.jpg" width="80%">
+        <br><small>from <a href="https://ja.wikipedia.org/wiki/%E7%AB%B9%E4%B8%AD%E5%B9%B3%E8%94%B5">Wikipedia</a></small>
+      </td>
+      <td align="center" width="33%">
+        白川 方明<br>
+        <img src="figs/Masaaki_Shirakawa.jpg" width="80%">
+        <br><small>from <a href="https://ja.wikipedia.org/wiki/%E7%99%BD%E5%B7%9D%E6%96%B9%E6%98%8E">Wikipedia</a></small>
+      </td>
+    </tr>
+  </table>
+</td>
+</tr>
+</table>
+<h3 id="recognition-of-cliamate-change-problems">■ 気候変動問題の認識</h3>
+  ・ <a href="https://www.youtube.com/watch?v=Ax9DgKKh_ls">Is conflict in the Arctic a real threat or just hype? | Start Here</a>
+  <div align="center">
+    <table width="100%">
+      <tr align="center">
+        <td>
+          <a href="figs/arctic-nations.jpg"><img src="figs/arctic-nations.jpg" width="50%"></a><br>
+          <small>from <a href="https://www.youtube.com/watch?v=Ax9DgKKh_ls">Is conflict in the Arctic a real threat or just hype?</a></small>
+        </td>
+      </tr>
+    </table>
+  </div>  
+  ・ <a href="https://www.youtube.com/watch?v=NZv5zBNIhvE">Scientists Misreport Climate Cause of LA Wildfires</a>
+  <div align="center">
+    <table width="100%">
+      <tr align="center">
+        <td>
+          <a href="figs/LA_fires.jpg"><img src="figs/LA_fires.jpg" width="50%"></a><br>
+          <small>from <a href="https://www.youtube.com/watch?v=NZv5zBNIhvE">Scientists Misreport Climate Cause of LA Wildfires</a></small>
+        </td>
+      </tr>
+    </table>
+  </div>  
+
+  ・ 山林火災
+    ・ 3月26日～ 長野県安曇野市
+    ・ 3月26日　 福島県須賀川市
+    ・ 3月23日～ 愛媛県今治市
+    ・ 3月25日～ 宮崎市鏡洲
+    ・ 3月24日～ 岡山市南区
+    ・ 2月26日～ 岩手県大船渡市
+
+  ・ <a href="https://www.youtube.com/watch?v=tRA2SfSk2Tc">How I Think About Climate Change</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=77Q07i1HSYc">The Truth About Climate Change That I’ve Avoided For So Long… | GEO GIRL</a>
+
+<h3 id="recognition-of-cliamate-change-problems">■ 核エネルギー発電</h3>
+  ・ <a href="https://www.youtube.com/watch?v=TPcemHez_4g">Solving AI’s Energy Problem with Kathryn Huff</a>
+  ・ <a href="https://www.youtube.com/watch?v=piPbnKdve9M">Nuclear Fusion, explained for beginners</a>
+  ・ <a href="https://www.youtube.com/watch?v=xsikwXnUcBs">We Tried To Do Nuclear Fusion</a>
+
+<h3 id="involuntary-non-regular-employment">■ 不本意非正規雇用</h3>
+  ・ <a href="https://www.mhlw.go.jp/content/001234734.pdf">【正規雇用労働者と非正規雇用労働者の推移】</a>
+  ・ <a href="https://www.rieti.go.jp/jp/publications/dp/11j052.pdf">2011, 山本 勲; 非正規労働者の希望と現実 ―不本意型非正規雇用の実態―</a>
+
+  ・ <a href="https://asia.nikkei.com/Spotlight/Datawatch/Nonregular-workers-struggle-to-go-full-time-in-labor-scarce-Japan">Nonregular workers struggle to go full-time in labor-scarce Japan</a>
+  ・ <a href="https://mainichi.jp/english/articles/20230403/p2a/00m/0bu/004000c">90% of irregular workers in Japan struggle to make ends meet, 80% see no pay rises: survey</a>
+  ・ <a href="https://www.jstage.jst.go.jp/article/ojjams/23/2/23_2_2_85/_pdf">Voluntary and Involuntary Job Mobility in Japan: Resource, Reward and Labor Market Structure</a>
+  ・ <a href="https://www.nippon.com/en/features/h00133/">Regular Full-Time Positions Increasingly Elusive for Japanese Workers</a>
+  ・ <a href="https://scispace.com/pdf/the-work-and-lives-of-japanese-non-regular-workers-in-the-2ksr1ad0sw.pdf">The Work and Lives of Japanese Non-Regular Workers in the “Mid-Prime-Age” Bracket (Age 35‒44) </a>
+  ・ <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000077386_00013.html">派遣会社のマージン率等について - 厚生労働省</a>
+  ・ <a href="https://well-beings.co.jp/media/hakengaisha-margin/">派遣会社のマージン率は取りすぎ！？大手派遣会社のマージン率や相場・内訳を一覧で比較</a>
+
+<h3 id="labor-share-in-japan">■ 日本の労働分配率</h3>
+  ・ <a href="../references/2013, A. Fujiwara.pdf">2013, 藤原 新; ケインズ経済学における貨幣賃金率の粘着性の意味について</a>
+  
+  ・ <a href="https://www.ier.hit-u.ac.jp/Common/publication/DP/DPS-A672.pdf">2018, Kyoji Fukao; The Long-Run Dynamics of the Labour Share in Japan</a>
+  ・ <a href="https://www.mof.go.jp/english/pri/publication/pp_review/fy2017/ppr13_02_06.pdf">2017, Yuki Hashimoto; Labor Share and Firm Performance</a>
+  ・ <a href="../references/2019, Dilyana Dimova.pdf">2019, Dilyana Dimova; The Structural Determinants of the Labor Share in Europe</a>
+  
+<h3 id="financial-informetion-of-listed-companies">■ 上場企業の決算情報</h3>
+  ・ <a href="https://qiita.com/XBRLJapan/items/27e623b8ca871740f352">EDINET APIを利用して、企業情報（XBRLデータ）を自動で集めてみよう(4/10)</a>
+  ・ <a href="https://note.com/python_lab/n/n510c3315b3f9">【Python】EDINETのAPI v2を使って決算書類データをスクレイピングするサンプルコード</a>
+  ・ <a href="https://note.com/oh_no/n/nd98fe0a8edc2">python EDINET APIを使って有価証券報告書他　資料を取得する</a>
+  ・ <a href="https://lifetechia.com/edinet-api-1/">【Python金融データ】EDINET APIの使い方</a>
+
+<h3 id="study-on-heizo-takanaka">■ 竹中平蔵研究</h3>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E7%AB%B9%E4%B8%AD%E5%B9%B3%E8%94%B5">竹中平蔵 - Wikipedia</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E5%8A%B4%E5%83%8D%E3%83%93%E3%83%83%E3%82%B0%E3%83%90%E3%83%B3">労働ビッグバン - Wikipedia</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E3%83%AF%E3%83%83%E3%82%BB%E3%83%8A%E3%83%BC%E5%90%88%E6%84%8F">ワッセナー合意 - Wikipedia</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E7%B5%8C%E6%B8%88#%E4%B8%8D%E5%AE%8C%E5%85%A8%E9%9B%87%E7%94%A8%E3%81%A8%E5%83%8D%E3%81%8D%E6%96%B9%E6%94%B9%E9%9D%A9">日本の経済 § 不完全雇用と働き方改革 - Wikipedia</a>
+  ・ <a href="https://www.suntory.co.jp/sfnd/prize_ssah/detail/1984sk1.html">『研究開発と設備投資の経済学 ―― 経済活力を支えるメカニズム』（東洋経済新報社）</a>
+    ・ <a href="https://ci.nii.ac.jp/ncid/BN00200945">研究開発と設備投資の経済学 : 経済活力を支えるメカニズム</a>
+</pre>
+</body>
+</html>

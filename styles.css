@@ -1,0 +1,13 @@
+body {
+    background-color: #2c2c2c; /* Milder dark color */
+    color: #e0e0e0; /* Light gray text color */
+}
+a {
+    color: #bb86fc; /* Light purple link color */
+}
+img.middle { 
+    vertical-align: middle; 
+}
+pre {
+    color: #e0e0e0; /* Light gray text color */
+}

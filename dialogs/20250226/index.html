@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>2025-02-26</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  /* https://kkawazoe.github.io/blog/2020/05/23/insert-formula-into-hugo-part2/ */
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left", // version 2 で css で変更していた 数式の表示位置の設定
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        /* これを記述しないと インライン数式(例. ${}_n \mathrm{ P }_k$) が機能しない */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+</style>
+<body>
+<pre>
+  ・ 斎藤幸平さん
+    ・ <a href="../references/2017, K. Saito.pdf">2017, 斎藤幸平; 『資本論』のエコロジーから考えるマルクスとエンゲルスの知的関係</a>
+
+  ・ LLM
+    ・ DeepSeek
+      ・ <a href="https://www.youtube.com/watch?v=tdybdrpb77g">2025-02-18 DeepSeekが世界的に注目された結果「共産党」の烙印が…</a>
+      ・ <a href="https://arxiv.org/abs/2501.12948">DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning</a>
+
+  ・ 労働力需給推計
+    ・ <a href="https://www.jil.go.jp/kokunai/statistics/rouju.html">労働力需給の推計　（2004年～最新版）</a>
+      ・ <a href="https://www.jil.go.jp/press/documents/20240311.pdf">2023 年度版 労働力需給の推計（速報） </a>
+      ・ <a href="https://www.jil.go.jp/institute/siryo/2024/documents/0284.pdf">2023 年度版 労働力需給の推計</a>
+    ・ <a href="https://www.mhlw.go.jp/toukei/list/chinginkouzou_a.html">賃金構造基本統計調査</a>
+      ・ <a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/z2024/sokuhou.html">令和６年賃金構造基本統計調査　速報</a>
+      ・ <a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/z2023/index.html">令和５年賃金構造基本統計調査　結果の概況</a>
+      ・ <a href="https://www.mhlw.go.jp/toukei/itiran/roudou/chingin/kouzou/z2022/">令和４年賃金構造基本統計調査　結果の概況</a>
+
+  ・ 経済学研究における Python の利用状況
+    ・ 神戸大学・経済学研究科の春山鉄源さん
+      ・ <a href="https://py4basics.github.io/">経済学のためのPython入門</a>
+      ・ <a href="https://py4macro.github.io/index.html">Pythonで学ぶマクロ経済学 (中級＋レベル)</a>
+      ・ <a href="https://py4etrics.github.io/">Pythonで学ぶ入門計量経済学</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=zlz0EhyS8hI">【櫻井よしこの特別版！】櫻井よしこの「日米首脳会談」解説　USスチール「日鉄の投資・技術」で事業継続</a>
+  ・ <a href="https://www.youtube.com/watch?v=fVZRlleb5yA">What is Carbon Sequestration, Why is it Important, & How does it Work? | GEO GIRL</a>
+
+  ・ Isotope Analysis
+    ・ <a href="https://geo.libretexts.org/Bookshelves/Meteorology_and_Climate_Science/Biochemistry_and_Climate_Change/03%3A__Use_of_Isotope_Analysis_in_Measuring_Climate_Change">Use of Isotope Analysis in Measuring Climate Change</a>
+      ・ 新しい ${}^{14}C$ の増加要因
+        ・ 人為的なもの： 核実験
+        ・ 自然のもの： 太陽活動
+<div align="center">
+$ n + {}^{14}_{7}N \rightarrow {}^{14}_{6}C + p $
+</div>
+    ・ <a href="https://gml.noaa.gov/education/isotopes/decay.html">The Technical Details: Radioactive Decay</a>
+    ・ <a href="https://ja.wikipedia.org/wiki/%E3%83%99%E3%83%BC%E3%82%BF%E5%B4%A9%E5%A3%8A">ベータ崩壊 - Wikipedia</a>
+    ・ <a href="https://ja.wikipedia.org/wiki/%E5%91%A8%E6%9C%9F%E8%A1%A8">周期表 - Wikipedia</a>
+
+  ・ Python Packages
+    ・ <a href="https://github.com/radioactivedecay/radioactivedecay">radioactive decay - GitHub</a>
+    ・ <a href=""></a>
+
+  ・ <a href="https://brian-rose.github.io/ClimateLaboratoryBook/home.html">The Climate Laboratory</a>
+    ・ <a href="https://github.com/brian-rose/ClimateLaboratoryBook">The Climate Laboratory - GitHub</a>
+    ・ <a href="https://github.com/jupyter-book/jupyter-book">Jupyter Book - GitHub</a>
+
+<hr>
+
+<h3 id="index">■ 今回 2/26 の話題</h3>
+<table width="100%">
+<tr>
+<td width="40%" valign="top"><pre>
+  0. <a href="#how-to-share-this-page-on-ipad">情報共有環境の改善</a>
+  
+  1. 『一般理論』第２章理解のヒント： <a href="keynes.html">2025-02-26 ケインズ研究メモ</a>
+
+  2. <a href="#recognition-of-cliamate-change-problems">気候変動問題の認識</a>
+
+  3. <a href="#problems-of-socialism">変質社会主義（仮名）の問題点 - 浅い二次情報 vs. 深い一次情報</a>
+    ・ 分かりやすい発信
+    ・ 分かりやすい誤謬証明
+</pre></td>
+<td align="center" width="20%">
+    伊東 光晴<br>
+    <img src="../20250205/figs/itou.jpg" width="80%">
+    <br><small>from <a href="https://kakushinkon.org/news/525.html">全国革新懇ニュース</a></small>
+</td>
+<td align="center" width="20%">
+    John Maynard Keynes<br>
+    <img src="../20250205/figs/John_Maynard_Keynes.jpg" width="80%">
+    <br><small>from <a href="https://www.google.com/search?q=keynes">Google</a></small>
+</td>
+<td align="center" width="20%">
+  Joan Violet Robinson<br>
+  <img src="../20250205/figs/Joan-Violet-Robinson.jpg" width="80%">
+  <br><small>from <a href="https://www.npg.org.uk/collections/search/person/mp99820/joan-violet-robinson">National Portrait Gallery</a></small>
+</td> 
+</tr>
+<tr align="center">
+<td></td>
+<td>
+  宇沢 弘文<br>
+  <img src="../20250205/figs/uzawa.jpg" width="80%">
+  <br><small>from <a href="https://www.asahi.com/articles/ASG9V56VTG9VUEHF00N.html">朝日新聞デジタル</a></small>
+</td>
+<td>
+  Friedrich Hayek<br>
+  <img src="../20250205/figs/Friedrich_Hayek_portrait.jpg" width="80%">
+  <br><small>from <a href="https://en.wikipedia.org/wiki/Friedrich_Hayek">Wikipedia</a></small>
+</td>
+<td>
+  Leonid Hurwicz<br>
+  <img src="../20250205/figs/Leonid Hurwicz.jpg" width="80%">
+  <br><small>from <a href="https://finanzasparamortales.es/leonid-hurwicz-premio-nobel-de-economia-de-2007/">Finanzas para Mortales</a></small>
+</td>
+</tr>
+</table>
+
+<h3 id="improvement-of-evironment">■ 情報共有環境の改善</h3>
+  ・ 情報共有ページの URL： <a href="https://freesemt.github.io/economics/">https://freesemt.github.io/economics/</a>
+
+<h3 id="recognition-of-cliamate-change-problems">■ 気候変動問題の認識</h3>
+<table width="100%">
+  <tr>
+  <td width="50%" valign="top"><pre>
+  ・ 地球（惑星）の一生というスケール感
+
+    ・ <a href="https://www.nagoya-u.ac.jp/researchinfo/result/2022/07/post-298.html">太古の地球における酸素の起源 ～酸素発生はアミノ酸変換によって始まった～</a>
+    
+    ・ <a href="https://www2.nhk.or.jp/school/watch/clip/?das_id=D0005301157_00000">地球に酸素を作り出した生物 - NHK for School</a>
+
+    ・ <a href="https://www.youtube.com/watch?v=-mKu5dIns4c">地球そして生命の誕生と進化 【最新版】</a>
+</pre></td>
+<td align="center"><img src="figs/20220727_sci-thumb-980xauto-4050.jpg" width="80%"></td>
+</tr>
+</table>
+
+・ 最近の YouTube 動画から
+・ <a href="https://www.youtube.com/watch?v=BHqY0l_LiFo">Can Clean Energy STOP Climate Change's Worst-Case Scenario?</a>
+  ・ 取材先の１つ： <a href="https://blogs.oregonstate.edu/occri/">Oregon Climate Change Research Institute</a>
+<div align="center">
+<table width="100%">
+<tr align="center">
+<td width="20%"><a href="../20250205/figs/pbs-fig1.jpg"><img src="../20250205/figs/pbs-fig1.jpg" width="90%"></a></td>
+<td width="20%"><a href="../20250205/figs/pbs-fig2.jpg"><img src="../20250205/figs/pbs-fig2.jpg" width="90%"></a></td>
+<td width="20%"><a href="../20250205/figs/pbs-fig3.jpg"><img src="../20250205/figs/pbs-fig3.jpg" width="90%"></a></td>
+<td width="20%"><a href="../20250205/figs/pbs-fig4.jpg"><img src="../20250205/figs/pbs-fig4.jpg" width="90%"></a></td>
+<td width="20%"><a href="../20250205/figs/pbs-fig5.jpg"><img src="../20250205/figs/pbs-fig5.jpg" width="90%"></a></td>
+</tr>
+</table>
+</div>
+
+・ <a href="https://www.youtube.com/watch?v=WM-C728HoRA">5 Ways We Distinguish Human-Induced vs Natural Climate Change | GEO GIRL</a> (Rachel - 地球科学のPhD)
+<div align="center">
+<table width="100%">
+<tr><th>1. Timing</th><th>2. Tracking</th><th>3. Carbon Isotopes ${}^{12}C, {}^{13}C, {}^{14}C$</th><th>4. Oxygen Decrease</th><th>5. Modeling</th></tr>
+<tr align="center">
+<td width="20%"><a href="../20250205/figs/geo_girl-1.jpg"><img src="../20250205/figs/geo_girl-1.jpg" width="90%"></a></td>
+<td width="20%"><a href="../20250205/figs/geo_girl-2.jpg"><img src="../20250205/figs/geo_girl-2.jpg" width="90%"></a></td>
+<td width="20%"><a href="../20250205/figs/geo_girl-3.jpg"><img src="../20250205/figs/geo_girl-3.jpg" width="90%"></a></td>
+<td width="20%"><a href="../20250205/figs/geo_girl-4.jpg"><img src="../20250205/figs/geo_girl-4.jpg" width="90%"></a></td>
+<td width="20%"><a href="../20250205/figs/geo_girl-5.jpg"><img src="../20250205/figs/geo_girl-5.jpg" width="90%"></a></td>
+</tr>
+</table>
+</div>
+
+<div align="center">
+<table width="100%">
+<tr><td width="50%" valign="top">
+<pre>
+  ・ 国際的な協調の歴史
+
+    ・ 前史
+      ・ 
+      ・ 
+      ・ 
+
+    ・ 1988年 <a href="https://ja.wikipedia.org/wiki/%E6%B0%97%E5%80%99%E5%A4%89%E5%8B%95%E3%81%AB%E9%96%A2%E3%81%99%E3%82%8B%E6%94%BF%E5%BA%9C%E9%96%93%E3%83%91%E3%83%8D%E3%83%AB">IPCC － 気候変動に関する政府間パネル</a>設立
+      ・ 2022年 <a href="https://www.data.jma.go.jp/cpdinfo/ipcc/ar6/index.html">IPCC第6次評価報告書（AR6） - 気象庁</a>
+
+    ・ 1997年 <a href="https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E8%AD%B0%E5%AE%9A%E6%9B%B8">京都議定書</a>
+      ・ <a href="https://ja.wikipedia.org/wiki/%E6%8E%92%E5%87%BA%E6%A8%A9%E5%8F%96%E5%BC%95#:~:text=%E6%8E%92%E5%87%BA%E6%A8%A9%E5%8F%96%E5%BC%95%EF%BC%88%E3%81%AF%E3%81%84%E3%81%97%E3%82%85%E3%81%A4,%E6%8E%92%E5%87%BA%E9%87%8F%E5%8F%96%E5%BC%95%E3%81%A8%E3%82%82%E3%81%84%E3%81%86%E3%80%82">排出権取引</a>を規定
+
+    ・ 2015年 <a href="https://ja.wikipedia.org/wiki/%E3%83%91%E3%83%AA%E5%8D%94%E5%AE%9A_(%E6%B0%97%E5%80%99%E5%A4%89%E5%8B%95)">パリ協定 (気候変動)</a>
+</pre>
+</td><td align="center" rowspan="2">
+  IPCC 報告書の確信度の変化<br>
+  <img src="../20250205/figs/ipcc-ar6-emori.jpg" width="80%">
+  <br><small>from <a href="https://www.youtube.com/watch?v=dLgGSI0G2SA">2022, 江守正多;【速報版】IPCC執筆者が独自解説！「気候変動 国連最新レポート」</a></small>
+</td>
+</tr>
+</table>
+</div>
+
+  ・ $CO_2$ 排出量（推計）の推移の視覚化
+    ・ <a href="https://www.youtube.com/watch?v=MvqY2NcBWI8&start=500&end=560">Sea Level Rise Can No Longer Be Stopped, What Next? - with John Englander</a>
+<div align="center">
+  <big>$CO_2$ 排出量（推計）の推移</big>
+  <table width="100%">
+    <tr><th>産業革命の始まり</th><th>第二次世界大戦直後</th><th>近年</th></tr>
+    <tr align="center">
+      <td width="29%"><img src="../20250205/figs/co2-emissions-start.jpg" width="95%"></td>
+      <td width="29%"><img src="../20250205/figs/co2-emissions-middle.jpg" width="95%"></td>
+      <td width="29%"><img src="../20250205/figs/co2-emissions-end.jpg" width="95%"></td>
+      <td>
+        John Englander<br>
+        <img src="../20250205/figs/John_Englander.jpg" width="70%">
+        <br><small>from <a href="https://en.wikipedia.org/wiki/John_Englander">Wikipedia</a></small>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div align="center">
+  <table width="100%">
+    <tr align="center">
+      <td width="50%">
+        <big>Johan Rockström</big><br>
+        <img src="../20250205/figs/Johan_Rockström.jpg" width="35%">
+        <br><small>from <a href="https://en.wikipedia.org/wiki/Johan_Rockstr%C3%B6m">Wikipedia</a></small>
+      </td>
+      <td align="center">
+        <a href="../20250205/figs/humanitys-journey.jpg"><img src="../20250205/figs/humanitys-journey.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>
+        <br><small>holocene: 完新世; anthropocene: 人新世; → <a href="https://stratigraphy.org/ICSchart/ChronostratChart2023-09Japanese.pdf">国際年代層序表</a></small>
+      </td>
+    </tr>
+    <tr>
+      <td width="40%" valign="top"><pre>
+        ・ 気候変動における喫緊の問題点
+      
+          ・ limit of buffering capacity （緩衝能力の限界）
+            ・ 一例として、（CO2 の増加による）気温上昇を海が吸収してきたが、限界に達している可能性がある。
+      
+          ・ risk of crossing tipping points （転換点を越えるリスク）
+            ・ 転換点を超えると、自律的に、悪循環（温暖化など）が加速し、（容易には）元には戻せない懸念がある。
+
+        ・ References
+          ・ <a href="https://en.wikipedia.org/wiki/Johan_Rockstr%C3%B6m">Johan Rockström - Wikipedia</a>
+          ・ <a href="https://en.wikipedia.org/wiki/Potsdam_Institute_for_Climate_Impact_Research">Potsdam Institute for Climate Impact Research - Wikipedia</a>
+          ・ <a href="https://en.wikipedia.org/wiki/TED_(conference)">TED (conference) - Wikipedia</a>
+            ・ TED YouTube Channel には 2570万人（世界人口81億1900万人の 0.3％）が登録している。
+            ・ 少なくとも 3.2万人が Johan Rockström さんのこの動画を好評価。
+    </pre></td>
+    <td align="center">
+        <a href="../20250205/figs/sea-surface-temperature.jpg"><img src="../20250205/figs/sea-surface-temperature.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>
+    </td>
+    </tr>
+    <tr align="center">
+      <td>
+        <a href="../20250205/figs/tipping-points.jpg"><img src="../20250205/figs/tipping-points.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>       
+      </td>
+      <td>
+        <a href="../20250205/figs/our-future.jpg"><img src="../20250205/figs/our-future.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>
+      </td>
+    </tr>
+    <tr align="center">
+      <td>
+        <a href="../20250205/figs/amazon-tipping-point.jpg"><img src="../20250205/figs/amazon-tipping-point.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>       
+      </td>
+      <td>
+        <a href="../20250205/figs/assessment-trend.jpg"><img src="../20250205/figs/assessment-trend.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>
+      </td>
+    </tr>
+    <tr align="center">
+      <td>
+        <a href="../20250205/figs/carbon-budget.jpg"><img src="../20250205/figs/carbon-budget.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>
+      </td>
+      <td>
+        <a href="../20250205/figs/pathways-for-1.5.jpg"><img src="../20250205/figs/pathways-for-1.5.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>       
+      </td>
+    </tr>
+    <tr align="center">
+      <td>
+        <a href="../20250205/figs/operating-space.jpg"><img src="../20250205/figs/operating-space.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>       
+      </td>
+      <td>
+        <a href="../20250205/figs/economic-transition.jpg"><img src="../20250205/figs/economic-transition.jpg" width="90%"></a>
+        <br><small>from <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a></small>
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<h3 id="problems-of-socialism">■ 変質社会主義（仮名）の問題点 - 浅い二次情報 vs. 深い一次情報</h3>
+  ・ <a href="../references/2021, Satoshi Matsuda.pdf">2021, 松田 智</a> 冒頭の要旨には、次の言明がある。
+    ・ 「脱炭素社会」は､科学的根拠薄弱な「人為的地球温暖化仮説」に盲従するものであり、・・・
+    ・ この論拠が示されていないので、研究活動の一端を紹介する。
+
+  ・ アゴラ記事関連の２論文のデータ参照（1979年 ～）
+    ・ （論述が稚拙であることは許容したとしても）次の２点において、無意味。
+      ・ 気候変動の問題を理解していない。（参照データ期間が不十分で全く反論になっていない）
+      ・ 参照データ自体が人間の経済活動の影響を受けている可能性を排除する根拠が示されていない。
+        ・ すなわち、人間の影響と自然の影響をどうやって分離するかを考えていない。
+        ・ データに人間の影響がないと仮定して（または思い込んで）、人間の影響がないと結論しているようなもの。
+<div>
+<table width="40%">
+  <tr align="center">
+    <td width="20%">
+      地球気温平均値の推移<br>
+      <a href="../20250205/figs/2021-matsuda.jpg"><img src="../20250205/figs/2021-matsuda.jpg" width="90%"></a>
+      <br><small>from <a href="../references/2021, Satoshi Matsuda.pdf">2021, 松田 智</a></small>
+    </td>
+    <td width="20%">
+      大気中 CO2 濃度と海面温度の相関<br>
+      <a href="../20250205/figs/2024-ato.jpg"><img src="../20250205/figs//2024-ato.jpg" width="90%"></a>
+      <br><small>from <a href="../references/2024, Dai Ato.pdf">2024, 阿藤 大</a></small>
+    </td>
+  </tr>
+</table>
+</div>
+ 
+  ・ 問題となる性向
+    ・ 自分の結論が先にあり、それに都合のよい浅い情報（※）だけを拾い集める。
+      ※ 同じ性向のもので、最終的な証拠や再実験にたどり着かないもの。
+    ・ これらの浅い情報は安価なものであり、簡単に作れるので、多数集めるのは簡単。
+    ・ 上辺（うわべ）では筋が通っているように見えるが、深く入れば支離滅裂または無意味。
+
+  ・ 偽情報
+    ・ 問題の論文（2021, 松田 智; 2024, 阿藤 大）は、次の意味で論外の間抜けなもの。
+      ・ 気候変動の問題は、地質年代的な時間スケール（例えば、上記の <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">2024, Johan Rockström YouTube Video</a>）で捉える必要がある。
+      ・ 海洋が（人為の）気温上昇分を吸収している（してきた）という周知の事象を無視している。
+      ・ <a href="https://ja.wikipedia.org/wiki/%E5%B0%8F%E4%BF%9D%E6%96%B9%E6%99%B4%E5%AD%90">小保方さん</a>は、Nature 誌をだますことに一旦は成功したが、これでは二流の出版社をだますこともできない。
+      ・ References
+        ・ <a href="https://www.ncei.noaa.gov/news/ocean-heat-content-rises">2020, NCEI; OHC reaches its highest level in recorded history</a>
+        ・ <a href="https://www.downtoearth.org.in/climate-change/oceans-absorb-90-of-human-induced-planet-warming-study-88879">2023, Rohini Krishnamurthy; Oceans absorb 90% of human-induced planet warming: Study</a>
+        ・ <a href="../references/2023, Jennifer V. Mecking.pdf">2023, Jennifer V. Mecking; The decrease in ocean heat transport in response to global warming</a>
+        ・ <a href="../references/2023, Zhi Li.pdf">2023, Zhi Li; Recent acceleration in global ocean heat accumulation by mode and intermediate waters</a>
+        ・ <a href="../references/2024, Xiaoying You.pdf">2024, Xiaoying You; Oceans Break Heat Records Five Years In A Row</a>
+
+    ・ <a href="../references/2021, Satoshi Matsuda.pdf">2021, 松田 智; 「脱炭素社会」は目指すべき姿なのか？</a>
+      ・ 冒頭の軽薄な “「脱炭素社会」は､科学的根拠薄弱な「人為的地球温暖化仮説」に盲従するもの” の論拠が示されていない。
+      ・ <a href="https://entropy.ac/">エントロピー学会</a>
+      ・ <a href="https://www.hinodeya-ecolife.com/about/">有限会社ひのでやエコライフ研究所</a>
+
+    ・ <a href="../references/2024, Dai Ato.pdf">2024, Dai Ato; Multivariate Analysis Rejects the Theory of Human-caused Atmospheric Carbon Dioxide Increase: The Sea Surface Temperature Rules</a>
+      ・ そもそも、標題だけで無意味さが露呈している。
+        ・ 海面温度は自然現象だと言いたいようだが、海面温度自体が人為の CO2 が原因で上昇していれば、無意味な議論になっている。
+      ・ 1959年以降のデータしか使われていない。
+      ・ 次のように、線形回帰で説明をしているのだが、
+        ・ 目的変数： 大気中の CO2 濃度上昇
+        ・ 説明変数： 海面温度
+      ・ 標題で多変量（Multivariate）といいながら、説明変数は海面温度の１つだけ？ Multivariate の意味が分かっていない感じ。
+        ・ より専門的な批判は <a href="https://www.reddit.com/r/climatechange/comments/1f8e0f6/multivariate_analysis_rejects_the_theory_of/">reddit 投稿</a> 参照。
+      ・ 英語や数理解析が得意でない大衆を対象として、大勢の気候変動研究者の長年の努力を冒涜し、自分たちの軽率な主張（or 存在意義）を宣伝しようと試みたもの。
+
+    ・ 結論
+      ・ やっていることが、自分たちの無知低能の表明にしかなっていないことが分からない、恥知らずの人々といわざるをえない。
+      ・ または、それが、昆虫などの擬態にも似た、彼らの巧妙な生存戦略になっているということはできる。
+
+  ・ 同じ傾向の人物
+    ・ Victor Gao 高志凯
+      ・ Al Jazeera Interview
+        ・ <a href="https://www.youtube.com/watch?v=kmYdpHtOv_E&t=2422s">Is Xi Jinping’s China on a path to war? Mehdi Hasan & Victor Gao | Head to Head</a>
+        ・ <a href="https://www.youtube.com/watch?v=RcvNNlS50SM">Why won't China condemn Russia's invasion of Ukraine? Mehdi Hasan & Victor Gao | Head to Head Extra</a>
+      ・ <a href="https://en.wikipedia.org/wiki/Victor_Gao">Victor Gao - Wikipwdia</a>
+
+<hr>
+
+<h3 id="hicks-interpretation-of-keynes">■ 伊東光晴さんの「ヒックスによるケインズ理解」の解読</h3>
+
+  ・ Keynesian Model Simulation
+
+    ・ Python Packages for Economics
+      ・ <a href="https://ie.pubpub.org/pub/python-packages-for-economics/release/2">Python Packages for Economics: Model and Simulation</a>
+  
+    <div align="center">
+      <table border="1" style="border-collapse: collapse" cellpadding="3">
+        <tr><th>Package</th><th>Despription</th><th>Stars</th><th>Remark</th></tr>
+        <tr><td><a href="https://github.com/drvinceknight/Nashpy">Nashpy</a></td><td>a python library for 2 player games</td><td align="center">338</td><td></td></tr>
+        <tr><td><a href="https://github.com/QuantEcon/QuantEcon.py">QuantEcon</a></td><td>A high performance, open source Python code library for economics</td><td align="center">2k</td><td></td></tr>
+        <tr><td><a href="https://github.com/gambitproject/gte">Game Theory Explorer</a></td><td>a graphical user interface for games to compute their equilibria</td><td align="center">87</td><td></td></tr>
+        <tr><td><a href="https://github.com/gambitproject/gambit">Gambit</a></td><td>a package for doing computation in (non-cooperative) game theory</td><td align="center">420</td><td></td></tr>
+        <tr><td><a href="https://github.com/projectmesa/mesa">Mesa</a></td><td>Agent-based modeling in Python</td><td align="center">2.7k</td><td></td></tr>
+      </table>
+    </div>
+  
+  
+    ・ <a href="https://macrosimulation.org/">DIY Macroeconomic Model Simulation</a>
+      ・       
+
+・ 当面の課題
+  ・ for Ⅹ in (プーチン、習近平、金正恩)
+    ・ なぜ Ⅹ のような人間が現れるのか？
+    ・ なぜ Ⅹ のような人間が、結果的に、リーダーとして選ばれるのか？
+  ・ 気候変動への危機感が、充分に、共有されないのなぜか？
+
+・ 思想の歴史
+
+<div align="center">
+<table width="60%">
+  <tr><th>Karl Marx</th><th>John Maynard Keynes</th><th>Friedrich Hayek</th></tr>
+  <tr align="center">
+    <td width="33%">
+      <img src="../20250205/figs/Karl_Marx.jpg" width="90%">
+      <br><small>from <a href="https://en.wikipedia.org/wiki/Karl_Marx">Wikipedia</a></small>
+    </td>
+    <td width="33%">
+      <img src="../20250205/figs/John_Maynard_Keynes.jpg" width="90%">
+      <br><small>from <a href="https://www.google.com/search?q=keynes">Google</a></small>
+    </td>
+    <td width="33%">
+      <img src="../20250205/figs/Friedrich_Hayek_portrait.jpg" width="90%">
+      <br><small>from <a href="https://en.wikipedia.org/wiki/Friedrich_Hayek">Wikipedia</a></small>
+    </td>
+  </tr>
+</table>
+</div>
+
+  ・ 隷従への道（Wikipedia 英語版冒頭の個人的翻訳）
+
+    「隷従への道」は、オーストリア／イギリスの経済学者・思想家である「フリードリヒ・ハイエク」が書いた本である。
+
+    その中でハイエクは、中央政府の計画による経済的な意思決定から<font color="blue">必然的に帰結する</font>、暴政の危険について警告している。
+    さらに、彼は、個人主義と古典的な自由主義を放棄することも、<font color="blue">必然的に</font>、自由の喪失、抑圧的な社会、独裁者の暴政、
+    そして、個人の隷従へと<font color="blue">つながる</font>と論じている。
+
+    当時、英国マルクス主義者の間で流行した見識、ファシズム（ナチズムを含む）は社会主義に対抗した資本主義の反動である、
+    に対してハイエクは反論し、ファシズム、ナチズム、そして国家社会主義は、どれも中央計画経済であり、個人よりも国家に
+    権力を与えるという意味で、同根の思想であると主張した。
+
+・ 原発関連
+
+  ・ 伊東光晴さん
+    ・ <a href="../references/2011, Mitsuharu Itoh.pdf">2011, 伊東光晴; 経済学から見た原子力発電 ー 世界</a>
+      ・ 地熱発電の推進
+        → <a href="https://www.aist.go.jp/aist_j/magazine/20230719.html">地熱発電 - 産総研マガジン</a>
+          ・ <a href="https://www.nikkei4946.com/knowledgebank/selection/detail.aspx?value=1159">ベースロード電源 - 日経読者サイト</a>
+      ・ リニア新幹線（電力多消費産業の新興に反対）
+      ・ 老朽化原発廃炉
+    ・ <a href="../references/2014, Horoshi Mori.pdf">2014, 森宏; 伊東光晴『原子力発電の政治経済学』（岩波書店, 2013.10）を読んで</a>
+
+  ・ 資源エネルギー庁
+    ・ <a href="https://www.enecho.meti.go.jp/information/gx/03.html">「第7次エネルギー基本計画（案）」及び「GX2040ビジョン（案）」についての説明会・意見交換会情報</a>
+    ・ <a href="https://www.enecho.meti.go.jp/committee/council/basic_policy_subcommittee/opinion/data/2024_01.pdf">エネルギー基本計画（案）</a>
+    ・ <a href="https://www.enecho.meti.go.jp/committee/council/basic_policy_subcommittee/2024/067/067_005.pdf">エネルギー基本計画（原案）の概要</a>
+  <div align="center">
+  <table width="100%">
+      <tr align="center">
+        <td>
+        <img src="../20250205/figs/ipcc-ar6-emori.jpg" width="80%">
+        <br><small><a href="https://www.youtube.com/watch?v=dLgGSI0G2SA">2022, 江守正多;【速報版】IPCC執筆者が独自解説！「気候変動 国連最新レポート」</a></small>
+        </td>
+        <td>
+        <a href="../20250205/figs/energy-prospect.jpg"><img src="../20250205/figs/energy-prospect.jpg" width="100%"></a>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+・ 大量絶滅
+  ・ <a href="../references/2022, Robert H. Cowie.pdf">2022, Robert H. Cowie; The Sixth Mass Extinction: fact, fiction or speculation?</a>
+  ・ <a href="https://www.aist.go.jp/aist_j/magazine/bb0041.html">東北の山中に残された「史上最大の大量絶滅」の痕跡… - 産総研マガジン</a>
+  ・ <a href="https://forbesjapan.com/articles/detail/64816">迫り来る「6回目の生物大量絶滅」は当初の予測よりも深刻である可能性 - Forbes</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E5%A4%A7%E9%87%8F%E7%B5%B6%E6%BB%85">大量絶滅 - Wikipedia</a>
+  ・ <a href="https://www.youtube.com/watch?v=7-Pa8HuXOF0">Scientists Warn That 6th Mass Extinction Event Is Already Happening</a>
+    ・ <a href="../references/2024, Kunio Kaiho.pdf">2024, Kunio Kaiho; Role of volcanism and impact heating in mass extinction climate shifts</a>
+  ・ <a href="https://www.youtube.com/watch?v=5EixkhemV1o">Holocene Extinction, explained.</a>
+
+・ YouTube Videos
+  ・ <a href="https://www.youtube.com/watch?v=o6UXRZ2XwgU">The Most Important Economic Schools of Thought | Economics Explained</a>
+  ・ <a href="https://www.youtube.com/watch?v=XeHvu1w_8z4">Schools of Economic Thought | Cash Course | PragerU</a>
+
+・ Firstpost
+  ・ <a href="https://www.youtube.com/watch?v=WhWGTm6XOJI">Russia’s Arms Exports Collapse Amid Ukraine War | Vantage with Palki Sharma</a>
+
+・ <a href="https://www2.nhk.or.jp/archives/articles/?id=D0009250409_00000">あの人に会いたい - 宇沢弘文</a>
+
+・ 核融合発電
+  ・ 原発 - 核分裂発電
+  ・ Cleo Abram 
+    ・ <a href="https://www.youtube.com/watch?v=piPbnKdve9M">Nuclear Fusion, explained for beginners</a>
+  <div align="center">
+    <table width="95%">
+      <tr align="center">
+        <td width="27%"><img src="figs/neuclear_fusion.jpg" width="90%"></td>
+        <td width="30%"><img src="figs/plasma.jpg" width="90%"></td>
+        <td><img src="figs/confinement.jpg" width="90%"></td>        
+      </tr>
+    </table>
+  </div> 
+    ・ <a href="https://www.youtube.com/watch?v=xsikwXnUcBs">We Tried To Do Nuclear Fusion</a>
+    ・ <a href="https://www.youtube.com/watch?v=IzQ3gFRj0Bc">The Big Lie About Nuclear Waste - Cleo Abram</a>
+      ・ <a href="https://www.fepc.or.jp/english/nuclear/fuel_cycle/fuel_recycling/index.html">Japan's Nuclear Fuel Cycle</a>
+      ・ <a href="https://www.fepc.or.jp/nuclear/cycle/about/index.html">原子燃料サイクルとは</a>
+
+  ・ Sabine Hossenfelder
+    ・ <a href="https://www.youtube.com/watch?v=RbZ-XYy0k10">Nuclear Fusion Predictions are Nonsense</a>
+    ・ <a href="https://www.youtube.com/watch?v=nscGizM9NQw">Costs explode for Nuclear Fusion Flagship project -- Is it still worth the money?</a>
+    ・ <a href="https://www.youtube.com/watch?v=23W0t5-LlV0">Nuclear Fusion: Who'll Be First To Make It Work?</a>
+
+  ・ TED-Ed
+    ・ <a href="https://www.youtube.com/watch?v=dGr8VaITKbA">How close are we to powering the world with nuclear fusion? - George Zaidan</a>
+
+  ・ 大学共同利用期間法人
+    ・ <a href="https://www.mext.go.jp/b_menu/link/daikyou.htm">大学共同利用機関法人 - 文部科学省</a>
+    ・ <a href="https://ja.wikipedia.org/wiki/%E5%A4%A7%E5%AD%A6%E5%85%B1%E5%90%8C%E5%88%A9%E7%94%A8%E6%A9%9F%E9%96%A2%E6%B3%95%E4%BA%BA">大学共同利用機関法人 - Wikipedia</a>
+    ・ 予算
+      ・ <a href="https://www.mext.go.jp/b_menu/shingi/gijyutu/gijyutu4/010/siryo/__icsFiles/afieldfile/2018/06/25/1406388_003.pdf">大学共同利用機関法人（４法人）の運営費交付金予算額の推移</a>
+      ・ <a href="https://www.mext.go.jp/b_menu/shingi/chousa/koutou/062/gijiroku/__icsFiles/afieldfile/2015/02/18/1355160_1_2.pdf">大学共同利用機関法人の運営費交付金の在り方等について</a>
+      ・ <a href="https://www.kek.jp/wp-content/uploads/2024/02/4chukikeikaku.pdf">大学共同利用機関法人 高エネルギー加速器研究機構 第４期中期計画 </a>
+    ・ <a href="https://www.nifs.ac.jp/index.html">核融合科学研究所</a>
+      ・ <a href="https://en.wikipedia.org/wiki/Large_Helical_Device">Large Helical Device - Wikipedia</a>
+
+  ・ Startups
+    ・ Japan
+      ・ <a href="https://www.helicalfusion.com">Helical Fusion</a>
+        ・ <a href="https://www.helicalfusion.com/en">Helical Fusion (English)</a>
+        ・ <a href="https://www.chubu.meti.go.jp/b35innovation/meetupchubu/event/pdf/slide30-5.pdf">Helical Fusion事業紹介</a>
+      ・ <a href="https://kyotofusioneering.com/">京都フュージョニアリング株式会社</a>
+        ・ <a href="https://ja.wikipedia.org/wiki/%E4%BA%AC%E9%83%BD%E3%83%95%E3%83%A5%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%8B%E3%82%A2%E3%83%AA%E3%83%B3%E3%82%B0">京都フュージョニアリング - Wikipedia</a>
+        ・ <a href="https://www.japantimes.co.jp/environment/2024/07/07/energy/kyoto-fusioneering-nuclear-fusion-supply-chains/">Kyoto Fusioneering looks toward a 'Made in Japan' approach for nuclear fusion - Japan Times</a>
+
+  ・ Socialism
+    ・ <a href="https://www.youtube.com/watch?v=fBQV_6igeMk">The End Of The USSR And Its Effects Today | The End Of A Superpower</a>
+    ・ <a href="https://www.youtube.com/watch?v=vz95O6bLR00">Kingdom of the Kims: Rise to Power (Full Episode) | Inside North Korea's Dynasty | Nat Geo</a>
+
+  ・ World Order
+    ・ <a href="https://www.youtube.com/watch?v=WmrTsvI66mY">Is the world at greater risk of more wars? | Inside Story</a>
+    ・ <a href="https://www.youtube.com/watch?v=ZknEU38CDtE">Farewell to pacifism: Japan is rearming | DW Documentary</a>
+
+  ・ Programming
+    ・ <a href="https://quantecon.org/">QuantEcon</a>
+      ・ <a href="https://intro.quantecon.org/intro_supply_demand.html">7. Introduction to Supply and Demand</a>
+      ・ <a href="https://sites.google.com/site/noritakakudoh/home">Noritaka Kudoh</a>
+
+■  全体を通して
+  ・ 一般論としての、効率的な合意形成（または誤解回避）の方法
+  ・ 敏感な問題（※）に対する客観性確保の方法
+    ※ ここでは、人の注意や反感を引き起こしやすい問題などを指す。
+  ・ 究極の目的が不明な（自分のことしか考えない？）、意図的な情報操作
+
+■ 原子力発電
+  ・ 本荘さんのメールからの問題意識と対応する参考意見の要点
+
+    ・ 原発は､特に大地震が発生した時に、本当に安全なのか？
+
+      → 巨大地震（特に津波）の影響と原発事故の影響を分けて考えることが必要。
+        ・ 死亡者数で見ると、東日本大震災の死亡者２万人超の多くは、津波などが原因で、原発事故が直接の原因で死んだ人はいない。
+      → また、発生の頻度と影響の大きさの両方の観点での評価が必要。
+      → 別の視点で、死亡者数でいうと、原発よりも高速道路の事故で死んだ人の方が圧倒的に多い（年間200人超）。
+        ・ <a href="https://www.itarda.or.jp/contents/513/info25.pdf">高速道路の交通事故の特徴と対策</a>
+        ・ 高速道路に反対する人より、原発に反対する人の方が（恐らく圧倒的に）多いのはなぜか？
+
+    ・ 核廃棄物の処理はどうするのか？
+
+      → 廃棄物が問題になるのは、原発だけでなく、例えば、太陽光発電の方が問題が大きいという見方もある。
+        ・ 逆に、太陽光発電の廃棄物問題はほとんど放置されていて、原発廃棄物処理の方が検討が進んでいるかもしれない。
+        ・ <a href="https://www.sankei.com/article/20240503-7SROT5ML6ZJWHNFSYHA4XJW5OQ/">太陽光パネルの放置防げ　１０年後に大量廃棄時期到来　技術確立へ対策急ぐ</a>
+          ・ パネルには一般的に鉛やセレンなど有害な物質が含まれる上、
+          ・ 安価な中国製パネルには透明度を上げるため猛毒のヒ素などが含まれている場合があり、安全に廃棄するには費用が膨らむ。
+            ・ 中国は、表向けの宣伝以外に、環境問題に本気で取り組むような国ではない。（要検証）
+      → 原発だけではなく、Sustainable Economy への移行の問題として包括的に取り組むべき。
+
+    ・ それらの問題が解決していないとしても、地球温暖化のほうが早急に対処しなければならない問題なのか？
+
+      → 温暖化の問題は、地質年代的な時間スケールの問題であるという認識が必要。
+      ・ すでに相当な手遅れ感もあり、さらに2023年になって、新たな懸念現象も観測されている。
+
+    ・ 風力､太陽光､地熱等による発電を原発に代わるエネルギー源とすることは難しいのか？
+      ・ <a href="https://www.isep.or.jp/archives/library/14885">国内の2023年度の自然エネルギー電力の割合と導入状況（速報）</a>
+        ・ <a href="https://www.isep.or.jp/">環境エネルギー政策研究所</a>
+
+      → 上記の緊迫性に加えて、現時点では、費用対効果（再稼働の場合）、電力の安定供給の意味で、原発に変わるものはない。（要検証）
+      ・ コスト
+        ・ <a href="https://www.enecho.meti.go.jp/about/special/tokushu/nuclear/nuclearcost.html">原発のコストを考える</a>
+        ・ <a href="https://www.enecho.meti.go.jp/about/special/johoteikyo/denki_cost.html">電気をつくるには、どんなコストがかかる？</a>
+        ・ <a href="https://www.tokyo-np.co.jp/article/348660">原発コストは太陽光発電の何倍？　アメリカの最新試算でわかった驚きの数字　次期基本計画でどうする日本政府</a>
+        ・ <a href="https://www.ccnejapan.com/wp-content/20230214_CCNE_Asuka1.pdf">原発と再エネのコスト - 国内外の議論の最前線</a>
+        ・ <a href="https://world-nuclear.org/information-library/economic-aspects/economics-of-nuclear-power">Economics of Nuclear Power</a>
+        ・ <a href="https://en.wikipedia.org/wiki/Economics_of_nuclear_power_plants">Economics of nuclear power plants - Wikipedia</a>
+        ・ <a href="https://en.wikipedia.org/wiki/Levelized_cost_of_electricity">Levelized cost of electricity</a>
+      ・ 安定性
+        ・ <a href="https://www.enecho.meti.go.jp/about/special/johoteikyo/saiene_anteikyokyu.html">再エネと安定供給～求められる「発電を続ける力」</a>
+        ・ <a href="https://xtech.nikkei.com/atcl/nxt/mag/nmc/18/00100/00003/">国土の狭さと安定供給が課題、火力と原子力が残る理由</a>
+      → 原発の新設はしないとしても、せめて再稼働は必要なのでは？
+        ・ <a href="https://www.fepc.or.jp/sp/re-operation/">日本の原子力発電所 稼働状況一覧 - 電気事業連合会</a>
+
+    ・ 原発の再稼働や、さらには新設（現状では極めて難しいとは思いますが）によって不当な利益を得る集団はいないのか？
+
+      → 「不当な利益を得る集団」の問題も、原発に限らない。
+      ・ 対策としては、（自分のことしか考えない）バカを減らすしかない。
+
+  ・ <a href="https://www.fepc.or.jp/nuclear/safety/past/">過去の事故・トラブル</a>
+    ・ <a href="https://www.fepc.or.jp/nuclear/safety/past/mihama3/index.html">美浜発電所3号機事故</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=ciStnd9Y2ak">Why I changed my mind about nuclear power | Michael Shellenberger | TEDxBerlin</a>
+    ・ <a href="https://s3.us-east-2.amazonaws.com/uploads.thebreakthrough.org/legacy/images/Death_of_Environmentalism.pdf">The Death of Environmentalism</a>
+    ・ <a href="https://en.wikipedia.org/wiki/Break_Through_(book)">Break Through (book) - Wikipedia</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=58zHJL1dKtw">Why Amazon, Microsoft, Google And Meta Are Investing In Nuclear Power</a>
+  ・ <a href="https://www.youtube.com/watch?v=cbrT3m89Y3M">Small Modular Reactors Explained - Nuclear Power's Future?</a>
+  ・ <a href="https://www.youtube.com/watch?v=Tf4XahwtJUk">Good News: Small Nuclear Thorium Reactors are Coming to Europe</a>
+  ・ <a href="https://www.iaea.org/newscenter/news/what-are-small-modular-reactors-smrs">What are Small Modular Reactors (SMRs)? - IAEA</a>
+    ・ <a href="https://www.youtube.com/watch?v=7ravKXD4iqQ">Nuclear Power: The Road to a Carbon Free Future</a>
+  ・ <a href="https://jopss.jaea.go.jp/pdfdata/JAEA-Review-2024-040.pdf">Survey on Research and Development Status of Japanese Small Modular Reactors in OECD/NEA Activities</a>
+  ・ <a href="https://www.mofa.go.jp/press/release/press3e_000441.html">Joint Statemant on Foundational Infrastructure for the Responsible Use of Small Modular Reactor Technology (FIRST) Cooperation</a>
+  ・ <a href="https://www.sciencedirect.com/science/article/abs/pii/B9780128239162000175">17 - Small modular reactors (SMRs): The case of Japan</a>
+  ・ <a href="https://www.jstage.jst.go.jp/article/hpi/60/3/60_142/_pdf/-char/en">小型モジュール型原子炉開発の動向</a>
+  ・ <a href="https://www.nrc.gov/reactors/new-reactors/smr/licensing-activities/pre-application-activities/jaea-fsis.html">Japan Atomic Energy Agency (JAEA) Floating Seismic Isolation System (FSIS)</a>
+    ・ <a href=""></a>
+    ・ <a href="https://world-nuclear-news.org/Articles/Japan-demonstrates-floating-seismic-isolation-syst">Japan demonstrates floating seismic isolation system for SMRs</a>
+
+
+
+■ 気候変動
+<table width="95%">
+  <tr align="center">
+    <td width="35%">
+      <img src="figs/Common_Era_Temperature.svg" width="95%">
+      <br><small><a href="https://commons.wikimedia.org/w/index.php?curid=87410053">By Efbrazil - Own work, CC BY-SA 4.0</a></small>
+    </td>
+    <td width="35%">
+      <img src="figs/CO2_Emissions_by_Source_Since_1880.svg" width="95%">
+      <br><small><a href="https://commons.wikimedia.org/w/index.php?curid=88166593">By Efbrazil - Own work, CC BY-SA 4.0</a></small>
+    </td>
+    <td width="30%">
+      <img src="figs/Greenhouse_gas_emission_scenarios_01.svg" width="95%">
+      <br><small><a href="https://commons.wikimedia.org/w/index.php?curid=93453063">By Hannah Ritchie and Max Roser, ...</a></small>
+    </td>
+  </tr>
+</table>
+  ・ <a href="https://www.data.jma.go.jp/cpdinfo/ipcc/ar6/index.html">IPCC第6次評価報告書（AR6） - 気象庁</a>
+    ・ <a href="https://www.youtube.com/watch?v=dLgGSI0G2SA">【速報版】IPCC執筆者が独自解説！「気候変動 国連最新レポート」</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a>
+
+  ・ <a href="https://www.unic.or.jp/activities/economic_social_development/sustainable_development/climate_change_un/">気候変動と国連</a>
+    ・ <a href="https://www.unic.or.jp/activities/economic_social_development/sustainable_development/climate_change_un/climate_change_causes/">気候変動の原因</a>
+
+  ・ <a href="https://www.mof.go.jp/public_relations/finance/202201/202201o.pdf">2050年カーボンニュートラルに向かう世界</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=2njn71TqkjA">What Earth in 2050 could look like - Shannon Odell</a>
+
+  ・ Carbon Markets
+    ・ <a href="https://www.youtube.com/watch?v=1cvZJyzi4J0">Who Actually Profits From Saving the Planet?</a>
+    ・ <a href="https://en.wikipedia.org/wiki/Environmental_economics">Environmental economics - Wikipedia</a>
+      ・ <a href="https://ja.wikipedia.org/wiki/%E7%92%B0%E5%A2%83%E7%B5%8C%E6%B8%88%E5%AD%A6">環境経済学 - ウィキペディア</a>
+      ・ <a href="https://en.wikipedia.org/wiki/Carbon_emission_trading">Carbon emission trading - Wikipedia</a>
+    ・ <a href="https://www.carbonmarkets-cooperation.gov.sg/our-art6-cooperation/what-are-carbon-credits/">What are carbon credits?</a>
+    ・ <a href="https://unfccc.int/process-and-meetings/the-paris-agreement/article-64-mechanism">Paris Agreement Crediting Mechanism</a>
+    ・ <a href="https://unfccc.int/cop29">COP29 Updates</a>
+      ・ <a href="https://unfccc.int/news/this-new-finance-goal-is-an-insurance-policy-for-humanity-simon-stiell-at-close-of-cop29">"This New Finance Goal is an Insurance Policy for Humanity": Simon Stiell at Close of COP29</a>
+    ・ <a href="https://github.com/bancorprotocol/carbon-simulator">Carbon Simulator - GitHub</a>
+    ・ <a href="https://carbonplan.org/research/offsets-db-explainer">Monitoring the global carbon market with OffsetsDB</a>
+
+  ・ Papers related to Ocean
+    ・ <a href="../references/2023, Jennifer V. Mecking.pdf">2023, Jennifer V. Mecking; The decrease in ocean heat transport in response to global warming</a>
+    ・ <a href="../references/2023, Roberto M. Venegas.pdf">2023, Roberto M. Venegas; Three decades of ocean warming impacts on marine ecosystems: A review and perspective</a>
+
+■ 歴史認識（含経済学的視点）
+  ・ 
+
+  ・ 変異共産主義の問題
+
+    ・ 福島原発処理水
+  <div align="center">
+    <img src="figs/processed-water.jpg" width="40%">
+  </div>
+    ・ 追跡 中国・流出文書
+      ・ <a href="https://www.nhk.jp/p/special/ts/2NY2QQLPM3/episode/te/GNM1LMZGJ5/">調査報道 新世紀 File6 中国・流出文書を追う - NHKスペシャル</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20240920/k10014585911000.html">追跡 中国・流出文書 1 ～世論操作ツール～</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20240926/k10014588401000.html">追跡 中国・流出文書 2 ～サイバー攻撃～</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20240930/k10014588411000.html">追跡 中国・流出文書 3 ～ハッカー企業の素顔～</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20241002/k10014588431000.html">追跡 中国・流出文書 4 ～「公安」～</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20241004/k10014588441000.html">追跡 中国・流出文書 5 ～認知戦～</a>
+      ・ <a href="https://wedge.ismedia.jp/articles/-/35393?layout=b">〈中国「認知戦」の正体に迫る〉流出文書を追った調査報道、ネット空間はすでに戦時にある - Wedge ONLINE</a>
+
+    ・ i-SOON Documents
+      ・ <a href="https://www.asahi.com/ajw/articles/15175131">An online dump of Chinese hacking documents offers a rare window into pervasive state surveillance</a>
+      ・ <a href="https://github.com/soufianetahiri/Anxun-isoon">Anxun-isoon - GitHub</a>
+      ・ <a href="https://www.infosecurity-magazine.com/news-features/isoon-github-leak-chinese-cyber/">I-Soon GitHub Leak: What Cyber Experts Learned About Chinese Cyber Espionage - Infosecurity Magazine</a>
+      ・ <a href="https://thecyberwire.com/stories/05ba5c2ff18f4af5abc30ebe28c968bf/the-i-soon-data-leak-unveils-chinas-cyber-espionage-tactics-techniques-procedures-and-capabilities">The I-Soon data leak unveils China's cyber espionage tactics, techniques, procedures, and capabilities. - CyberWire</a>
+
+■ Tools
+  ・ NHK plus
+  ・ E:/VideoCapture/chrome-screen-recorder/src/index.html
+  ・ OpenShot Video Editor
+
+
+■ Recent News
+  ・ <a href="https://www.youtube.com/watch?v=Xx7bCUDiOJc">OpenAI Accuses DeepSeek of Copying—But What About Them? | Vantage with Palki Sharma | N18G</a>  
+</pre>
+</body>
+</html>

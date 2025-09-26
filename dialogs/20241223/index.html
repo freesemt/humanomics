@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>2024-12-23</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  /* https://kkawazoe.github.io/blog/2020/05/23/insert-formula-into-hugo-part2/ */
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left", // version 2 で css で変更していた 数式の表示位置の設定
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        /* これを記述しないと インライン数式(例. ${}_n \mathrm{ P }_k$) が機能しない */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+</style>
+<body>
+<pre>
+
+・ <a href="https://www2.nhk.or.jp/archives/articles/?id=D0009250409_00000">あの人に会いたい - 宇沢弘文</a>
+
+■ 今回 12/23 の主題一覧
+  ・ 全体を通して
+  ・ 原子力発電
+  ・ 気候変動
+  ・ 歴史認識（含経済学的視点）
+
+■  全体を通して
+  ・ 一般論としての、効率的な合意形成（または誤解回避）の方法
+  ・ 敏感な問題（※）に対する客観性確保の方法
+    ※ ここでは、人の注意や反感を引き起こしやすい問題などを指す。
+  ・ 究極の目的が不明な（自分のことしか考えない？）、意図的な情報操作
+
+■ 原子力発電
+  ・ 本荘さんのメールからの問題意識と対応する参考意見の要点
+
+    ・ 原発は､特に大地震が発生した時に、本当に安全なのか？
+
+      → 巨大地震（特に津波）の影響と原発事故の影響を分けて考えることが必要。
+        ・ 死亡者数で見ると、東日本大震災の死亡者２万人超の多くは、津波などが原因で、原発事故が直接の原因で死んだ人はいない。
+      → また、発生の頻度と影響の大きさの両方の観点での評価が必要。
+      → 別の視点で、死亡者数でいうと、原発よりも高速道路の事故で死んだ人の方が圧倒的に多い（年間200人超）。
+        ・ <a href="https://www.itarda.or.jp/contents/513/info25.pdf">高速道路の交通事故の特徴と対策</a>
+        ・ 高速道路に反対する人より、原発に反対する人の方が（恐らく圧倒的に）多いのはなぜか？
+
+    ・ 核廃棄物の処理はどうするのか？
+
+      → 廃棄物が問題になるのは、原発だけでなく、例えば、太陽光発電の方が問題が大きいという見方もある。
+        ・ 逆に、太陽光発電の廃棄物問題はほとんど放置されていて、原発廃棄物処理の方が検討が進んでいるかもしれない。
+        ・ <a href="https://www.sankei.com/article/20240503-7SROT5ML6ZJWHNFSYHA4XJW5OQ/">太陽光パネルの放置防げ　１０年後に大量廃棄時期到来　技術確立へ対策急ぐ</a>
+          ・ パネルには一般的に鉛やセレンなど有害な物質が含まれる上、
+          ・ 安価な中国製パネルには透明度を上げるため猛毒のヒ素などが含まれている場合があり、安全に廃棄するには費用が膨らむ。
+            ・ 中国は、表向けの宣伝以外に、環境問題に本気で取り組むような国ではない。（要検証）
+      → 原発だけではなく、Sustainable Economy への移行の問題として包括的に取り組むべき。
+
+    ・ それらの問題が解決していないとしても、地球温暖化のほうが早急に対処しなければならない問題なのか？
+
+      → 温暖化の問題は、地質年代的な時間スケールの問題であるという認識が必要。
+      ・ すでに相当な手遅れ感もあり、さらに2023年になって、新たな懸念現象も観測されている。
+
+    ・ 風力､太陽光､地熱等による発電を原発に代わるエネルギー源とすることは難しいのか？
+      ・ <a href="https://www.isep.or.jp/archives/library/14885">国内の2023年度の自然エネルギー電力の割合と導入状況（速報）</a>
+        ・ <a href="https://www.isep.or.jp/">環境エネルギー政策研究所</a>
+
+      → 上記の緊迫性に加えて、現時点では、費用対効果（再稼働の場合）、電力の安定供給の意味で、原発に変わるものはない。（要検証）
+      ・ コスト
+        ・ <a href="https://www.enecho.meti.go.jp/about/special/tokushu/nuclear/nuclearcost.html">原発のコストを考える</a>
+        ・ <a href="https://www.enecho.meti.go.jp/about/special/johoteikyo/denki_cost.html">電気をつくるには、どんなコストがかかる？</a>
+        ・ <a href="https://www.tokyo-np.co.jp/article/348660">原発コストは太陽光発電の何倍？　アメリカの最新試算でわかった驚きの数字　次期基本計画でどうする日本政府</a>
+        ・ <a href="https://www.ccnejapan.com/wp-content/20230214_CCNE_Asuka1.pdf">原発と再エネのコスト - 国内外の議論の最前線</a>
+        ・ <a href="https://world-nuclear.org/information-library/economic-aspects/economics-of-nuclear-power">Economics of Nuclear Power</a>
+        ・ <a href="https://en.wikipedia.org/wiki/Economics_of_nuclear_power_plants">Economics of nuclear power plants - Wikipedia</a>
+        ・ <a href="https://en.wikipedia.org/wiki/Levelized_cost_of_electricity">Levelized cost of electricity</a>
+      ・ 安定性
+        ・ <a href="https://www.enecho.meti.go.jp/about/special/johoteikyo/saiene_anteikyokyu.html">再エネと安定供給～求められる「発電を続ける力」</a>
+        ・ <a href="https://xtech.nikkei.com/atcl/nxt/mag/nmc/18/00100/00003/">国土の狭さと安定供給が課題、火力と原子力が残る理由</a>
+      → 原発の新設はしないとしても、せめて再稼働は必要なのでは？
+        ・ <a href="https://www.fepc.or.jp/sp/re-operation/">日本の原子力発電所 稼働状況一覧 - 電気事業連合会</a>
+
+    ・ 原発の再稼働や、さらには新設（現状では極めて難しいとは思いますが）によって不当な利益を得る集団はいないのか？
+
+      → 「不当な利益を得る集団」の問題も、原発に限らない。
+      ・ 対策としては、（自分のことしか考えない）バカを減らすしかない。
+
+  ・ <a href="https://www.fepc.or.jp/nuclear/safety/past/">過去の事故・トラブル</a>
+    ・ <a href="https://www.fepc.or.jp/nuclear/safety/past/mihama3/index.html">美浜発電所3号機事故</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=ciStnd9Y2ak">Why I changed my mind about nuclear power | Michael Shellenberger | TEDxBerlin</a>
+    ・ <a href="https://s3.us-east-2.amazonaws.com/uploads.thebreakthrough.org/legacy/images/Death_of_Environmentalism.pdf">The Death of Environmentalism</a>
+    ・ <a href="https://en.wikipedia.org/wiki/Break_Through_(book)">Break Through (book) - Wikipedia</a>
+
+■ 気候変動
+  ・ <a href="https://www.data.jma.go.jp/cpdinfo/ipcc/ar6/index.html">IPCC第6次評価報告書（AR6） - 気象庁</a>
+    ・ <a href="https://www.youtube.com/watch?v=dLgGSI0G2SA">【速報版】IPCC執筆者が独自解説！「気候変動 国連最新レポート」</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=Vl6VhCAeEfQ">The Tipping Points of Climate Change — and Where We Stand | Johan Rockström | TED</a>
+
+  ・ <a href="https://www.unic.or.jp/activities/economic_social_development/sustainable_development/climate_change_un/">気候変動と国連</a>
+    ・ <a href="https://www.unic.or.jp/activities/economic_social_development/sustainable_development/climate_change_un/climate_change_causes/">気候変動の原因</a>
+
+  ・ <a href="https://www.mof.go.jp/public_relations/finance/202201/202201o.pdf">2050年カーボンニュートラルに向かう世界</a>
+
+■ 歴史認識（含経済学敵視点）
+  ・ 
+
+  ・ 変異共産主義の問題
+
+    ・ 福島原発処理水
+  <div align="center">
+    <img src="figs/processed-water.jpg" width="40%">
+  </div>
+    ・ 追跡 中国・流出文書
+      ・ <a href="https://www.nhk.jp/p/special/ts/2NY2QQLPM3/episode/te/GNM1LMZGJ5/">調査報道 新世紀 File6 中国・流出文書を追う - NHKスペシャル</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20240920/k10014585911000.html">追跡 中国・流出文書 1 ～世論操作ツール～</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20240926/k10014588401000.html">追跡 中国・流出文書 2 ～サイバー攻撃～</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20240930/k10014588411000.html">追跡 中国・流出文書 3 ～ハッカー企業の素顔～</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20241002/k10014588431000.html">追跡 中国・流出文書 4 ～「公安」～</a>
+      ・ <a href="https://www3.nhk.or.jp/news/html/20241004/k10014588441000.html">追跡 中国・流出文書 5 ～認知戦～</a>
+      ・ <a href="https://wedge.ismedia.jp/articles/-/35393?layout=b">〈中国「認知戦」の正体に迫る〉流出文書を追った調査報道、ネット空間はすでに戦時にある - Wedge ONLINE</a>
+
+    ・ i-SOON Documents
+      ・ <a href="https://www.asahi.com/ajw/articles/15175131">An online dump of Chinese hacking documents offers a rare window into pervasive state surveillance</a>
+      ・ <a href="https://github.com/soufianetahiri/Anxun-isoon">Anxun-isoon - GitHub</a>
+      ・ <a href="https://www.infosecurity-magazine.com/news-features/isoon-github-leak-chinese-cyber/">I-Soon GitHub Leak: What Cyber Experts Learned About Chinese Cyber Espionage - Infosecurity Magazine</a>
+      ・ <a href="https://thecyberwire.com/stories/05ba5c2ff18f4af5abc30ebe28c968bf/the-i-soon-data-leak-unveils-chinas-cyber-espionage-tactics-techniques-procedures-and-capabilities">The I-Soon data leak unveils China's cyber espionage tactics, techniques, procedures, and capabilities. - CyberWire</a>
+
+■ Tools
+  ・ NHK plus
+  ・ E:/VideoCapture/chrome-screen-recorder/src/index.html
+  ・ OpenShot Video Editor
+
+</pre>
+</body>
+</html>
