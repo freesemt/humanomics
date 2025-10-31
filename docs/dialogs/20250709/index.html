@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>2025-07-09</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  /* https://kkawazoe.github.io/blog/2020/05/23/insert-formula-into-hugo-part2/ */
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left", // version 2 で css で変更していた 数式の表示位置の設定
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        /* これを記述しないと インライン数式(例. ${}_n \mathrm{ P }_k$) が機能しない */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+body { line-height:1.7; }
+</style>
+<body>
+<pre>
+
+<h3 id="index">■ 今回 7/9 の話題</h3>
+<table width="100%">
+<tr>
+<td width="30%" valign="top"><pre>
+  1. <a href="#looking-back">これまでの振り返り（問題認識）</a>
+  2. <a href="#solving-direction">解決の方向性</a>  
+  3. <a href="#upper-house-election">参議院選挙のための視点</a>
+</pre></td>
+<td align='center'>
+images
+</td>
+</tr>
+</table>
+<h3 id="looking-back">■ これまでの振り返り（問題認識）</h3>
+  ・ 問題認識 
+    ・ 気候変動
+    ・ エネルギー政策（原発・再生可能エネルギー）
+    ・ 変質社会主義の問題
+      ・ 中国のウイグル、チベット、香港抑圧、台湾侵攻
+      ・ ロシアのウクライナ侵攻
+    ・ 中東問題
+      ・ イスラエルのハマス攻撃、ガザ侵攻
+    ・ 経済政策
+      ・ 本荘 2019 論文
+      ・ アベノミクス批判
+      ・ 正規雇用・非正規雇用
+
+  ・ リーダー選出の問題
+    ・ 愚者の発生は避けられないが、選出しないことは可能
+
+<h3 id="solving-direction">■ 解決の方向性</h3>
+    ・ （世代間時間スケールの）長期的視点
+    
+    ・ 正確な理解
+      ・ 一対一のコミュニケーション
+
+    ・ （正確な理解に基づく）社会の設計
+      ・ 家族
+      ・ 地域コミュニティ（自治会）
+      ・ 同期会
+      ・ 国
+
+<h3 id="upper-house-election">■ 参議院選挙のための視点</h3>
+  ・ （上記）方向性についての政策評価
+
+  ・ References
+    ・ <a href="https://www.doyukai.or.jp/policyproposals/uploads/docs/20250701%EF%BC%9A%E6%B7%BB%E4%BB%98%E8%B3%87%E6%96%99%EF%BC%9A%E5%85%AC%E9%96%8B%E8%B3%AA%E5%95%8F%E7%8A%B6%E3%81%AB%E5%AF%BE%E3%81%99%E3%82%8B%E5%9B%9E%E7%AD%94.pdf">公開質問状 各政党の回答</a>
+    ・ <a href="https://www.tkfd.or.jp/research/detail.php?id=4769">参院選2025の争点―エネルギー安全保障をめぐる新たな課題</a>
+    ・ <a href="https://www.tkfd.or.jp/research/detail.php?id=4759">参院選2025の争点―人口減少下でも豊かになれる社会を創るためエネルギー政策を争点とせよ</a>
+    ・ <a href="https://kikonet.org/content/38043">第27回参議院議員選挙ー各党選挙公約の気候変動エネルギー政策に関する分析ー）</a>
+    ・ <a href="https://kikonet.org/content/37856">参議院議員選挙2025に向けて~気候変動対策を進めたい人のための候補者・政党の評価のポイント （2025年6月16日）</a>
+    ・ <a href="https://foejapan.org/issue/staffblog/2025/07/02/staffblog-24594/">＜参院選2025＞各党マニフェストを比較！【原発・エネルギー編】～各党の特色は？　昨年との違いは？</a>
+    ・ <a href="https://www.nhk.jp/p/ts/4V23PRP3YR/episode/te/BN3YK5KVZ8/">時論公論　参議院選挙の争点　エネルギー・電力をどうする - NHK plus</a>
+    ・ <a href="https://www.akaruisenkyo.or.jp/wp/wp-content/uploads/2023/10/Voters75.pdf">政党を知ろう！ - Voters 2023.8</a>
+
+
+<h3 id="points">■ ポイント</h3>
+  ・ Recent Realizations
+    ・ <a href="https://toyokeizai.net/articles/-/884419">ノーベル経済学賞受賞者スティグリッツは、いまトランプ政権をどう見ているのか</a>
+    ・ <a href="https://news.yahoo.co.jp/articles/387738a5f0e7290e887f4cfe2ceec8a7ad96bc7e">「アベノミクス批判」を経済学者がデータと理論で徹底的に批判！　異次元緩和を見事な手際で検証した一冊（書評）</a>
+    ・ <a href="https://www.youtube.com/watch?v=EYHhfJVz-5I">Texas Flood Kills 82+, Including 28 Kids, Amid Drought, Trump Cuts to Weather Service, NOAA & FEMA</a>
+
+  ・ Climate Change
+    ・ <a href="https://www.youtube.com/watch?v=qtinSxbRJV8">Can Our Cities Survive the Heat?</a>
+    ・ <a href="https://www.youtube.com/watch?v=7hBMbQ9de1g">When Will Extreme Heat Become Unlivable?</a>
+    ・ <a href="https://www.youtube.com/watch?v=_V04MJdqHUI">Climate Scientist Michael Mann on Deadly Heat Domes Around the World</a>
+    ・ <a href="https://www.youtube.com/watch?v=560S27Cb1eI">Why Europe is the world's fastest warming continent | DW News</a>
+    ・ <a href="https://www.youtube.com/watch?v=Ztx0Bch3h9s">Why Climate Action Is Unstoppable — and “Climate Realism” Is a Myth | Al Gore | TED</a>
+
+  ・ Energy
+    ・ Power and Water for Data Centers
+      ・ <a href="https://www.youtube.com/watch?v=SpMIs6AnUW8">The World Needs AI, But There's a Problem</a>
+      ・ <a href="https://www.youtube.com/watch?v=oX__219Hr-4">Could thirsty AI worsen the water crisis? | People & Power Documentary</a>
+      ・ 
+    ・ Thorium Nuclear Power
+      ・ <a href="https://www.youtube.com/watch?v=d1TpqmQ0I7U">How China Won the Thorium Nuclear Energy Race</a>
+      ・ <a href="https://www.youtube.com/watch?v=bz4aTO6M4Ho">Why Thorium is About to Change the World</a>
+      ・ <a href="https://www.youtube.com/watch?v=Mv5Evoo8nq4">Thorium Fuel Cycle Introduction</a>
+      ・ <a href="https://www.youtube.com/watch?v=1BmWhS7g2ts">Thorium Problem</a>
+      ・ <a href="https://www.youtube.com/watch?v=RhIaEFP93V4">Can Copenhagen Atomics Make Thorium Reactors Work? An Exclusive Tour to Find Out</a>
+    ・ Hydrogen
+      ・ <a href="https://www.youtube.com/watch?v=i_mtuLSRz-A">That’s Big: Natural Hydrogen Could Power World for 100,000 Years, Survey Finds</a>
+
+  ・ Isreal Iran word-wrap
+    ・ <a href="https://www.youtube.com/watch?v=dFv2uXZFmeo">Israel’s planned to attack Iran for years, so why now? | Start Here</a>
+    ・ <a href="https://www.youtube.com/watch?v=DB8eC0sd-jA">Trump: Don't Drag the US Into Netanyahu's War with Iran | Sen. Bernie Sanders</a>
+
+  ・ 長期的視点
+  ・ 世代間の連携
+
+  ・ 内田樹
+    ・ <a href="https://news.yahoo.co.jp/articles/137e88b74c273648937d0581cf0cbf692a431e51">内田樹「専門家も沈黙する人口減。対処について、歴史上に成功事例がない。今の中高生は、＜どうしたらいいかわからない時代＞を生きていく」</a>
+    ・ <a href="https://news.yahoo.co.jp/articles/86cddd564a22bbcbad869aadaf8bb85f07077c62">「権力を持つ人間に『特権』　日本は『努力』を放棄したのか」内田樹</a>
+    ・ <a href="https://www.shimintimes.co.jp/news/2025/06/post-1758/">内田樹さん　「届く言葉」について語る　信州しおじり本の寺子屋</a> 
+    ・ <a href="https://www.youtube.com/live/R5b-lDCeBAY">【内田樹・斎藤氏と立花氏とは何か／江藤農相の更迭と小泉氏／...</a>
+    ・ 沈む祖国を救うには？
+      ・ 第１部
+        ・ 第１章 衰退国家の現在地
+        ・ 第２章 世界の中を彷徨う日本
+        ・ 第３章 温かい国への道程
+      ・ 第２部
+        ・ 第４章 社会資本を豊かにするために
+          1. 近代の危機と再考
+          2. 日本型コミューン主義の蘇り
+          3. 血を流さずに国を変える道
+          4. 農業を基幹産業に  
+        ・ 第５章 教育と自由
+  
+  ・ Yuval Noah Harari
+    ・ <a href="https://www.youtube.com/watch?v=MzpiZQSH_D0">‘Foolish’: Trump’s fraud busted by Yuval Noah Harari in Ari Melber’s hourlong interview</a>
+    ・ <a href="https://www.youtube.com/watch?v=qvAXqyWJxwg">Harari on coping with the Trump eraーNHK WORLD-JAPAN NEWS</a>
+    ・ Nexus - A Brief History of Information Networks from the Stone Age to AI  
+
+  ・ <a href="https://www.youtube.com/watch?v=Nq2QAVA32NM">re:publica 25: Johan Rockström - Decisive Decade:  From Global Promises to Planetary Action</a>
+    ・ 
+  ・ <a href="https://www.youtube.com/watch?v=CRraHg4Ks_g">Demis Hassabis On The Future of Work in the Age of AI</a>
+  ・ <a href="https://www.youtube.com/watch?v=qvAXqyWJxwg">Harari on coping with the Trump eraーNHK WORLD-JAPAN NEWS</a>
+  ・ <a href="https://www.youtube.com/watch?v=Jg1l75dcpr4">【櫻井よしこのニュース解説】「戦争」を変えたAIドローン大奇襲 大胆！ゼレンスキー「蜘蛛の巣作戦」</a>
+  ・ <a href="https://www.youtube.com/watch?v=iKdLYuOorE0">Why Ukraine’s Drone Attack on Russia Changes War Forever | TED Explains the World with Ian Bremmer</a>
+  ・ <a href="https://en.wikipedia.org/wiki/Danny_Boy">Danny Boy - Wikipedia</a>
+    ・ <a href="http://www.standingstones.com/danny3.html">The Danny Boy Trivia Collection</a>
+  ・ <a href="https://www.youtube.com/watch?v=Ptk_1Dc2iPY">Canon in D (Pachelbel's Canon) - Cello & Piano [BEST WEDDING VERSION]</a>
+  ・ 日本解体論 (朝日新書) ： 望月 衣塑子 × 白井 聡
+  ・ AIアシスタント活用の重要性
+    ・ <a href="https://www.youtube.com/watch?v=LPZh9BOjkQs">Large Language Models explained briefly - 3Blue1Brown</a>
+    ・ <a href="https://arxiv.org/pdf/1706.03762">Attention Is All You Need</a>
+    ・ <a href="https://arxiv.org/pdf/2206.07682">Emergent Abilities of Large Language Models</a>
+    ・ <a href="https://arxiv.org/pdf/2304.15004">Are Emergent Abilities of Large Language Models a Mirage?</a>
+    ・ <a href="https://www.youtube.com/watch?v=nMwiQE8Nsjc">No one actually knows why AI works</a>
+    ・ Can AI see beauty?
+  ・ Cobb-Douglas 型生産関数による日本経済の分析
+  ・ 本荘 2019 における労働分配率を使った推論の吟味
+  <table>
+  <tr>
+  <td width="50%" valign="top"><pre>
+  </pre></td>
+  <td align="center"><img src="figs/Carole_Cadwalladr.jpg" width="50%"></image></td>
+  </table>
+
+<h3 id="analysis-of-mochizuki-uchida-shirai">■ 望月 衣塑子 ×（内田 樹、白井 聡）</h3>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E6%9C%9B%E6%9C%88%E8%A1%A3%E5%A1%91%E5%AD%90">望月 衣塑子</a>
+    ・ <a href="https://www.nytimes.com/2019/07/05/world/asia/japan-media.html">This Reporter Asks a Lot of Questions. In Japan, That Makes Her Unusual. - The New York Times</a>
+
+  ・ <a href="https://ja.wikipedia.org/wiki/%E5%86%85%E7%94%B0%E6%A8%B9">内田 樹 - Wikipedia</a>
+    ・ <a href="https://www.youtube.com/watch?v=LIkGOvnKDgE">１年道徳かぼちゃのつる - YouTube</a>
+    ・ <a href="https://www.city.tsukuba.lg.jp/material/files/group/30/0501kannkyoeiseika2.pdf">６月の市内一斉清掃 - つくば市</a>
+
+  ・ <a href="https://ja.wikipedia.org/wiki/%E7%99%BD%E4%BA%95%E8%81%A1">白井聡 - Wikipedia</a>
+    ・ 
+
+  ・ <a href="https://ja.wikipedia.org/wiki/%E8%A3%B8%E3%81%AE%E7%8E%8B%E6%A7%98">裸の王様 - Wikipedia</a>
+
+  ・ 安部晋三
+    ・ <a href="https://ja.wikipedia.org/wiki/%E5%AE%89%E5%80%8D%E6%99%8B%E4%B8%89">安倍晋三 - Wikipedia</a>
+    ・ <a href="https://ja.wikipedia.org/wiki/%E6%97%A5%E7%B1%B3%E8%B1%AA%E5%8D%B0%E6%88%A6%E7%95%A5%E5%AF%BE%E8%A9%B1">日米豪印戦略対話 - Wikipedia</a>
+    ・ <a href="https://toyokeizai.net/articles/-/604278">安倍元首相が日本を地経学の中に位置づけた意味 - 東洋経済</a>
+    ・ <a href="https://www.cnn.co.jp/world/35190823.html">「自由で開かれたインド太平洋」、安倍元首相の一言が変えた米国のアジア観と中国観 - CNN</a>
+    ・ <a href="https://wedge.ismedia.jp/articles/-/27244">安倍元首相がインドにこれだけ愛された３つの理由 - Wedge ONLINE</a>
+
+<h3 id="how-to-utilize-chatgpt">■ ChatGPT の能力認識と活用法</h3>
+  ・ ChatGPT は思考の深さを理解できる、と思って差し支えない。
+<div align="center">
+<table width="50%" border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Economist</th>
+      <th>Depth of Thought</th>
+      <th>Focus Area</th>
+      <th>Comparable Thinker</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>宇沢 弘文 (Hirofumi Uzawa)</td>
+      <td>High</td>
+      <td>Foundational questions about growth, sustainability, and social capital.</td>
+      <td>Keynes, Hayek</td>
+    </tr>
+    <tr>
+      <td>伊東 光晴 (Mitsuharu Ito)</td>
+      <td>Moderate to High</td>
+      <td>Policy critique, societal impacts, and public engagement.</td>
+      <td>Galbraith</td>
+    </tr>
+    <tr>
+      <td>岩田 規久男 (Kikuo Iwata)</td>
+      <td>Moderate</td>
+      <td>Practical monetary policy solutions, focused on inflation and growth.</td>
+      <td>Friedman</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+          Me:
+            Back to Uzawa, Ito and Iwata. I have found a mistake about Iwata.
+            You said 岩田 規久男 (Kiichiro Iwata), but Kikuo Iwata is the correct pronunciation.
+            Can you confirm you are refering to the same person?
+
+          GitHub Copilot:
+            Thank you for pointing that out!
+            Yes, I was referring to 岩田 規久男,
+            and you are correct that the proper pronunciation of his name is Kikuo Iwata,
+            not Kiichiro Iwata. I appreciate your clarification,
+            and I apologize for the mistake.
+
+            To confirm, Kikuo Iwata is the Japanese economist known for his work on monetary policy and his advocacy of aggressive monetary easing,
+            particularly as a key proponent of "Abenomics" during his tenure as Deputy Governor of the Bank of Japan (2013–2018).
+            His focus on inflation targeting and quantitative easing aligns with the discussion we had earlier.
+
+<div align="center">
+<table width="50%" border="1" cellpadding="5" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Keynes</th>
+      <th>Friedman</th>
+      <th>Hayek</th>
+      <th>Galbraith</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Depth of Thought</td>
+      <td>High</td>
+      <td>Moderate</td>
+      <td>High</td>
+      <td>Moderate to High</td>
+    </tr>
+    <tr>
+      <td>Focus</td>
+      <td>Macroeconomic theory, disequilibrium, and government intervention.</td>
+      <td>Monetary policy, free markets, and inflation control.</td>
+      <td>Decentralized knowledge, freedom, and systemic philosophy.</td>
+      <td>Corporate power, societal impacts, and applied critiques.</td>
+    </tr>
+    <tr>
+      <td>Role of Government</td>
+      <td>Active intervention via fiscal policy.</td>
+      <td>Minimal intervention; focus on monetary policy.</td>
+      <td>Minimal intervention; emphasis on individual liberty.</td>
+      <td>Active intervention to address social imbalances.</td>
+    </tr>
+    <tr>
+      <td>View on Markets</td>
+      <td>Markets can fail and need correction.</td>
+      <td>Markets are efficient and self-correcting.</td>
+      <td>Markets are efficient but require freedom to function.</td>
+      <td>Markets are imperfect and often distorted by power structures.</td>
+    </tr>
+    <tr>
+      <td>Comparable Thinker</td>
+      <td>Uzawa</td>
+      <td>Iwata</td>
+      <td>Uzawa</td>
+      <td>Ito</td>
+    </tr>
+  </tbody>
+</table>  
+</div>
+
+<div align="center">
+  <style>
+    table.custom-table {
+      width: 70%; /* Optional: Adjust table width as needed */
+      border-collapse: collapse;
+    }
+    table.custom-table td, table.custom-table th {
+      border: 1px solid #ddd; /* Add borders for clarity */
+      padding: 8px; /* Add padding for better readability */
+      word-wrap: break-word; /* Ensure text wraps */
+      word-break: break-word; /* Break long words if necessary */
+      white-space: normal; /* Allow text to wrap */
+    }
+  </style>  
+<table class="custom-table">
+  <thead>
+    <tr>
+      <th>Aspect</th>
+      <th>Keynes</th>
+      <th>Friedman</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Economic Context</strong></td>
+      <td>
+        Developed his ideas during the Great Depression, when markets failed to self-correct, leading to mass unemployment and economic stagnation.
+      </td>
+      <td>
+        Developed his ideas during the mid-20th century, particularly in response to stagflation (high inflation and unemployment) and perceived failures of Keynesian policies.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Philosophy</strong></td>
+      <td>
+        Believed markets could fail and remain in disequilibrium for extended periods, requiring active government intervention to stabilize the economy.
+      </td>
+      <td>
+        Believed markets are inherently efficient and self-correcting, and that government intervention often causes more harm than good.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Focus</strong></td>
+      <td>
+        Emphasized aggregate demand as the key driver of economic activity and focused on short-term stabilization through fiscal policy (e.g., government spending and tax cuts).
+      </td>
+      <td>
+        Emphasized the role of the money supply in controlling inflation and focused on long-term economic stability through monetary policy (e.g., central bank actions).
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Methodology</strong></td>
+      <td>
+        Used a macroeconomic approach, focusing on the economy as a whole and the interplay of aggregate variables like demand, employment, and output.
+      </td>
+      <td>
+        Focused on microeconomic foundations, analyzing individual behavior and its impact on broader economic outcomes, with an emphasis on empirical data.
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Influence</strong></td>
+      <td>
+        His work was shaped by the failures of laissez-faire economics during the Great Depression, leading to his advocacy for government intervention to address systemic issues.
+      </td>
+      <td>
+        His work was shaped by the failures of Keynesian policies during the stagflation era, leading to his emphasis on free markets and the dangers of excessive government control.
+      </td>
+    </tr>
+  </tbody>
+</table>  
+</div>
+
+<h3 id="recognition-of-cliamate-change-problems">■ 気候変動問題の認識</h3>
+    ・ <a href="https://www.youtube.com/watch?v=PiX9t_wovEY">The REAL Story of the LA Fires | Full Documentary</a>
+    <div align="center">
+    <table width="100%">
+        <tr align="center">
+            <td>
+                <a href="../20250409/figs/urban_firestorms.jpg"><img src="../20250409/figs/urban_firestorms.jpg" width="80%"></a><br>
+                <small>from <a href="https://www.youtube.com/watch?v=PiX9t_wovEY">The REAL Story of the LA Fires</a></small>
+            </td>
+            <td>
+                <a href="../20250409/figs/acres_burned.jpg"><img src="../20250409/figs/acres_burned.jpg" width="80%"></a><br>
+                <small>from <a href="https://www.youtube.com/watch?v=PiX9t_wovEY">The REAL Story of the LA Fires</a></small>
+            </td>
+        </tr>
+        <tr align="center">
+            <td>
+                <a href="../20250409/figs/temperature_projected.jpg"><img src="../20250409/figs/temperature_projected.jpg" width="80%"></a><br>
+                <small>from <a href="https://www.youtube.com/watch?v=PiX9t_wovEY">The REAL Story of the LA Fires</a></small>
+            </td>
+            <td>
+                <a href="../20250409/figs/sponge_simile.jpg"><img src="../20250409/figs/sponge_simile.jpg" width="80%"></a><br>
+                <small>from <a href="https://www.youtube.com/watch?v=PiX9t_wovEY">The REAL Story of the LA Fires</a></small>
+            </td>
+        </tr>
+    </table>
+    </div>  
+    ・ <a href="https://www.youtube.com/watch?v=NZv5zBNIhvE">Scientists Misreport Climate Cause of LA Wildfires</a>
+    <div align="center">
+        <table width="100%">
+        <tr align="center">
+            <td>
+            <a href="../20250326/figs/LA_fires.jpg"><img src="../20250326/figs/LA_fires.jpg" width="50%"></a><br>
+            <small>from <a href="https://www.youtube.com/watch?v=NZv5zBNIhvE">Scientists Misreport Climate Cause of LA Wildfires</a></small>
+            </td>
+        </tr>
+        </table>
+    </div>  
+
+  ・ 山林火災
+    ・ 3月26日～ 長野県安曇野市
+    ・ 3月26日　 福島県須賀川市
+    ・ 3月23日～ 愛媛県今治市
+    ・ 3月25日～ 宮崎市鏡洲
+    ・ 3月24日～ 岡山市南区
+    ・ 2月26日～ 岩手県大船渡市
+
+  ・ <a href="https://www.youtube.com/watch?v=tRA2SfSk2Tc">How I Think About Climate Change</a>
+
+  ・ <a href="https://www.youtube.com/watch?v=77Q07i1HSYc">The Truth About Climate Change That I’ve Avoided For So Long… | GEO GIRL</a>
+
+<h3 id="nuclear-power-generation">■ 核エネルギー発電</h3>
+  ・ <a href="https://www.youtube.com/watch?v=TPcemHez_4g">Solving AI’s Energy Problem with Kathryn Huff</a>
+  ・ Neuclear Fusion
+    ・ <a href="https://www.youtube.com/watch?v=piPbnKdve9M">Nuclear Fusion, explained for beginners</a>
+    ・ <a href="https://www.youtube.com/watch?v=xsikwXnUcBs">We Tried To Do Nuclear Fusion</a>
+    ・ <a href="https://www.youtube.com/watch?v=vIp_jwHMjIk">First Nuclear Fusion Rocket Design Unveiled</a>
+
+<h3 id="programming-for-economics">■ プログラミングを活用した経済学学習</h3>
+  ・ <a href="https://medium.com/@gustavo.haase/understanding-the-solow-growth-model-a-python-approach-122867bf6da4">Understanding the Solow Growth Model: A Python Approach - Medium</a>
+  ・ <a href="https://officekaisuiyoku.com/pythonindifference/">【経済学】【python】 無差別曲線を立体グラフで描くーmatplotlib,Axes3D</a>
+  ・ <a href="https://qiita.com/takahashi-ry/items/9803d6576b5a206f4989">全然ムズカシくない経済学プログラミング - Qiita</a>
+  ・ <a href="https://qiita.com/leisurely/items/b67cf2cd058a2a01295b">コブダグラス型生産関数(効用関数)の可視化 - Qiita</a>
+
+<h3 id="conomic-statistics-datasource">■ 経済統計データソース</h3>
+  ・ <a href="https://www.jil.go.jp/kokunai/statistics/shuyo/index.html">主要労働統計指標</a>
+  ・ <a href="https://www.esri.cao.go.jp/index.html">内閣府 経済社会総合研究所</a>
+    ・ <a href="https://www.esri.cao.go.jp/jp/sna/menu.html">国民経済計算（GDP統計）</a>
+  ・ <a href="https://www.boj.or.jp/research/wps_rev/wps_2000/cwp00j05.htm">資本ストック統計の見方 - 市場評価資本ストックの試算</a>
+    ・ 国民経済計算（純固定資産）
+    ・ 民間企業資本ストック
+    ・ 国富調査
+  ・ <a href="http://www.keikyo-center.or.jp/old/tool/pdf/sna.pdf">国民経済計算の見方、使い方</a>
+
+<h3 id="involuntary-non-regular-employment">■ 不本意非正規雇用</h3>
+  ・ <a href="https://www.mhlw.go.jp/content/001234734.pdf">【正規雇用労働者と非正規雇用労働者の推移】</a>
+  ・ <a href="https://www.rieti.go.jp/jp/publications/dp/11j052.pdf">2011, 山本 勲; 非正規労働者の希望と現実 ―不本意型非正規雇用の実態―</a>
+
+  ・ <a href="https://asia.nikkei.com/Spotlight/Datawatch/Nonregular-workers-struggle-to-go-full-time-in-labor-scarce-Japan">Nonregular workers struggle to go full-time in labor-scarce Japan</a>
+  ・ <a href="https://mainichi.jp/english/articles/20230403/p2a/00m/0bu/004000c">90% of irregular workers in Japan struggle to make ends meet, 80% see no pay rises: survey</a>
+  ・ <a href="https://www.jstage.jst.go.jp/article/ojjams/23/2/23_2_2_85/_pdf">Voluntary and Involuntary Job Mobility in Japan: Resource, Reward and Labor Market Structure</a>
+  ・ <a href="https://www.nippon.com/en/features/h00133/">Regular Full-Time Positions Increasingly Elusive for Japanese Workers</a>
+  ・ <a href="https://scispace.com/pdf/the-work-and-lives-of-japanese-non-regular-workers-in-the-2ksr1ad0sw.pdf">The Work and Lives of Japanese Non-Regular Workers in the “Mid-Prime-Age” Bracket (Age 35‒44) </a>
+  ・ <a href="https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000077386_00013.html">派遣会社のマージン率等について - 厚生労働省</a>
+  ・ <a href="https://well-beings.co.jp/media/hakengaisha-margin/">派遣会社のマージン率は取りすぎ！？大手派遣会社のマージン率や相場・内訳を一覧で比較</a>
+
+<h3 id="labor-share-in-japan">■ 日本の労働分配率</h3>
+  ・ <a href="../references/2013, A. Fujiwara.pdf">2013, 藤原 新; ケインズ経済学における貨幣賃金率の粘着性の意味について</a>
+  
+  ・ <a href="https://www.ier.hit-u.ac.jp/Common/publication/DP/DPS-A672.pdf">2018, Kyoji Fukao; The Long-Run Dynamics of the Labour Share in Japan</a>
+  ・ <a href="https://www.mof.go.jp/english/pri/publication/pp_review/fy2017/ppr13_02_06.pdf">2017, Yuki Hashimoto; Labor Share and Firm Performance</a>
+  ・ <a href="../references/2019, Dilyana Dimova.pdf">2019, Dilyana Dimova; The Structural Determinants of the Labor Share in Europe</a>
+  
+<h3 id="financial-informetion-of-listed-companies">■ 上場企業の決算情報</h3>
+  ・ <a href="https://qiita.com/XBRLJapan/items/27e623b8ca871740f352">EDINET APIを利用して、企業情報（XBRLデータ）を自動で集めてみよう(4/10)</a>
+  ・ <a href="https://note.com/python_lab/n/n510c3315b3f9">【Python】EDINETのAPI v2を使って決算書類データをスクレイピングするサンプルコード</a>
+  ・ <a href="https://note.com/oh_no/n/nd98fe0a8edc2">python EDINET APIを使って有価証券報告書他　資料を取得する</a>
+  ・ <a href="https://lifetechia.com/edinet-api-1/">【Python金融データ】EDINET APIの使い方</a>
+
+<h3 id="study-on-heizo-takanaka">■ 竹中平蔵研究</h3>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E7%AB%B9%E4%B8%AD%E5%B9%B3%E8%94%B5">竹中平蔵 - Wikipedia</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E5%8A%B4%E5%83%8D%E3%83%93%E3%83%83%E3%82%B0%E3%83%90%E3%83%B3">労働ビッグバン - Wikipedia</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E3%83%AF%E3%83%83%E3%82%BB%E3%83%8A%E3%83%BC%E5%90%88%E6%84%8F">ワッセナー合意 - Wikipedia</a>
+  ・ <a href="https://ja.wikipedia.org/wiki/%E6%97%A5%E6%9C%AC%E3%81%AE%E7%B5%8C%E6%B8%88#%E4%B8%8D%E5%AE%8C%E5%85%A8%E9%9B%87%E7%94%A8%E3%81%A8%E5%83%8D%E3%81%8D%E6%96%B9%E6%94%B9%E9%9D%A9">日本の経済 § 不完全雇用と働き方改革 - Wikipedia</a>
+  ・ <a href="https://www.suntory.co.jp/sfnd/prize_ssah/detail/1984sk1.html">『研究開発と設備投資の経済学 ―― 経済活力を支えるメカニズム』（東洋経済新報社）</a>
+    ・ <a href="https://ci.nii.ac.jp/ncid/BN00200945">研究開発と設備投資の経済学 : 経済活力を支えるメカニズム</a>
+</pre>
+</body>
+</html>

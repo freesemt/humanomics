@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>keynes-2025-02-05</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  /* https://kkawazoe.github.io/blog/2020/05/23/insert-formula-into-hugo-part2/ */
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left", // version 2 で css で変更していた 数式の表示位置の設定
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        /* これを記述しないと インライン数式(例. ${}_n \mathrm{ P }_k$) が機能しない */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+</style>
+<body>
+<pre>
+<h1>ケインズ研究メモ</h1>
+<h3>■ 伊東光晴さんの本（2006）から</h3>
+<div align="center">
+  <table width="100%">
+    <tr>
+      <td width="50%">
+        <ol>
+          <li>多元的（double-jointed）な理論</li>
+          <li>統計的検証可能（observable）な理論</li>
+          <li>不確実性（uncertainty）の前提</li>
+          <li>合成の誤謬（fallacy of composition）の発見</li>
+          <li>方法的個人主義の否定</li>
+        </ol>
+        <small>from 現代に生きるケインズ, p.59 by 2006, 伊東 光晴</small>
+      </td>
+      <td width="25%" align="center">
+        古典派の労働需給曲線<br>
+        <img src="figs/ito-2006-fig04.jpg" width="80%">
+        <br><small>from p.61, 2006, 伊東 光晴</small>
+      </td>
+      <td align="center">
+        ケインズの労働需給曲線<br>
+        <img src="figs/ito-2006-fig15.jpg" width="80%">
+        <br><small>from p.76, 2006, 伊東 光晴</small>
+      </td>
+    </tr>
+  </table>
+</div>
+<h3>■ 本荘さんの論文（2019）から</h3>
+<div align="center">
+<table width="100%">
+  <tr>
+    <td width="50%" valign="top">
+      <pre>
+  (Ⅰ) 賃金は労働の［価値］限界生産物に等しい。
+
+        The wage is equal to the marginal product of labour.
+
+
+  (Ⅱ) 一定の労働量が雇用されている場合、賃金の効用はその雇用量の限界負効用に等しい。
+
+        The utility of the wage when a given volume of labour is employed
+        is equal to the marginal disutility of that amount of employment.
+      </pre>
+    </td>
+    <td width="25%" align="center">
+      <img src="figs/honjo-2019-fig1.jpg" width="95%">
+      <br><small>from 2019, 本荘 康生</small>
+    </td>
+    <td align="center">
+      <img src="figs/honjo-2019-fig2.jpg" width="95%">
+      <br><small>from 2019, 本荘 康生</small>
+    </td>
+  </tr>
+</table>
+</div>
+  ・ 古典派の理論では、貨幣賃金率の引き下げで均衡が回復する。
+    ・ すなわち、失業がなくなる。
+
+  ・ ケインズの一般理論では、実質賃金と貨幣賃金の変動は反対方向になるので、
+    ・ 貨幣賃金率の引き下げでは均衡が回復しない。
+
+  ・ 証明 1.1（本荘, 2019）commented by 高橋
+
+<div align="center">
+まず、貨幣賃金を $W$、物価水準を $P$ として、実質賃金の定義 $ Y = \frac{W}{P}$ から、
+
+$ \frac{d Y}{d W} = \frac{1}{P^2} (P - W \frac{d P}{d W}) = \frac{W}{P^2}(\frac{P}{W} - \frac{d P}{d W}) $
+  
+すなわち、 $\frac{W}{P}$ と $W$ の変動の相反は、$ \frac{P}{W} < \frac{d P}{d W} $ のときに限って発生する。  
+
+次に、この条件と利潤計算式 $ \pi = P \cdot q - (FC + u \cdot q + W \cdot l)$ との関係を見るため、
+
+利潤最大化条件 $ \frac{d \pi}{d q} = 0 $ から $ P = u + W \cdot \frac{d l}{d q} $ を得て、
+
+上記の相反条件は、$u$ が $W$ に依存しないと仮定すれば、$ \frac{d l}{d q} $ を使って、次のようにも書けるが、
+
+$ \frac{P}{W} < \frac{d P}{d W} = \frac{d l}{d q} + W \cdot \frac{d}{d W}(\frac{d l}{d q}) $
+
+右辺第２項の複雑さから、使いやすいものではないので、$ \frac{d l}{d q} $ を使った説明は分かりにくくなる可能性がある。
+（すなわち、左辺で説明した方が分かりやすい）
+</div>
+
+<div align="center">
+  <table width="100%">
+    <tr align="center"><td><img src="figs/fig1.jpg" width="95%"></td><td><img src="figs/fig2.jpg" width="95%"></td></tr>
+    <tr align="center"><td><img src="figs/fig3.jpg" width="95%"></td><td><img src="figs/fig4.jpg" width="95%"></td></tr>
+    <tr align="center"><td><img src="figs/fig5.jpg" width="95%"></td><td><img src="figs/fig6.jpg" width="95%"></td></tr>
+  </table>
+</div>
+
+・ 証明 1.2（本荘, 2012）
+
+  ・ $ W = P \cdot Q \cdot S $
+  ・ $ Y = \frac{W}{P} = Q \cdot S $
+
+  ・ S が一定という仮定の下では、
+  ・ $ \frac{d Y}{d W} = S \cdot \frac{d Q}{d W}$
+  ・ なので、$ Y $ の変動の向きは、$ \frac{d Q}{d W} $ の符号（すなわち、正か負か）で決まる。
+
+・ 証明 2（伊東, 1993）
+
+
+
+<h3>■ 伊東光晴さんの本（1993）から</h3>
+
+  ・ 
+
+<h3>■ ケインズ一般理論（1936）から</h3>
+  ・ 一般理論の（重要な）目的の１つが、非自発的失業を理論に取り込むことであり、
+     その意味で、古典経済学の不備が説明されている。
+
+  ・ 次の３仮定は、全体が、同時に成立するか、または、同時に崩落するか、
+     のいずれかであり、どの１つも論理的に他の２つを包含している、
+     という意味で、同義である。（第２章 古典経済学の公準 のまとめ）
+
+    (1) 実質賃金は、既存雇用の限界負効用に等しい。
+
+    (2) 厳密な意味で、非自発的な失業のようなものはない。
+
+    (3) 供給は、次の意味で、自らの需要を創出する。
+        総需要価格は、全水準の産出と雇用について、総供給価格に等しい。
+
+    原文：
+
+    (1) that the real wage is equal to marginal disutility of
+        the existing employment; 
+
+    (2) that there is no such thing as involuntary unemployment
+        in the strict sense;
+
+    (3) that the supply creates its own demand in the sense
+        that the aggregate demand price is equal to the aggregate
+        supply price for all levels of output and employment.
+</pre>
+</body>
+</html>
