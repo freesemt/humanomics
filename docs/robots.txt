@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /dialogs/
+Allow: /
+
+Sitemap: https://freesemt.github.io/humanomics/sitemap.xml
