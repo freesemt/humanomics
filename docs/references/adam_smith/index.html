@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>Adam Smith - 道徳感情論</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+body { line-height:1.7; }
+</style>
+<body>
+<pre>
+<h2>Adam Smith『道徳感情論』(The Theory of Moral Sentiments)</h2>
+
+<table width="100%">
+<tr>
+<td width="50%" valign="top">
+
+<h3 id="index">■ 目次</h3>
+  1. <a href="#motivation">なぜ今、道徳感情論なのか</a>
+  2. <a href="#objectives">理解の目的</a>
+  3. <a href="#roadmap">学習の進め方</a>
+  4. <a href="#overview">書籍の概要</a>
+  5. <a href="#structure">構成と重要概念</a>
+  6. <a href="#notes">学習メモ・気づき</a>
+
+</td>
+<td width="50%">
+  <table width="100%">
+    <tr>
+      <td width="36%" align="center" valign="top">
+        <img src="images/Adam_Smith_Muir_portrait_cropped.jpg" width="90%"><br>
+        <small>Adam Smith (1723-1790)<br>
+        from <a href="https://commons.wikimedia.org/wiki/File:Adam_Smith_The_Muir_portrait.jpg">Wikimedia Commons</a></small>
+      </td>
+      <td width="32%" align="center" valign="top">
+        <img src="../../dialogs/20251204/figs/Vladimir_Putin.webp" width="90%"><br>
+        <small>Vladimir Putin<br>
+        from <a href="https://en.wikipedia.org/wiki/Vladimir_Putin">Wikipedia</a></small>
+      </td>
+      <td width="32%" align="center" valign="top">
+        <img src="../../dialogs/20251204/figs/Xi_Jinping.jpg" width="90%"><br>
+        <small>Xi Jinping<br>
+        from <a href="https://ja.wikipedia.org/wiki/%E7%BF%92%E8%BF%91%E5%B9%B3">Wikipedia</a></small>
+      </td>
+    </tr>
+  </table>
+</td>
+</tr>
+</table>
+
+<h3 id="motivation">■ なぜ今、道徳感情論なのか</h3>
+
+<strong>【国際社会における倫理の欠如】</strong>
+  ・ プーチンのウクライナ侵攻（2022年～）
+    - 主権国家への武力侵攻
+    - 国際法の無視
+    - 民間人への攻撃
+  
+  ・ 習近平政権下の中国
+    - ウイグル、チベット、香港への抑圧
+    - 台湾侵攻の可能性
+    - 「一つの中国」原則の強要
+  
+  ・ 中東問題
+    - イスラエルのガザ侵攻
+    - 複雑な歴史的経緯と現代の暴力
+
+  → <strong>問い：</strong> 国家指導者の倫理的判断はどのように形成されるのか？
+  → <strong>問い：</strong> 国際社会における「道徳」は可能なのか？
+
+<strong>【身近なコミュニティにおける公共心の衰退】</strong>
+  ・ 自治会・町内会の役員引受が敬遠される
+    - 個人の負担感
+    - 「誰かがやってくれる」という期待
+    - 共同体への責任感の希薄化
+  
+  ・ 地域社会の設計
+    - 家族、地域コミュニティ、同期会、国
+    - それぞれのレベルでの倫理と責任
+
+  → <strong>問い：</strong> なぜ人は公共の利益のために行動するのか／しないのか？
+  → <strong>問い：</strong> 自己利益と公共の利益はどう調和するのか？
+
+<strong>【経済と倫理の分離の問題】</strong>
+  ・ アダム・スミスは「経済学の父」として知られるが
+    - 『国富論』(1776) より先に『道徳感情論』(1759) を著した
+    - 経済活動の基盤には道徳的感情がある
+  
+  ・ 現代経済における倫理的課題
+    - 正規雇用・非正規雇用の問題
+    - 格差の拡大
+    - 短期的利益追求と長期的視点の欠如
+
+  → <strong>問い：</strong> 経済活動は道徳と切り離せるのか？
+  → <strong>問い：</strong> 「見えざる手」の前提となる道徳とは何か？
+
+<strong>【愚かな指導者を選出しない社会の設計】</strong>
+  ・ プーチンの愚策からの帰結
+    - 愚者の発生は避けられない
+    - しかし、愚者を指導者に選出しないことは可能
+  
+  ・ 民主主義における判断力
+    - 有権者の道徳的判断力
+    - メディアリテラシー
+    - 正確な理解に基づく意思決定
+
+  → <strong>問い：</strong> 道徳的判断力はどのように形成されるのか？
+  → <strong>問い：</strong> 「公平な観察者」(Impartial Spectator) の視点をどう育むか？
+
+<strong>【集団的知性 vs 集団的愚かさ（CI vs CS）】</strong>
+  ・ CI (Collective Intelligence) 構想の文脈
+    - 個人の知識・理解を深めることを通して、集団としての知性を高める
+    - 参照：<a href="https://shudo25.github.io/homepage/ci_initiative/overview.html">CI構想概要</a>
+  
+  ・ CS (Collective Stupidity) の危険性
+    - 個人の知識・理解が浅いまま、集団としての愚かさを増幅
+    - プーチン、習近平の問題は CS の極致
+  
+  ・ 気候変動対策の失敗が示すもの
+    - 「沈没寸前の船」に例えると：
+      → 全員が状況を理解すれば、喧嘩している場合ではないとわかるはず
+      → しかし現実には、全員が正しく理解することが困難
+      → 影響が顕在化していない地域では危機を理解しにくい
+      → 否定する人さえ存在する
+    
+    - 結果：もう手遅れの状態
+      → できることは「沈没した船の中で少しでも快適に過ごす方法」
+      → 元の状態に戻すには200年以上かかる
+  
+  ・ 道徳感情論が貢献できること
+    - 人類を滅亡から防ぐ
+    - 同じような集団的過ちを繰り返さない
+    - 個人の理解を深めることで集団の知性を高める基盤
+
+  → <strong>問い：</strong> なぜ人間は「正確な理解」に至れないのか？
+  → <strong>問い：</strong> 共感（Sympathy）は正確な理解を助けるのか？
+  → <strong>問い：</strong> 個人の道徳的判断が、いかに集団の知性につながるのか？
+
+<h3 id="objectives">■ 理解の目的</h3>
+
+<strong>【本荘康生さんとの対話における目標】</strong>
+  ・ 2026年の対話テーマ：倫理を基軸とした対話
+  ・ 月1回のペースでの継続的な議論
+  
+  ・ 探求したいこと：
+    1. 人間の道徳的判断の基礎
+    2. 共感（Sympathy）の役割
+    3. 自己利益と他者への配慮の関係
+    4. 社会制度と道徳の相互作用
+    5. 「正確な理解」に至るための条件
+    6. 一対一のコミュニケーションの重要性
+
+<strong>【個人的な学習目標】</strong>
+  ・ アダム・スミスの思想の全体像を理解する
+    - 『道徳感情論』と『国富論』の関係
+    - 経済学と倫理学の統合的理解
+  
+  ・ 現代の問題への応用
+    - 国際政治における倫理
+    - コミュニティの設計原理
+    - 経済政策の道徳的基盤
+    - CI構想への貢献：集団的知性を高めるための基礎理論の理解
+
+<h3 id="roadmap">■ 学習の進め方</h3>
+
+<strong>【情報過多を避けるための原則】</strong>
+  ・ Copilotは「なんでもよく知っている」が、それが逆に焦点を失わせる危険がある
+  ・ 情報の洪水は「正確な理解」を妨げ、CS（集団的愚かさ）につながる
+  ・ <strong>重要：</strong> 常に「今、集中すべきこと」を明確にする
+
+<strong>【現在の焦点】最優先事項</strong>
+  □ <strong>Phase 0: 準備段階（2025-12-29）</strong>
+    ✓ PDFの入手と抽出環境の整備
+    ✓ 問題意識の整理
+    ✓ 参照ページの作成
+    → 完了
+
+  □ <strong>Phase 1: 共感（Sympathy）の理解（2026年1月）</strong>
+    ← <strong style="color:red">【今ここ】</strong>
+    □ Part I, Section I, Chapter I を精読
+      - 共感とは何か
+      - なぜ共感が道徳の基礎なのか
+    
+    □ 自分の言葉で説明できるようにする
+      - 1-2段落程度の要約
+      - 具体例（プーチン、自治会など）への適用
+    
+    □ 本荘さんとの対話準備（2026-01-08）
+      - 3つの問いを用意する
+      - 自分の理解の不確かな点を明確にする
+
+  □ <strong>Phase 2: 公平な観察者（Impartial Spectator）（2026年2月以降）</strong>
+    □ Part III, Chapter III を精読
+    □ 内なる良心のメカニズム
+    □ 自己判断と他者判断の関係
+    
+    ※ 今は深入りしない。Phase 1に集中。
+
+  □ <strong>Phase 3以降</strong>
+    □ 正義と善行（Part II, Section II）
+    □ 自制心（Part VI, Section III）
+    □ 全体の統合理解
+    
+    ※ 順序は学習の進展に応じて調整
+
+<strong>【学習のルール】</strong>
+  1. <strong>一度に1つの概念に集中する</strong>
+     - 複数のPartを同時に読まない
+     - 1つの概念を理解してから次へ
+
+  2. <strong>必ず「自分の言葉」で表現する</strong>
+     - Copilotの説明をコピーするだけではダメ
+     - 自分で書いてから、Copilotに確認を依頼
+
+  3. <strong>具体例で確認する</strong>
+     - 抽象的な理解だけでは不十分
+     - 現代の問題（ウクライナ、自治会など）に適用できるか
+
+  4. <strong>不明点を明確にする</strong>
+     - わからないことを曖昧にしない
+     - 「何がわからないか」を言語化する
+
+  5. <strong>対話前に準備する</strong>
+     - 本荘さんとの対話の1週間前には準備を開始
+     - 質問を3つ用意する
+
+<strong>【進捗の記録方法】</strong>
+  ・ <a href="#notes">学習メモ・気づき</a> セクションに日付とともに記録
+  ・ 各Phaseの □ を ✓ に変更していく
+  ・ 理解度マーカー：
+    [未読] → [読了] → [理解] → [応用可能]
+
+<strong>【Copilotとの対話の工夫】</strong>
+  ・ 質問する前に、このページの「現在の焦点」を確認
+  ・ Copilotに「Phase 1に集中したい」と明示的に伝える
+  ・ 情報が多すぎると感じたら「簡潔に」と指示
+  ・ 定期的に「理解の確認」を依頼（要約、具体例の適用）
+
+<h3 id="overview">■ 書籍の概要</h3>
+
+<strong>【基本情報】</strong>
+  ・ タイトル：The Theory of Moral Sentiments（道徳感情論）
+  ・ 著者：Adam Smith (1723-1790)
+  ・ 初版：1759年
+  ・ 最終版：第6版（1790年）← 著者の最晩年の改訂版
+  ・ ページ数：約322ページ（英語版）
+
+<strong>【入手・参照方法】</strong>
+  ・ オンライン版：<a href="https://www.ibiblio.org/ml/libri/s/SmithA_MoralSentiments_p.pdf">PDF (ibiblio.org)</a>
+  ・ 抽出方法：<a href="../../dialogs/20260108/setup-moral-sentiments.md">setup-moral-sentiments.md</a>
+  ・ スクリプト：
+    - <a href="../../scripts/extract_moral_sentiments.py">extract_moral_sentiments.py</a> (概要抽出)
+    - <a href="../../scripts/extract_pdf_full.py">extract_pdf_full.py</a> (全文抽出)
+
+<strong>【中心的な概念】</strong>
+  ・ <strong>Sympathy（共感）</strong>
+    - 他者の感情を想像的に共有する能力
+    - 道徳判断の基礎
+  
+  ・ <strong>Impartial Spectator（公平な観察者）</strong>
+    - 内なる良心
+    - 第三者的視点からの自己評価
+  
+  ・ <strong>Propriety（固有性・適切さ）</strong>
+    - 行動が状況に相応しいかどうかの判断
+  
+  ・ <strong>Merit and Demerit（功績と罪過）</strong>
+    - 報酬と処罰の道徳的基礎
+
+<h3 id="structure">■ 構成と重要概念</h3>
+
+<strong>Part I: Of the Propriety of Action（行動の固有性について）</strong>
+  Section I: 共感の感覚について (Of the Sense of Propriety)
+    - Ch.I: 共感について (Of Sympathy)
+    - Ch.II: 相互共感の喜び
+    - Ch.III: 他者の感情の適切さの判断
+    - Ch.IV: 同じ主題の続き
+    - Ch.V: 愛すべき徳と尊敬すべき徳
+
+  Section II: 様々な情念の程度について
+    - 身体に起因する情念
+    - 想像力に起因する情念
+    - 非社交的な情念（怒り、憎しみ）
+    - 社交的な情念（愛、友情）
+    - 利己的な情念
+
+  Section III: 繁栄と逆境が判断に及ぼす影響
+    - 富裕層への称賛、貧困層への軽視
+    - 野心の起源と身分の区別
+    - 道徳感情の腐敗
+
+<strong>Part II: Of Merit and Demerit（功績と罪過について）</strong>
+  Section I: 功績と罪過の感覚
+    - 感謝の対象は報酬に値する
+    - 憤りの対象は処罰に値する
+  
+  Section II: 正義と善行について (Of Justice and Beneficence)
+    - 2つの徳の比較
+    - 正義の感覚、良心、功績の意識
+    - この自然の構成の効用
+  
+  Section III: 運命の影響
+    - 結果が道徳判断に与える影響
+
+<strong>Part III: 自己判断の基礎と義務の感覚</strong>
+  - 自己承認と自己非承認の原理
+  - 称賛への愛 vs 称賛に値することへの愛
+  - 良心の影響と権威
+  - 自己欺瞞の本質
+  - 道徳の一般的規則
+  - 義務の感覚
+
+<strong>Part IV: 効用の影響</strong>
+  - 芸術作品における効用の美
+  - 人間の性格と行動における効用の美
+
+<strong>Part V: 慣習と流行の影響</strong>
+  - 美と醜の概念への影響
+  - 道徳感情への影響
+
+<strong>Part VI: 徳の性格について</strong>
+  Section I: 慎慮 (Prudence) - 自己の幸福
+  Section II: 他者の幸福に影響する性格
+    - 個人への配慮の順序
+    - 社会への善行の順序
+    - 普遍的博愛
+  Section III: 自制心 (Self-command)
+
+<strong>Part VII: 道徳哲学の諸体系</strong>
+  - 徳の本質に関する様々な理論
+    - 固有性に基づく体系（プラトン、アリストテレス、ストア派）
+    - 慎慮に基づく体系
+    - 博愛に基づく体系
+  - 承認の原理に関する体系
+    - 自己愛から導く体系
+    - 理性を原理とする体系
+    - 感情を原理とする体系
+
+<h3 id="notes">■ 学習メモ・気づき</h3>
+
+<strong>【2025-12-29】準備段階</strong>
+  ・ PDFの入手と抽出環境の整備
+  ・ 問題意識の整理
+    - マクロな国際問題（ウクライナ、台湾）
+    - ミクロなコミュニティ問題（自治会運営）
+    - 両者に共通する「倫理と責任」の問題
+
+<strong>【今後の学習計画】</strong>
+  ・ Part I（共感の原理）の精読
+  ・ 「公平な観察者」概念の深い理解
+  ・ 現代の具体的事例への適用
+  ・ 本荘さんとの対話を通じた理解の深化
+
+---
+
+<a href="../../dialogs/20260108/index.html">← 2026-01-08 対話メモに戻る</a>
+</pre>
+</body>
+</html>
