@@ -1,0 +1,77 @@
+{
+  "note": "道徳感情論の目次 - 原典ページ番号とPDFページ番号のマッピング",
+  "offset": 7,
+  "description": "原典のページ番号 + 7 = PDFのページ番号（ただし目次部分は例外）",
+  "pdf_url": "https://www.ibiblio.org/ml/libri/s/SmithA_MoralSentiments_p.pdf",
+  "corrections": {
+    "note": "実際のPDFでは目次がPDF p.3-7にあり、本文はPDF p.11から開始",
+    "toc_pages": "PDF p.3-7 (原典目次)",
+    "text_start": "PDF p.11 (Part I, Section I 開始)"
+  },
+  
+  "Part I": {
+    "title": "Of the Propriety of Action",
+    "note": "Part I全体の概念: Propriety（適切さ・固有性）",
+    "Section I": {
+      "title": "Of the Sense of Propriety",
+      "pdf_page": 11,
+      "note": "Section I全体がPDF p.11から開始",
+      "Chapter 1": {
+        "title": "Of Sympathy",
+        "pdf_page": 11,
+        "note": "Chapter 1もPDF p.11から開始"
+      }
+    }
+  },
+  
+  "Part II": {
+    "title": "Of Merit and Demerit",
+    "Section I": {
+      "title": "Of the Sense of Merit and Demerit",
+      "page_in_book": 72,
+      "pdf_page": 79,
+      "note": "Part II, Section I全体で論じられる概念: Resentment（憤り）",
+      "Chapter 2": {
+        "title": "Of the proper objects of gratitude and resentment",
+        "page_in_book": 61,
+        "pdf_page": 68
+      }
+    },
+    "Section II": {
+      "title": "Of Justice and Beneficence",
+      "page_in_book": 70,
+      "pdf_page": 77,
+      "note": "Part II, Section II全体の概念: Justice and Beneficence",
+      "Chapter 1": {
+        "title": "Comparison of those two virtues",
+        "page_in_book": 70,
+        "pdf_page": 77
+      },
+      "Chapter 2": {
+        "title": "Of the sense of Justice, of Remorse, and of the consciousness of Merit",
+        "page_in_book": 74,
+        "pdf_page": 81
+      }
+    }
+  },
+  
+  "Part III": {
+    "title": "Of the Foundation of our Judgments",
+    "Chapter 3": {
+      "title": "Of the Influence and Authority of Conscience",
+      "page_in_book": 118,
+      "pdf_page": 125,
+      "note": "Impartial Spectator（公平な観察者）の概念"
+    }
+  },
+  
+  "Part VI": {
+    "title": "Of the Character of Virtue",
+    "Section III": {
+      "title": "Of Self-command",
+      "page_in_book": 215,
+      "pdf_page": 222,
+      "note": "Part VI, Section III全体の概念: Self-command（自制心）"
+    }
+  }
+}
