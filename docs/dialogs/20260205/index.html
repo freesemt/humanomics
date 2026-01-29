@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>2026-02-05</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  /* https://kkawazoe.github.io/blog/2020/05/23/insert-formula-into-hugo-part2/ */
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left", // version 2 で css で変更していた 数式の表示位置の設定
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        /* これを記述しないと インライン数式(例. ${}_n \mathrm{ P }_k$) が機能しない */
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.replaceChild(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    },
+    loader: {
+      load: ['[tex]/noerrors']
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+body { line-height:1.7; }
+</style>
+<body>
+<pre>
+・ BGM Selection
+  ・ <a href="https://www.youtube.com/watch?v=oiZFF6NRDEs">Passacaglia - George Frideric Handel / Alexander Motovilov (reimagined)</a>
+  ・ <a href="https://www.youtube.com/watch?v=8a0EBurrLAE">Lola - Passacaglia</a>
+
+・ 気候変動
+
+・ 日本の政治
+  ・ 衆議院選挙
+
+・ 国際政治
+  ・ One China Principle は屁理屈か？
+  ・ 中国の台湾侵攻リスク
+  ・ <a href="https://www.youtube.com/watch?v=WYqgh17l0lw">“We Are Living Through a 1918, 1945, 1989 Moment," — Stubb Explains the New World Order | AC1B</a>
+  ・ <a href="https://www.youtube.com/watch?v=iWyKfCqh8IY">“Can Europe Fight Without America?” — Reporter Challenges Finland’s Stubb Over Trump Pressure | AQ1B</a> 
+
+February 27, 2022. Three days into the war in Ukraine.
+From my home in Espoo, I am mere hours from Russia, a border that has stayed quiet for eighty years.
+I can scarcely believe that full-scale war has returned to the continent.
+It threatens to strain an already frayed world order.
+I send a text to Russian Foreign Minister Sergey Lavrov.
+
+  “Please, please stop this madness. You are the only one who can stop him.”
+  Lavrov replies within a minute: “Whom? Zelenskyy? Biden?”
+  I’ve heard this line of defense from Lavrov before.
+  This time it cannot stand. “No. You know what I mean,”
+  I reply. “It’s gone too far. History is on your shoulders.”
+  His next text parrots the usual Russian propaganda:
+  claims of Russian culture bans and Russians murdered in Ukraine.
+  I know Lavrov, and I know he’s smart enough to understand what’s going on.
+  I try again. “There is no point in the blame game. This is about life and death. We need to stop this.”
+  No dice. Lavrov continues with the same tropes.
+
+I quit after the sixth fruitless message.
+I feel angry and disappointed.
+More than that, I feel the tectonic plates of history shifting.
+
+  フィンランドの人口      550 万人
+  ロシアの人口            1 億 4 千万人
+  日本の人口              1 億 2 千万人   衆議院選挙議員数 465人 → 1 人あたり約 26,000 人（対総人口比率=0.0038%）
+  東京都の人口            1 千 4 百万人
+  大阪府の人口            880 万人
+  茨城県の人口            280 万人
+  つくば市の人口          26 万人
+  観音台第二自治会の世帯数 112 戸          役員数 3人 → 1 人あたり約 37戸（対総人口比率=3/(112*3)=0.09%）
+
+・ ウクライナ情勢
+  ・ <a href="https://www.youtube.com/watch?v=fYjv36sR3YI">“Putin Already Failed”, Finland’s President: Ukraine’s EU Entry Is Existential for Europe | AC1G</a>
+  ・ <a href="https://www.youtube.com/watch?v=QdF8slAEYKM">Ursula addressed Zelenskyy from stage! Everyone fell silent after these statements: said it as it is</a>
+  ・ <a href="https://www.youtube.com/watch?v=VcopBTnevpI">Listen to WHAT Zelenskyy SAID straight to Ursula’s FACE! He ANNOUNCED a DECISION on NEGOTIATIONS</a>
+  ・ <a href="https://www.youtube.com/watch?v=EdGmjnxWh64">Finland's president says Putin made one of the biggest strategic mistakes in recent military history</a>
+  ・ <a href="https://www.youtube.com/watch?v=93ij99tSp5c">Sir Bill Browder: Putin fears he’ll be killed if his war in Ukraine ends</a>
+    ・ what Putin is most afraied of is for people to get at him
+    ・ And so the best way for them not to be get mad at him is to be mad at a foreign enemy
+    ・ ...
+    ・ And so, for him, all these wars are just a personal survival strategy.
+
+・ AI
+  ・ <a href="https://www.youtube.com/watch?v=P5exNYLRQ7w">AI takes some jobs, creates othersーNHK WORLD-JAPAN NEWS</a>
+  ・ 
+
+・ Adam Smith
+  ・ <a href="https://www.ibiblio.org/ml/libri/s/SmithA_MoralSentiments_p.pdf">The Theory of Moral Sentiments</a>
+
+<h3 id="index">■ 今回 2/5 の話題</h3>
+<table width="100%">
+<tr>
+<td width="40%" valign="top"><pre>
+  1. <a href="#looking-back">これまでの振り返り（問題認識）</a>
+  2. <a href="#solving-direction">解決の方向性</a>
+  3. <a href="#climate-change">気候変動対策</a>
+</pre></td>
+<td>
+  <table width="100%">
+    <tr>
+      <td width="33%" align='center'>
+        Alexander Stubb<br>
+        <img src="figs/Alexander_Stubb.jpg" width="80%">
+        <small>from <a href="https://simple.wikipedia.org/wiki/Alexander_Stubb">Wikimedia</a></small>
+      </td>      
+    </tr>
+    <tr>
+      <td width="33%" align='center'>
+        Adam Smith<br>
+        <img src="../../references/adam_smith/images/Adam_Smith_Muir_portrait_cropped.jpg" width="80%">
+        <small>from <a href="https://commons.wikimedia.org/wiki/File:Adam_Smith_The_Muir_portrait.jpg">Wikimedia Commons</a></small>
+      </td>
+      <td width="33%" align='center'>
+        Vladimir Putin<br>
+        <img src="../20251204/figs/Vladimir_Putin.webp" width="60%">
+        <small>from <a href="https://en.wikipedia.org/wiki/Vladimir_Putin">Wikipedia</a></small><br>
+        Xi Jinping<br>
+        <img src="../20251204/figs/Xi_Jinping.jpg" width="60%">
+        <small>from <a href="https://ja.wikipedia.org/wiki/%E7%BF%92%E8%BF%91%E5%B9%B3">Wikipedia</a></small>
+      </td>
+      <td width="33%" align='center'>
+        Von der Leyen<br>
+        <img src="../20251204/figs/Ursula_von_der_Leyen.jpg" width="80%">
+        <small>from <a href="https://en.wikipedia.org/wiki/Ursula_von_der_Leyen">Wikipedia</a></small>
+      </td>
+    </tr>
+    <tr>
+      <td width="33%" align='center'>
+      </td>
+      <td width="33%" align='center'>
+        Bill Browder<br>
+        <img src="../20251204/figs/Bill_Browder.jpg" width="80%">
+        <small>from <a href="https://en.wikipedia.org/wiki/Bill_Browder">Wikipedia</a></small>
+      </td>
+      <td width="33%" align='center'>
+      </td>
+    </tr>
+    <tr>
+      <td width="33%" align='center'>
+        Maiya May<br>
+        <img src="../20250409/figs/Maiya_May.jpg" width="80%">
+        <small>from <a href="https://www.youtube.com/watch?v=PiX9t_wovEY">The REAL Story of the LA Fires</a></small>
+      </td>
+      <td width="33%" align='center'>
+        <img src="../20251106/figs/Joe Blogs.jpg" width="80%">
+      </td>
+      <td width="33%" align='center'>
+        <img src="../20251106/figs/Elvira Bary.jpg" width="80%">
+      </td>
+    </tr>
+  </table>
+</td>
+</tr>
+<tr>
+  <td></td>
+  <td align="center"><img src="figs/stop-at-crosswalk.jpg" width="70%"></td>
+</tr>
+</table>
+<h3 id="looking-back">■ これまでの振り返り（問題認識）</h3>
+  ・ 問題認識 
+    ・ 気候変動
+    ・ エネルギー政策（原発・再生可能エネルギー）
+    ・ 変質社会主義の問題
+      ・ 中国のウイグル、チベット、香港抑圧、台湾侵攻
+      ・ ロシアのウクライナ侵攻
+    ・ 中東問題
+      ・ イスラエルのハマス攻撃、ガザ侵攻
+    ・ 経済政策
+      ・ 本荘 2019 論文
+      ・ アベノミクス批判
+      ・ 正規雇用・非正規雇用
+
+  ・ リーダー選出の問題
+    ・  プーチンの愚策からの帰結： 愚者の発生は避けられないが、選出しないことは可能
+
+<h3 id="solving-direction">■ 解決の方向性</h3>
+    ・ （世代間時間スケールの）長期的視点
+    
+    ・ 正確な理解
+      ・ 一対一のコミュニケーション
+
+    ・ （正確な理解に基づく）社会の設計
+      ・ 家族
+      ・ 地域コミュニティ（自治会）
+      ・ 同期会
+      ・ 国
+</pre>
+</body>
+</html>
