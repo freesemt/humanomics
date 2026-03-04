@@ -135,6 +135,8 @@ After adding new pages, consider updating `docs/sitemap.xml` for SEO.
 - `scripts/extract_pdf_full.py` — general PDF full-text extraction
 - Usage: `python scripts/extract_pdf_full.py <path-to-pdf>`
 
+**AI Assistant Rule**: When asked to reference or quote from a PDF (e.g., Adam Smith TMS, 本荘 2019), run the appropriate extraction script first rather than attempting to `read_file` the binary directly. Extracted text can then be searched and quoted normally.
+
 ---
 
 ## 💡 Quick Tips for AI Assistants
