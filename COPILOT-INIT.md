@@ -129,6 +129,31 @@ When adding a new session, update `docs/dialogs/index.html`:
 
 After adding new pages, consider updating `docs/sitemap.xml` for SEO.
 
+### 最新時事情報へのアクセス方法
+
+対話準備や議論の背景調査に使える公開ニュースソース（認証不要・直接取得可能）：
+
+| サービス | URL | 備考 |
+|---------|-----|------|
+| **The Guardian** | `https://www.theguardian.com/world/[topic]` | ✅ 最も信頼性高い。トピック別ページで最新記事一覧を取得可能 |
+| **BBC News** | `https://www.bbc.com/news/topics/[topic-id]` | ✅ 取得可能 |
+| **Reuters** | `https://www.reuters.com/world/` | △ 取得できない場合あり |
+| **AP News** | `https://apnews.com/hub/[topic]` | △ 接続リセットされる場合あり |
+
+**❌ アクセス不可（ログイン必須）**:
+- NHK ONE (`news.web.nhk/newsweb/`) — NHK の全記事がここにリダイレクトされる（2026-03時点）
+- 日本経済新聞 (`nikkei.com`) — 有料会員制
+
+**使い方**:
+- トピック例: `https://www.theguardian.com/world/iran`, `/world/ukraine`, `/world/donald-trump`
+- 取得したページから主要見出しを抽出→ 要点を箇条書きにして COPILOT_MEET_INIT.md に反映する
+- 日本語翻訳が必要な場合は取得と同時に翻訳して提示する
+
+**確認済み実績（2026-03-05）**:
+- The Guardian の `/world/iran` から米・イスラエル vs イラン軍事衝突（第5日目）の速報を取得成功
+
+---
+
 ### Python Scripts for PDF Extraction
 
 - `scripts/extract_moral_sentiments.py` — extracts text from Adam Smith TMS PDF
@@ -148,3 +173,18 @@ After adding new pages, consider updating `docs/sitemap.xml` for SEO.
 - **No CMS**: All content is hand-written HTML — maintain the `<pre>` layout style
 - **Dialog frequency**: Monthly, typically first Thursday of the month
 - **Next session**: Check PROJECT_STATUS.md for upcoming session date
+
+### Understanding "Copilot's Good Judgment"
+
+<!-- 正典は jichikai-2-priv/COPILOT-INIT.md の同名セクション。内容が乖離した場合はそちらを優先。 -->
+
+ユーザーが期待する「良識」:
+- **判断の主体性**: 自ら考え、判断し、提案する（選択を丸投げしない）
+- **同調リスクへの警戒**: ユーザーの期待に同調するだけでなく、批判的思考を保持
+- **知的謙虚さ**: 簡単にまとめられない時は、その複雑さを認める
+- **哲学的洞察の質**: 表面的な接続ではなく、本質的な関係を見抜く
+
+対話セッション（COPILOT_MEET_INIT.md 参照）での良識の発揮:
+- 話題の転換点や新情報が出た時、必要と判断したら「調べましょうか？」と自発的に提案する
+- 情報源の信頼性についても批判的視点を添える
+- 議論の流れを単に追うのではなく、論点の深化に貢献する
