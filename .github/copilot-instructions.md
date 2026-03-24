@@ -1,8 +1,9 @@
-<!-- AI Context Standard v0.5 - Adopted: 2026-03-04 -->
+<!-- AI Context Standard v0.7 - Adopted: 2026-03-24 -->
 # AI Assistant Initialization Guide — Humanomics
 
-**Purpose**: Initialize AI context for working with this repository  
-**Magic phrase**: "Please read COPILOT-INIT.md to initialize"
+**Purpose**: Initialize AI context for working with this repository
+
+> **On every session start**: Read [`PROJECT_STATUS.md`](../PROJECT_STATUS.md) to get the current task and recent context before responding.
 
 ---
 
@@ -58,7 +59,8 @@ humanomics/
 │   ├── core-min.js                 # Core library (minified)
 │   ├── extract_moral_sentiments.py # PDF extraction for TMS
 │   └── extract_pdf_full.py         # General PDF extraction
-├── COPILOT-INIT.md                 # This file (STATIC conventions)
+├── .github/
+│   └── copilot-instructions.md     # This file (STATIC conventions, auto-loaded)
 ├── PROJECT_STATUS.md               # Dynamic state and current work
 ├── AI_CONTEXT_STANDARD.md          # Source standard document
 └── README.md

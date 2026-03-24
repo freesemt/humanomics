@@ -2,8 +2,8 @@
 
 **Status**: Proposal for community discussion  
 **Author**: Discovered through practical use across multiple repositories  
-**Date**: February 19, 2026  
-**Version**: 0.5 (Draft)
+**Date**: March 24, 2026  
+**Version**: 0.7 (Draft)
 
 ---
 
@@ -50,55 +50,48 @@ This standard stays minimal to enable true collaboration, not prescriptive compl
 
 There is currently **no universal mechanism** for maintaining AI assistant context across sessions in repositories:
 
-- No `.copilotrc` or equivalent standard configuration file
 - Different AI tools (GitHub Copilot, Claude, ChatGPT Code Interpreter) have different context systems
 - Each session starts fresh, requiring re-explaining conventions, structure, and patterns
 - Context drift accumulates as projects grow larger and more complex
 - No standard way to communicate "how to work here" to AI assistants
 
-**Current workarounds are insufficient:**
-- README files are for humans and project overview, not AI initialization
-- Comments scattered across code are fragmented and incomplete
-- Relying on AI to "figure it out" leads to inconsistent behavior
-- Manual re-explanation in each session is time-consuming and error-prone
+**Current state:**
+
+GitHub Copilot (VS Code) supports `.github/copilot-instructions.md` — a file that is **automatically loaded** at the start of every Agent mode session. This is the native `.copilotrc`. The initialization problem is solved.
+
+**Remaining gaps:**
+- Separation of static conventions from dynamic state (no platform solves this)
+- Session resumption (knowing where work was left off)
 
 ---
 
-## Proposed Solution: INIT.md + STATUS.md Pattern
+## Proposed Solution: copilot-instructions.md + STATUS.md Pattern
 
 ### Core Concept
 
 Two complementary files with clear separation of concerns:
 
-**1. COPILOT-INIT.md** (or similar naming) — **STATIC CONTENT**
+**1. `.github/copilot-instructions.md`** — **STATIC CONTENT**
 - **Purpose**: How to work in this repository
 - **Content**: Working conventions, documentation structure, frameworks, patterns
 - **Update frequency**: Rarely (major restructuring only)
 - **Nature**: Static reference — changes only when conventions change
-- **Key principle**: If you wrote it last month and it's still true today → belongs in INIT
+- **Loading**: Automatically loaded by GitHub Copilot at every Agent mode session start
+- **Key principle**: If you wrote it last month and it's still true today → belongs here
 
-**2. PROJECT_STATUS.md** — **DYNAMIC CONTENT**
+**2. `PROJECT_STATUS.md`** — **DYNAMIC CONTENT**
 - **Purpose**: What's happening now
 - **Content**: Current focus, recent work, chronological history, next steps
 - **Update frequency**: Frequently (every work session)
 - **Nature**: Dynamic tracking — changes as work progresses
+- **Loading**: Read automatically at session start via directive in `copilot-instructions.md` (see below)
 - **Key principle**: If it will be outdated next week → belongs in STATUS
 
-### Magic Phrase
+No initialization phrase is required. GitHub Copilot loads `copilot-instructions.md` automatically at every session start. `PROJECT_STATUS.md` is loaded via an explicit directive inside `copilot-instructions.md`:
 
-A **self-documenting initialization command** that tells AI exactly what to read:
-
+```markdown
+> **On every session start**: Read [`PROJECT_STATUS.md`](PROJECT_STATUS.md) to get the current task and recent context before responding.
 ```
-"Please read COPILOT-INIT.md to initialize"
-```
-
-**Why this works:**
-- Explicit file reference (no magical association needed)
-- Self-contained (doesn't depend on AI knowing conventions beforehand)
-- Tool-agnostic (works with any AI assistant)
-- Human-readable (team members benefit too)
-
-**Important**: The magic phrase tells AI to read **repository-specific files** (INIT/STATUS), not this standard document. This standard is for humans setting up repositories. AI should not read AI_CONTEXT_STANDARD.md during initialization to avoid context overload.
 
 ---
 
@@ -131,7 +124,7 @@ When you fail the same operation 3+ times, **stop and explain the situation** to
 
 ## Implementation Guide
 
-### Step 1: Create COPILOT-INIT.md (STATIC Conventions)
+### Step 1: Create `.github/copilot-instructions.md` (STATIC Conventions)
 
 **Approach**: Tell AI about your project. Let it propose structure. You provide judgment.
 
@@ -143,7 +136,6 @@ Recommended sections:
 # AI Assistant Initialization Guide
 
 **Purpose**: Initialize AI context for working with this repository
-**Magic phrase**: "Please read COPILOT-INIT.md to initialize"
 
 ## 📚 Core Documents to Read
 [List 5-10 essential documents AI should read]
@@ -170,7 +162,7 @@ Recommended sections:
 **Why this step?**
 - Separates "how to work here" from "what this project is" (README) and "what's happening now" (STATUS)
 - Provides single source of truth for conventions that rarely change
-- Tool-agnostic reference that works across different AI assistants
+- Automatically loaded by GitHub Copilot — no action required from the user
 - Human-readable onboarding document for team members
 
 ### Step 2: Create or Reorganize PROJECT_STATUS.md (DYNAMIC State)
@@ -207,21 +199,19 @@ See: [Relevant files]
 - Enables chronological narrative of project evolution
 - Supports session resumption with "Current Task" section
 - Lower maintenance burden - update frequently without touching conventions
-- Natural place for "what's happening now" that complements INIT's "how to work here"
+- Natural place for "what's happening now" that complements `copilot-instructions.md`'s "how to work here"
 
 ### Step 3: Add Reference to README.md
 
 Optional but helpful:
 
 ```markdown
-> **For AI assistants**: To initialize context, say "Please read COPILOT-INIT.md to initialize"
+> **For AI assistants (GitHub Copilot)**: Context is loaded automatically from `.github/copilot-instructions.md`.
 ```
 
 **Why this step?**
-- Helps AI (and new team members) discover the initialization pattern
-- Self-documenting entry point - the phrase itself explains what to do
-- No magical association needed - explicit file reference
-- Low overhead - single line in README
+- Helps team members and new contributors discover how AI context works in this repo
+- Low overhead — single line in README
 - Aids onboarding without cluttering project overview
 
 ### Step 4: Declare Standard Version (Recommended)
@@ -246,8 +236,7 @@ Optional but helpful:
 - Track adoption date for maintenance planning
 
 **Where to put it:**
-- Two-file approach: In COPILOT-INIT.md right before main heading
-- Single-file approach: Right before file title
+- In `.github/copilot-instructions.md` right before the main heading
 - Comment format won't be rendered in markdown viewers
 
 **Optional: Track in README badge:**
@@ -275,7 +264,7 @@ Next: [Immediate action to take]
 See: [List of relevant files]
 ```
 
-**Document the Derivation Rule** (in COPILOT-INIT.md as a working convention):
+**Document the Derivation Rule** (in `copilot-instructions.md` as a working convention):
 
 1. **Read latest achievement entry** in PROJECT_STATUS.md
 2. **Check status**:
@@ -285,10 +274,10 @@ See: [List of relevant files]
 
 **Session Start Protocol**:
 ```
-User: "Please read COPILOT-INIT.md to initialize"
-AI: [reads core docs, loads conventions]
-User: "I want to resume the current task"
-AI: [reads Current Task section, continues from there]
+[GitHub Copilot loads copilot-instructions.md automatically]
+[AI reads PROJECT_STATUS.md automatically (directive in copilot-instructions.md)]
+User: "I want to resume the current task"  ← or just start working
+AI: [already has current task from STATUS, continues from there]
 ```
 
 **Update Timing**:
@@ -319,11 +308,11 @@ After implementing Steps 1-5, verify that your files comply with the standard.
 **Copy-paste prompt for AI verification:**
 
 ````markdown
-I want to check if my repository complies with the AI Context Standard (INIT.md + STATUS.md pattern).
+I want to check if my repository complies with the AI Context Standard (copilot-instructions.md + STATUS.md pattern).
 
 Please read these three files and verify compliance:
 1. README.md
-2. COPILOT-INIT.md (or similar naming like AI_INIT.md)
+2. `.github/copilot-instructions.md`
 3. PROJECT_STATUS.md
 
 **Check each file against these criteria:**
@@ -335,10 +324,10 @@ Please read these three files and verify compliance:
 - [ ] Version matches current standard or has migration plan
 - [ ] Adoption date recorded (helps track maintenance timing)
 
-## COPILOT-INIT.md Compliance
+## `.github/copilot-instructions.md` Compliance
 
 ✅ Required elements:
-- [ ] Contains magic phrase explaining how to initialize
+- [ ] Contains purpose statement explaining how to initialize
 - [ ] Lists core documents to read (or references complementary files)
 - [ ] Documents working conventions
 - [ ] Provides repository context
@@ -358,7 +347,7 @@ Please read these three files and verify compliance:
 - [ ] Current Task section (working on, next, see)
 - [ ] Chronological log of recent work
 - [ ] Dynamic state (what's happening now)
-- [ ] References to COPILOT-INIT for conventions
+- [ ] References to `copilot-instructions.md` for conventions
 
 ❌ Should NOT contain:
 - [ ] How-to instructions or code style
@@ -375,12 +364,12 @@ Please read these three files and verify compliance:
 - [ ] How to get started (installation, basic usage)
 
 ❌ Should NOT contain:
-- [ ] AI initialization instructions (→ COPILOT-INIT)
+- [ ] AI initialization instructions (→ copilot-instructions.md)
 - [ ] Current status or work-in-progress (→ PROJECT_STATUS)
-- [ ] Detailed conventions or notation (→ COPILOT-INIT)
+- [ ] Detailed conventions or notation (→ copilot-instructions.md)
 
 Optional but recommended:
-- [ ] One-line reference to COPILOT-INIT for AI discovery
+- [ ] One-line reference to `copilot-instructions.md` for team discovery
 
 ## Binary File Handling Check (Optional, if applicable)
 
@@ -403,7 +392,7 @@ Optional but recommended:
 **Content Boundary Check (Decision Tree):**
 
 For each major section in each file, verify:
-- "HOW to work here" → Should be in COPILOT-INIT
+- "HOW to work here" → Should be in `copilot-instructions.md`
 - "WHAT's happening now" → Should be in PROJECT_STATUS  
 - "WHAT is this project" → Should be in README
 
@@ -416,7 +405,7 @@ For each major section in each file, verify:
 6. Overall assessment of whether standard is properly regulating the files
 
 **Example violation:**
-- File: COPILOT-INIT.md
+- File: `.github/copilot-instructions.md`
 - Issue: Contains "Current focus: Implementing feature X" (dynamic state in static file)
 - Severity: Minor
 - Fix: Move to PROJECT_STATUS.md "Current Task" section
@@ -436,16 +425,15 @@ For each major section in each file, verify:
 
 **Target audience**: AI assistants, developers customizing AI behavior
 
-### When User Says Magic Phrase
+### On Session Start (GitHub Copilot)
 
-When user invokes initialization (e.g., "Please read COPILOT-INIT.md to initialize"):
+`.github/copilot-instructions.md` is loaded automatically. On every Agent mode session:
 
-1. **Read repository-specific files** (INIT, STATUS, or their variants)
+1. **Conventions are already loaded** — begin working according to them
 2. **Do NOT read AI_CONTEXT_STANDARD.md** (this document is for humans setting up repos)
-3. **Load conventions and context** from repository files
+3. **Check for PROJECT_STATUS.md** — read it to orient to current work state
 4. **Check version comment** if present: `<!-- AI Context Standard v0.X -->`
-5. **Brief version notification** if mismatch detected (see below)
-6. **Begin working** according to loaded conventions
+5. **Brief version notification** if mismatch detected (one line, non-intrusive)
 
 ### Version Mismatch Notification (Optional, Keep Brief)
 
@@ -690,7 +678,7 @@ Priorities:
 - Topic docs mentioned in STATUS can be split
 
 **Example** (kannondai-community):
-- COPILOT-INIT.md: Small, no split needed
+- `copilot-instructions.md`: Small, no split needed
 - PROJECT_STATUS.md: Linear log, no split needed
 - officer_system_discussion.md: Large topic doc → split into 13 files
 
@@ -711,10 +699,10 @@ Priorities:
 - Lower maintenance burden overall
 - Clear mental model: "Does this change weekly? → DYNAMIC. Annually? → STATIC."
 
-### 3. Tool-Agnostic
-- Works with GitHub Copilot, Claude, ChatGPT, or any future AI tool
-- No vendor lock-in
-- No dependence on proprietary features
+### 3. Native Platform Support
+- `.github/copilot-instructions.md` is the native GitHub Copilot initialization file
+- Automatically loaded — no vendor lock-in workaround needed
+- Human-readable markdown, not JSON/YAML
 
 ### 4. Human-Readable
 - Team members benefit from same clarity
@@ -726,10 +714,14 @@ Priorities:
 - Large projects: Comprehensive INIT.md with detailed conventions
 - Adapts to project complexity naturally
 
-### 6. Self-Documenting Entry Point
-- The magic phrase itself tells AI what to do
-- No ambiguity about where to find initialization
-- Works even if AI has never seen this pattern before
+### 6. Zero Friction
+- `copilot-instructions.md` is loaded automatically — no phrase to remember, no action needed
+- Beginners can start without any prior knowledge of the pattern
+- Particularly suited to onboarding repositories (e.g., molass-beginner)
+
+### 7. Self-Documenting
+- The file name and location are standard — any Copilot user can find it
+- Human-readable onboarding document for new team members
 
 ### 7. Supports Session Resumption
 - Clear "Current Task" section eliminates temporal ambiguity
@@ -758,11 +750,9 @@ Priorities:
 
 **Two-file approach:**
 
-**COPILOT-INIT.md:** (STATIC conventions)
+**`.github/copilot-instructions.md`:** (STATIC conventions)
 ```markdown
 # AI Initialization
-
-**Magic phrase**: "Please read COPILOT-INIT.md to initialize"
 
 ## Working Conventions
 - Use Python 3.11+ with type hints
@@ -840,7 +830,7 @@ See: data_processing.py, tests/test_export.py
 ### Comprehensive Implementation (Research Project)
 
 **Two-file approach for complex projects:**
-- [COPILOT-INIT.md](COPILOT-INIT.md) - STATIC: Detailed conventions
+- [`.github/copilot-instructions.md`](.github/copilot-instructions.md) - STATIC: Detailed conventions
 - [PROJECT_STATUS.md](PROJECT_STATUS.md) - DYNAMIC: Chronological development log
 
 **When to use each:**
@@ -856,7 +846,7 @@ See: data_processing.py, tests/test_export.py
 - **STATIC = INIT** = "How to work here" (rarely changes)
 - **DYNAMIC = STATUS** = "What's happening now" (changes frequently)
 
-### COPILOT-INIT.md: STATIC Conventions
+### `copilot-instructions.md`: STATIC Conventions
 
 **Belongs here:**
 - How to write code (style, patterns, frameworks)
@@ -916,7 +906,7 @@ See: data_processing.py, tests/test_export.py
 
 ```
 Is it about HOW to work here? (STATIC)
-  → COPILOT-INIT.md
+  → `.github/copilot-instructions.md`
 
 Is it about WHAT's happening now? (DYNAMIC)
   → PROJECT_STATUS.md
@@ -1097,7 +1087,7 @@ See: docs/community/officer_system_discussion.md
 
 Once you've implemented the pattern, periodically audit for content boundary violations:
 
-**Step 1: Audit COPILOT-INIT.md** (should be STATIC)
+**Step 1: Audit `copilot-instructions.md`** (should be STATIC)
 - Search for dates, "current", "now", "this week", "currently"
 - Check for specific bug/issue mentions
 - Look for chronological narratives
@@ -1128,7 +1118,7 @@ Once you've implemented the pattern, periodically audit for content boundary vio
 ### Real Example: modeling-vs-model_free Repository
 
 **Before refinement:**
-- COPILOT-INIT.md: Contained "Current focus: Verification..." (dynamic)
+- `copilot-instructions.md`: Contained "Current focus: Verification..." (dynamic)
 - PROJECT_STATUS.md: 750 lines, ~60% static/duplicated content
   - "What This Repository Is" (duplicated README)
   - "Key Mathematical Foundations" (duplicated INIT)
@@ -1145,7 +1135,7 @@ Once you've implemented the pattern, periodically audit for content boundary vio
 5. ❌ 6 major sections that never change in "status" document
 
 **After refinement:**
-- COPILOT-INIT.md: Removed dynamic "current focus" line
+- `copilot-instructions.md`: Removed dynamic "current focus" line
 - PROJECT_STATUS.md: 270 lines, 100% dynamic content
   - Brief header with cross-references to README/INIT
   - "Latest Achievements" (chronological log) ✓
@@ -1415,33 +1405,33 @@ Use in Repo C ──→ Same issue ──→ Pattern confirmed!
 
 When a **VS Code multi-root workspace** has multiple repositories open simultaneously, additional conventions help AI assistants navigate the workspace effectively.
 
-**Context**: VS Code supports opening multiple repository folders in a single workspace window. In this configuration, AI chat context spans all open repositories, but initialization (`COPILOT-INIT.md`) is per-repository. Without conventions, AI assistants face ambiguity about which repository is the active focus.
+**Context**: VS Code supports opening multiple repository folders in a single workspace window. In this configuration, GitHub Copilot loads `copilot-instructions.md` from **all** open repositories simultaneously. This is an advantage — conventions from all repos are available at once.
 
 #### Convention 1: Primary Repository Declaration
 
-Designate one repository as the **primary workspace repository** — the one whose `COPILOT-INIT.md` the magic phrase targets.
+Designate one repository as the **primary workspace repository** — the one whose `copilot-instructions.md` declares the workspace ecosystem table (Convention 2).
 
-**Where to declare**: In the primary repository's README.md or at the top of COPILOT-INIT.md:
+**Where to declare**: At the top of `.github/copilot-instructions.md`:
 
 ```markdown
 <!-- Primary workspace repository for multi-root workspace -->
 ```
 
-**Why needed**: In multi-root workspaces, the user may have multiple `COPILOT-INIT.md` files. The magic phrase ("Please read COPILOT-INIT.md to initialize") needs to target one specific file to be unambiguous.
+**Why needed**: In multi-root workspaces, the primary repo's instructions should declare the ecosystem overview so AI can orient to the full workspace structure at a glance.
 
 #### Convention 2: Repository Ecosystem Table
 
-**In the primary repository's COPILOT-INIT.md**, add an ecosystem table documenting all active repositories:
+**In the primary repository's `copilot-instructions.md`**, add an ecosystem table documenting all active repositories:
 
 ```markdown
 ## Repository Ecosystem (Multi-Root Workspace)
 
 | Repository | Role | AI Context File | Status |
 |------------|------|-----------------|--------|
-| primary-repo | Primary workspace repo | COPILOT-INIT.md | Active |
-| lib-repo | Library / core code | COPILOT-INIT.md | Active |
-| docs-repo | Documentation | COPILOT-INIT.md | Active |
-| legacy-repo | Legacy codebase | COPILOT-INIT.md | Reference |
+| primary-repo | Primary workspace repo | copilot-instructions.md | Active |
+| lib-repo | Library / core code | copilot-instructions.md | Active |
+| docs-repo | Documentation | copilot-instructions.md | Active |
+| legacy-repo | Legacy codebase | copilot-instructions.md | Reference |
 ```
 
 **Purpose**: AI assistants can orient to the full ecosystem after reading primary INIT, without needing to survey all repos on every session.
@@ -1452,7 +1442,7 @@ Designate one repository as the **primary workspace repository** — the one who
 
 When AI visits a repository for the first time (no INIT file, or INIT has no version comment):
 
-1. **Survey**: Check for COPILOT-INIT.md and PROJECT_STATUS.md
+1. **Survey**: Check for `.github/copilot-instructions.md` and `PROJECT_STATUS.md`
 2. **Create**: If absent, offer to create them with a brief survey of the repo
 3. **Link**: Reference the new repo in the primary repository's ecosystem table
 4. **Update**: Add an entry to the AI-readiness trail (Convention 4)
@@ -1461,7 +1451,7 @@ When AI visits a repository for the first time (no INIT file, or INIT has no ver
 
 #### Convention 4: AI-Readiness Trail
 
-**Add to primary COPILOT-INIT.md** a dated tracking table:
+**Add to primary `copilot-instructions.md`** a dated tracking table:
 
 ```markdown
 ## AI-Readiness Trail
@@ -1485,18 +1475,18 @@ When AI visits a repository for the first time (no INIT file, or INIT has no ver
 
 ```
 Workspace (VS Code multi-root)
-├── Primary Repo (COPILOT-INIT with ecosystem table + AI-readiness trail)
-│   ├── COPILOT-INIT.md  ← Magic phrase reads this first
+├── Primary Repo (copilot-instructions.md with ecosystem table + AI-readiness trail)
+│   ├── .github/copilot-instructions.md  ← Auto-loaded first (primary)
 │   └── PROJECT_STATUS.md
 ├── Repo B
-│   ├── COPILOT-INIT.md  ← Per-repo conventions
+│   ├── .github/copilot-instructions.md  ← Auto-loaded (per-repo conventions)
 │   └── PROJECT_STATUS.md
 └── Repo C
-    ├── COPILOT-INIT.md  ← Per-repo conventions
+    ├── .github/copilot-instructions.md  ← Auto-loaded (per-repo conventions)
     └── PROJECT_STATUS.md
 ```
 
-**No new file types**: Multi-root support uses existing INIT/STATUS files with additional sections in the primary repository — no new file types or protocols required.
+**No new file types**: Multi-root support uses existing `copilot-instructions.md`/STATUS files with additional sections in the primary repository — no new file types or protocols required.
 
 ---
 
@@ -1549,9 +1539,9 @@ Workspace (VS Code multi-root)
 ### How to Adopt
 
 1. Copy this pattern to your repository
-2. Customize COPILOT-INIT.md to your conventions
-3. Create or reorganize PROJECT_STATUS.md
-4. Test with your AI assistant of choice
+2. Create `.github/copilot-instructions.md` with your conventions
+3. Create or reorganize `PROJECT_STATUS.md`
+4. Test with GitHub Copilot
 5. Iterate based on what works
 
 ### Testing & Refinement
@@ -1560,10 +1550,10 @@ This is v0.1 - still being validated through actual use.
 
 **As you use this across repositories, track:**
 
-1. **Does the magic phrase work?**
-   - Does AI actually read INIT when you say the phrase?
-   - Do you need to repeat it?
-   - Does it work with different AI tools?
+1. **Does copilot-instructions.md load automatically?**
+   - Does Copilot apply conventions at session start without being asked?
+   - Is the file in the `.github/` directory?
+   - Is Agent mode enabled?
 
 2. **Content drift**
    - Are conventions creeping into STATUS?
@@ -1598,7 +1588,7 @@ This is v0.1 - still being validated through actual use.
 
 **Signs the pattern is breaking down:**
 
-### COPILOT-INIT.md Issues (should be STATIC)
+### `copilot-instructions.md` Issues (should be STATIC)
 - ⚠️ You're updating it every session (too dynamic → content belongs in STATUS)
 - ⚠️ It's over 500 lines (too detailed, should link out)
 - ⚠️ Contains dates/history (DYNAMIC content → belongs in STATUS)
@@ -1612,10 +1602,9 @@ This is v0.1 - still being validated through actual use.
 - ⚠️ Just duplicates what's already in git log
 
 ### Magic Phrase Issues
-- ⚠️ You forget to use it
-- ⚠️ AI doesn't respond to it
-- ⚠️ You have to repeat it multiple times
-- ⚠️ Different AI tools need different phrases
+- ⚠️ This standard no longer uses a magic phrase — initialization is automatic
+- If a team member or AI assistant is asking for a phrase, `copilot-instructions.md` may be absent or misconfigured
+- Check: `.github/copilot-instructions.md` exists and is non-empty
 
 ### Overall Pattern Issues
 - ⚠️ Takes >30 min to set up new repo
@@ -1641,9 +1630,9 @@ This is v0.1 - still being validated through actual use.
 **Similar trajectory:**
 - Discovered through real pain points (context drift)
 - Solves actual problems (session persistence)
-- Simple enough to adopt (two files, one phrase)
+- Simple enough to adopt (two files, auto-loaded)
 - Benefits visible immediately (better AI behavior)
-- Tool-agnostic design (vendor-neutral)
+- Native platform support (no workaround needed)
 
 **Current landscape:**
 - AI-assisted development is 2-3 years old
@@ -1653,19 +1642,13 @@ This is v0.1 - still being validated through actual use.
 
 **This proposal:**
 - Documents existing practice (not inventing from scratch)
-- Positions for community adoption (not vendor-specific)
+- Leverages native Copilot support (`.github/copilot-instructions.md`)
 - Remains flexible (customize to your needs)
-- Evolves with feedback (version 0.1, not 1.0)
+- Evolves with feedback (version 0.1 → 0.7)
 
 ---
 
 ## Alternatives Considered
-
-### Why not .copilotrc?
-- Would require tool vendor support
-- Wouldn't work across different AI assistants
-- JSON/YAML less readable than markdown
-- Harder for humans to use directly
 
 ### Why not just README.md?
 - README is for project overview, not AI initialization
@@ -1691,14 +1674,10 @@ This is v0.1 - still being validated through actual use.
 
 **Still figuring out:**
 
-1. **File naming**: 
-   - COPILOT-INIT.md vs AI_INIT.md vs CONTEXT.md?
-   - Does the name matter if magic phrase is explicit?
-
-2. **Discovery**: 
-   - How does AI learn about this pattern in the first place?
-   - Should README mention it? (Currently recommended)
-   - Will AI vendors eventually look for these files automatically?
+1. **Scope of copilot-instructions.md**: 
+   - How much detail before it's too much?
+   - When to link out vs document inline?
+   - What's the right balance?
 
 3. **Scope**: 
    - How much detail in INIT before it's too much?
@@ -1721,10 +1700,10 @@ This is v0.1 - still being validated through actual use.
    - How to handle org-wide conventions?
    - When is duplication OK vs needing consolidation?
 
-7. **Tool compatibility**:
-   - Does this work equally well with all AI assistants?
-   - Are there tool-specific gotchas?
-   - Should there be tool-specific variants?
+7. **Tool compatibility** (✅ Resolved v0.7):
+   - ✅ GitHub Copilot: native auto-load via `.github/copilot-instructions.md`
+   - Other AI tools (Claude, ChatGPT, Cursor, Windsurf): if needed, those tools can be asked to read `copilot-instructions.md` explicitly
+   - This standard is Copilot-native; other tools are out-of-scope
 
 8. **Context load scalability** (Added v0.2):
    - Will initialization become too slow as standards/repos grow?
@@ -1749,7 +1728,7 @@ This is v0.1 - still being validated through actual use.
 11. **Multi-root workspace patterns** (Added v0.5 — still testing):
    - Does Convention 1 (primary repo declaration) work cleanly with different AI tool behaviors?
    - What is the right granularity for the ecosystem table? (per-repo vs. per-folder)
-   - Should the AI-readiness trail live in COPILOT-INIT or a separate file?
+   - Should the AI-readiness trail live in `copilot-instructions.md` or a separate file?
    - How does session resumption work when focus shifts between repos mid-session?
    - Are Conventions 1-4 sufficient, or are additional workspace-level conventions needed?
 
@@ -1758,6 +1737,40 @@ This is v0.1 - still being validated through actual use.
 ---
 
 ## Version History
+
+**v0.7** (March 24, 2026)
+- **Complete migration to native auto-load**: `.github/copilot-instructions.md` is now the sole initialization mechanism
+- **Magic phrase retired**: No longer part of this standard. The phrase was invented because `.copilotrc` didn't exist. Now that GitHub Copilot provides a native equivalent, the workaround is unnecessary.
+- **Removed Track B entirely**: Tool-agnostic explicit load is out of scope for this standard
+- **Revised Problem Statement**: Initialization is solved; remaining gaps are STATIC/DYNAMIC separation and session resumption only
+- **Renamed Core Concept section**: "copilot-instructions.md + STATUS.md Pattern" (was "Two-Track Initialization + STATUS Pattern")
+- **Revised Step 1**: Create `.github/copilot-instructions.md` (was COPILOT-INIT.md)
+- **Revised Step 3**: README reference updated (no magic phrase)
+- **Revised Step 4**: Version declaration placement updated (single file only)
+- **Revised Step 5**: Session protocol no longer includes magic phrase
+- **Revised Step 6**: Compliance check targets `copilot-instructions.md`
+- **Revised AI Behavior section**: Single flow (auto-load); Track B removed
+- **Revised Benefits**: §3 "Native Platform Support", §6/§7 simplified
+- **Removed** "Why not .github/copilot-instructions.md as sole solution?" from Alternatives (it IS the solution now)
+- **Revised Red Flags**: Magic phrase section now indicates absence/misconfiguration of `copilot-instructions.md`
+- **Revised Multi-root workspace**: Convention 1 updated (no magic phrase ambiguity; all repos' files auto-loaded)
+- **Revised Testing**: Q1 replaced with scope question; Q7 resolved
+- **Key insight**: The magic phrase was a workaround for a missing platform feature. The feature now exists. Remove the workaround.
+
+**v0.6** (March 24, 2026)
+- **Breaking change in framing**: Magic phrase is no longer the primary initialization mechanism; replaced by two-track model
+- **Added Track A**: `.github/copilot-instructions.md` — native Copilot auto-load (zero user effort)
+- `.github/copilot-instructions.md` is now the sole initialization mechanism; Track B (`COPILOT-INIT.md` + magic phrase) removed
+- **Revised Problem Statement**: Acknowledges that GitHub Copilot now has a native `.copilotrc` equivalent; gaps remaining are tool-agnostic support and STATIC/DYNAMIC separation
+- **Revised Core Concept section**: Two-track model with comparison table and guidance on choosing
+- **Revised AI Behavior on Initialization**: Separate flows for Track A (auto) and Track B (explicit)
+- **Revised Benefits §3**: "Platform-Native or Tool-Agnostic" replaces "Tool-Agnostic"
+- **Added Benefits §6**: Zero friction for Copilot users (Track A)
+- **Revised Benefits §7**: "Self-Documenting Entry Point" narrowed to Track B
+- **Revised Alternatives Considered**: Replaced "Why not .copilotrc?" with "Why not copilot-instructions.md as sole solution?"
+- **Revised Red Flags**: Magic phrase red flags scoped to Track B only
+- **Updated Open Questions**: Q1 and Q7 updated to reflect two-track model
+- **Key insight**: The magic phrase was invented because `.copilotrc` didn't exist. Now that Copilot has a native equivalent, the phrase becomes Track B — a fallback for tool-agnostic use, not the primary mechanism.
 
 **v0.5** (February 19, 2026)
 - **Added "Multi-Root Workspace Support" subsection** to Multi-Repository Workflow
@@ -1842,6 +1855,81 @@ This is v0.1 - still being validated through actual use.
 
 ## Version Migration Guide
 
+### Migrating from v0.6 to v0.7
+
+**Summary**: v0.7 retires the magic phrase and Track B entirely. Static conventions now live exclusively in `.github/copilot-instructions.md`. `COPILOT-INIT.md` files should be migrated or removed.
+
+**Is migration required?** Yes — `COPILOT-INIT.md` is no longer part of this standard.
+
+**Migration steps per repository:**
+1. **Update version comment**: `<!-- AI Context Standard v0.7 - Adopted: YYYY-MM-DD -->`
+2. **Create `.github/copilot-instructions.md`**: Copy contents of `COPILOT-INIT.md` into it
+3. **Add `PROJECT_STATUS.md` auto-read directive** (if repo has `PROJECT_STATUS.md`): Insert near the top of `copilot-instructions.md`:
+   ```markdown
+   > **On every session start**: Read [`PROJECT_STATUS.md`](PROJECT_STATUS.md) to get the current task and recent context before responding.
+   ```
+4. **Remove `COPILOT-INIT.md`**: Or replace with a one-line pointer: `This file has been migrated to [.github/copilot-instructions.md](.github/copilot-instructions.md) (AI Context Standard v0.7).`
+5. **Update README**: Remove magic phrase reference; optionally add "context auto-loaded from `.github/copilot-instructions.md`"
+6. **Test**: Open in VS Code Agent mode and verify conventions are active without saying anything
+
+**Effort**:
+- Simple repos: 10-15 minutes (copy + rename + README update)
+- Complex repos with many references: 20-30 minutes
+
+**AI-assisted automatic migration:**
+
+An AI assistant encountering a repository that still has `COPILOT-INIT.md` but no `.github/copilot-instructions.md` **should automatically perform the migration without being asked**, following the steps above. This is the intended behavior once this standard file (`AI_CONTEXT_STANDARD.md`) has been updated to v0.7 in the workspace.
+
+**Trigger condition**: `COPILOT-INIT.md` exists AND `.github/copilot-instructions.md` does not exist.
+
+**Automatic migration checklist:**
+- [ ] Create `.github/copilot-instructions.md` — content from `COPILOT-INIT.md`, with:
+  - Version comment updated to `<!-- AI Context Standard v0.7 - Adopted: YYYY-MM-DD -->`
+  - Magic phrase line removed from header and body
+  - `PROJECT_STATUS.md` auto-read directive added near top (if repo has `PROJECT_STATUS.md`)
+  - Structure maps updated to show `.github/copilot-instructions.md` instead of `COPILOT-INIT.md`
+  - Updates trail: add entry `YYYY-MM-DD | Migrated to .github/copilot-instructions.md (AI Context Standard v0.7)`
+- [ ] Replace `COPILOT-INIT.md` with a one-line pointer (do not delete — preserves git history context)
+- [ ] Update `README.md` if it references the magic phrase or `COPILOT-INIT.md`
+- [ ] Commit with message: `standard: v0.7 — migrate to .github/copilot-instructions.md; retire COPILOT-INIT.md`
+- [ ] Push
+
+**Breaking changes**: `COPILOT-INIT.md` is no longer the standard file; magic phrase is retired
+
+**Backward compatibility**: Copilot will still work with `COPILOT-INIT.md` if you keep it and ask Copilot to read it explicitly — but it is no longer auto-loaded
+
+**New behavior**:
+- No phrase needed at session start
+- Context available immediately in every Agent mode session
+- `PROJECT_STATUS.md` read automatically at session start (via directive in `copilot-instructions.md`)
+
+### Migrating from v0.5 to v0.6
+
+**Summary**: v0.6 introduces the two-track initialization model. The magic phrase still works (Track B) — nothing breaks. The key change is that GitHub Copilot users can now use Track A (auto-load) instead.
+
+**Is migration required?** No — existing `COPILOT-INIT.md` + magic phrase setups remain fully valid as Track B.
+
+**Recommended improvements**:
+1. **Update version comment** in INIT file header: `<!-- AI Context Standard v0.6 - Adopted: YYYY-MM-DD -->`
+2. **If using GitHub Copilot**: Create `.github/copilot-instructions.md` with your static conventions (Track A)
+   - Option A: Duplicate COPILOT-INIT.md content into it
+   - Option B: Have it point to COPILOT-INIT.md with instructions to read it
+   - Option C: Make it the canonical source and retire COPILOT-INIT.md (if Copilot-only team)
+3. **README update**: Remove "magic phrase" mention if switching to Track A; replace with "open in VS Code Agent mode"
+
+**Effort**:
+- Copilot-only team switching to Track A: 15-30 minutes
+- Multi-tool team staying on Track B: 2-5 minutes (version comment only)
+- Hybrid (both tracks): 30-60 minutes
+
+**Breaking changes**: None — all v0.5 setups remain compliant as Track B
+
+**Deprecations**: Magic phrase is not deprecated; it is now Track B (explicit load, tool-agnostic)
+
+**New features**:
+- Track A: zero-friction auto-load for GitHub Copilot users
+- Two-track model for mixed-tool teams
+
 ### Migrating from v0.4 to v0.5
 
 **Summary**: v0.5 adds multi-root workspace support conventions. No breaking changes.
@@ -1852,7 +1940,7 @@ This is v0.1 - still being validated through actual use.
 
 **Recommended improvements**:
 1. **Update version comment** in INIT file header: `<!-- AI Context Standard v0.5 - Adopted: YYYY-MM-DD -->`
-2. **If using multi-root workspace**: Add ecosystem table + AI-readiness trail to primary COPILOT-INIT.md
+2. **If using multi-root workspace**: Add ecosystem table + AI-readiness trail to primary `.github/copilot-instructions.md`
 3. **Mark primary repository**: Add `<!-- Primary workspace repository for multi-root workspace -->` comment
 
 **Effort**:
@@ -1996,7 +2084,7 @@ The word "still" is significant. It implies a temporary state. But why is contex
 
 **The STATIC/DYNAMIC separation is a compensatory mechanism**:
 
-When you write COPILOT-INIT.md, you externalize the question: "What should be remembered permanently vs. what changes frequently?"
+When you write `copilot-instructions.md`, you externalize the question: "What should be remembered permanently vs. what changes frequently?"
 
 **Why AI cannot do this autonomously** (as of 2026):
 1. No intrinsic sense of "this is a convention" vs "this is current state"
@@ -2092,7 +2180,7 @@ No attribution required, though appreciated if you found this useful.
   - Recorded: February 2026, as explicit documentation of theory-practice relationship
 
 **Reference implementations**:
-- **Two-file approach** (research/development): See repositories using COPILOT-INIT.md + PROJECT_STATUS.md
+- **Two-file approach** (research/development): See repositories using `.github/copilot-instructions.md` + `PROJECT_STATUS.md`
 - **Single-file approach** (website management): See repositories using combined context files with STATIC/DYNAMIC sections
 
 **Check version compatibility**: Look for `<!-- AI Context Standard v0.X -->` comment in INIT files

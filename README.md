@@ -8,4 +8,4 @@ This repository hosts the website and resources for the [Humanomics Study Web Si
 
 **What's here**: Monthly dialogue session notes (in Japanese), reference materials on Keynesian economics and Adam Smith's *Theory of Moral Sentiments*, and supporting scripts.
 
-> **For AI assistants**: To initialize context, say "Please read COPILOT-INIT.md to initialize"
+> **For AI assistants (GitHub Copilot)**: Context is loaded automatically from `.github/copilot-instructions.md`.
