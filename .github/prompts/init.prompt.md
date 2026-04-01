@@ -1,12 +1,12 @@
 ---
-agent: ask
+agent: copilot
 description: セッション初期化（PROJECT_STATUS.md の読み込みと確認）
 alwaysApply: true
 ---
 
 ## ステップ1: VS Code バージョン確認
 
-`.github/vscode-version.txt` を読んでください。
+`humanomics` リポジトリの `.github/vscode-version.txt`（このプロンプトファイルと同じリポジトリ）を読んでください。
 
 - **`Auto-updated by vscode-version-recorder extension` という行がある場合**: 拡張機能は正常に動作しています。そのバージョン番号を使用してステップ2へ
 - **その行がなく、バージョン番号が記載されている場合**: 拡張機能は未インステールの可能性があります。そのバージョン番号を使用してステップ2へ。その後、ユーザーに確認してください：
