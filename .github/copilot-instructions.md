@@ -1,4 +1,4 @@
-<!-- AI Context Standard v0.8 - Adopted: 2026-03-24 -->
+<!-- AI Context Standard v0.8.8 - Adopted: 2026-04-02 -->
 # AI Assistant Initialization Guide — Humanomics
 
 **Purpose**: Initialize AI context for working with this repository
@@ -190,3 +190,24 @@ After adding new pages, consider updating `docs/sitemap.xml` for SEO.
 - 話題の転換点や新情報が出た時、必要と判断したら「調べましょうか？」と自発的に提案する
 - 情報源の信頼性についても批判的視点を添える
 - 議論の流れを単に追うのではなく、論点の深化に貢献する
+
+---
+
+## 🤖 AI Operating Conventions (from AI Context Standard v0.8.8)
+
+### Failure Recovery
+
+When the same operation fails 3+ times, stop and explain to the user. Propose alternatives. Do not silently retry 15+ times.
+
+### PowerShell Multi-repo Git
+
+Always use `git -C <path>` instead of `cd <path>; git ...`.  
+The terminal tool may silently strip `cd` from chained commands.
+
+```powershell
+# ❌ Unreliable
+cd C:\path\to\repo; git commit -m "..."
+
+# ✅ Reliable
+git -C C:\path\to\repo commit -m "..."
+```
