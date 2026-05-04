@@ -1,6 +1,6 @@
 # Project Status — Humanomics
 
-**Last Updated**: 2026-03-24
+**Last Updated**: 2026-05-05
 
 > For working conventions and structure, see [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
 
@@ -8,13 +8,16 @@
 
 ## 🎯 Current Task
 
-**Working on**: AI Context Standard v0.7 適用完了  
-**Next**: 次回対話セッションの準備  
-**See**: `.github/copilot-instructions.md`
+次回対話セッションの準備
 
 ---
 
 ## 📋 Recent Work
+
+### 2026-05-05 — AI Context Standard v0.9.2 適用 ✅
+- `copilot-instructions.md` の標準バージョンコメントを v0.8.8 → v0.9.2 に更新
+- `PROJECT_STATUS.md` の Current Task をクリア・最新化
+- 関連: ステータスバー表示機能（`ai-context-vscode` v0.3.2）の動作確認済み
 
 ### 2026-03-24 — AI Context Standard v0.7 適用 ✅
 - `COPILOT-INIT.md` → `.github/copilot-instructions.md` に移行（auto-loaded）

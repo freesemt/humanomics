@@ -1,9 +1,11 @@
-<!-- AI Context Standard v0.8.8 - Adopted: 2026-04-02 -->
+<!-- AI Context Standard v0.9.2 - Adopted: 2026-04-02, Updated: 2026-05-05 -->
 # AI Assistant Initialization Guide — Humanomics
 
 **Purpose**: Initialize AI context for working with this repository
 
-> **On every session start**: Read [`PROJECT_STATUS.md`](../PROJECT_STATUS.md) to get the current task and recent context before responding.
+> **On every session start**: Before responding to ANY first message, read [`PROJECT_STATUS.md`](../PROJECT_STATUS.md) first, then output exactly this line at the top of your response:
+> `✅ Initialized (humanomics) — [現在のタスクを一言で]`
+> Then respond to the user's message.
 
 ---
 
