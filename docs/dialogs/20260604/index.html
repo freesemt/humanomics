@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<head>
+<meta charset="utf-8">
+<title>2026-06-04</title>
+<link rel="stylesheet" type="text/css" href="../../styles.css">
+<script type="text/javascript">
+  MathJax = {
+    tex: {
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      processEscapes: true,
+      tags: "ams",
+      autoload: {
+        color: [],
+        colorV2: ['color']
+      },
+      packages: {'[+]': ['noerrors']}
+    },
+    chtml: {
+      matchFontHeight: false,
+      displayAlign: "left",
+      displayIndent: "2em"
+    },
+    options: {
+      skipHtmlTags: ['script', 'noscript', 'style', 'textarea'],
+      renderActions: {
+        find_script_mathtex: [10, function (doc) {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/);
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+            const text = document.createTextNode('');
+            node.parentNode.insertBefore(text, node);
+            math.start = {node: text, delim: '', n: 0};
+            math.end = {node: text, delim: '', n: 0};
+            doc.math.push(math);
+          }
+        }, '']
+      }
+    }
+  };
+</script>
+<script type="text/javascript" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" id="MathJax-script"></script>
+</head>
+<style type="text/css">
+img.middle { vertical-align: middle; }
+body { line-height:1.7; }
+</style>
+<body>
+<pre>
+・ BGM Selection
+  ・ （選定中）
+
+・ テーマ：見えないコストを見えるようにする
+  ・ 「受益者」と「費用負担者」の地理的・社会的分離
+
+<h3 id="index">■ 今回 6/4 の話題（準備メモ）</h3>
+
+<h3 id="ai-datacenter">■ 新話題：AI データセンターが見せたくないもの</h3>
+
+  ・ YouTube 動画：<a href="https://www.youtube.com/watch?v=5p426fSlYH4">We Saw What AI Data Centers Don't Want You to See</a>
+
+  ・ 動画が示す主な実態（視聴メモ）
+    ・ AI の急速な拡大に伴い、データセンターの建設ラッシュが世界各地で進行
+    ・ エネルギー消費
+      ・ 大規模データセンター 1 棟で小国並みの電力を消費
+      ・ 再生可能エネルギーへの移行より建設スピードが速く、石炭・ガス火力への依存が続く
+    ・ 水消費（冷却）
+      ・ AI サーバーは熱を大量に発生させるため、膨大な水量を冷却に使用
+      ・ 水不足地域に建設されるケースも多く、農業用水・生活用水と競合
+    ・ 地域コミュニティへの影響
+      ・ 電力需要増加による地域の電気料金上昇
+      ・ 土地・水資源の占有と地域農業・生活への圧迫
+      ・ 騒音・景観・インフラへの負荷
+    ・ 企業の「グリーン」な公言と実態のギャップ
+      ・ 「脱炭素・サステナビリティ」を掲げながら、実際の消費は急増
+      ・ データは「機密」として非開示のものが多い
+
+  ・ コスト外部化の構造との接続（前回 5/7 の視点１を深化）
+
+</pre>
+<table style="border-collapse:collapse; margin:0.2em 0 0.5em 4em; font-size:0.95em; line-height:1.6;">
+  <thead>
+    <tr style="background:#e0e0e0; color:#000;">
+      <th style="border:1px solid #aaa; padding:4px 10px;">コスト種別</th>
+      <th style="border:1px solid #aaa; padding:4px 10px;">誰が利益を得るか</th>
+      <th style="border:1px solid #aaa; padding:4px 10px;">誰がコストを負担するか</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="border:1px solid #aaa; padding:4px 10px;">電力コスト</td>
+      <td style="border:1px solid #aaa; padding:4px 10px;">テック企業・AI ユーザー（世界中）</td>
+      <td style="border:1px solid #aaa; padding:4px 10px;">データセンター立地の地域住民</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #aaa; padding:4px 10px;">水コスト</td>
+      <td style="border:1px solid #aaa; padding:4px 10px;">テック企業・AI ユーザー（世界中）</td>
+      <td style="border:1px solid #aaa; padding:4px 10px;">地域の農業・生活・生態系</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #aaa; padding:4px 10px;">炭素コスト</td>
+      <td style="border:1px solid #aaa; padding:4px 10px;">テック企業・AI ユーザー（今）</td>
+      <td style="border:1px solid #aaa; padding:4px 10px;">将来世代・地球全体</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #aaa; padding:4px 10px;">土地コスト</td>
+      <td style="border:1px solid #aaa; padding:4px 10px;">テック企業</td>
+      <td style="border:1px solid #aaa; padding:4px 10px;">立地地域の住民・産業</td>
+    </tr>
+  </tbody>
+</table>
+<pre>
+  ・ 具体事例：つくば市・高エネ研南側用地（身近な例）
+
+    ・ 経緯
+      ・ つくば市土地開発公社が保有していた高エネ研（KEK）南側の未利用地（約45ヘクタール）
+      ・ 2022年：グッドマンジャパンつくば特定目的会社に売買契約締結
+        ・ 売買価格：<strong>約110億円</strong>（11,029,248,000円）
+      ・ 2025年9月：つくば市議会・全員協議会で開発進捗を報告
+    ・ 開発規模
+      ・ 最大 <strong>1,000MW（1GW）</strong> の電力確保 = 原子力発電所 1 基分に相当
+      ・ 1 棟目（50MW）2026年完成予定。以降、順次拡張予定
+      ・ 施設構成：データセンター（主）、物流施設、防災拠点施設、アメニティ（ドッグランなど）
+    ・ 開発主体
+      ・ Goodman Group：オーストラリア証券取引所（ASX）上場のグローバル不動産・デジタルインフラ企業
+      ・ 印西市（千葉）でも 300MW 超のデータセンタービジネスパークを運営
+      ・ 香港・シンガポールへもアジア展開を加速中
+    ・ 公開資料
+      ・ <a href="https://www.city.tsukuba.lg.jp/soshikikarasagasu/zaimubukokyoshisanrikatsuyosuishinka/gyomuannai/2/1/1003132.html">高エネ研南側用地の利活用（つくば市）</a>
+      ・ <a href="https://www.city.tsukuba.lg.jp/soshikikarasagasu/zaimubukokyoshisanrikatsuyosuishinka/gyomuannai/1_1/26266.html">全員協議会資料（令和7年9月29日）</a>
+      ・ <a href="https://jp.goodman.com/about-goodman/media-centre/media-releases/2024/goodman-digital-infrastructure-offering-powers-ahead-with-data-centre-expansion-in-asia">グッドマン プレスリリース（2024年1月）</a>
+
+  ・ 問題点の整理（つくば市ケースから）
+
+    ・ 電力規模の問題
+      ・ 1,000MW（1GW）= つくば市の家庭・産業の電力需要を大幅に超える可能性
+      ・ どの発電源から調達するか、再エネ比率はどうなるか → 公開情報なし
+      ・ 電力系統への負荷増大 → 地域の電気料金・安定性への影響
+    ・ 雇用への貢献の薄さ
+      ・ 建設時は一時的な雇用（土建・インフラ）
+      ・ 運用後は高度な専門職のみ → 地元雇用はほぼ生まない
+      ・ → 110億円分の公有地が売却されたが、地域経済への恩恵は限定的
+    ・ 水消費の問題
+      ・ データセンターの冷却には大量の水が必要（10MW規模で年数十万トン規模）
+      ・ 関東平野の農業地帯・研究学園都市の水源への影響 → 公開情報なし
+    ・ 「防災拠点施設」の位置づけ問題
+      ・ 施設の一部を防災倉庫・多目的広場として整備 → 市への貢献として演出
+      ・ しかし主目的はグローバルテック企業向けデータセンター運営
+      ・ → 「地域貢献」の名目で公有地を取得し、グローバルな利益を得る構造
+    ・ 意思決定プロセスの問題
+      ・ 2021年：市民説明会（大穂交流センター等）→ 意見交換録あり
+      ・ 2022年：売買契約締結
+      ・ 市民が計画の全体像（1,000MW規模）を把握できていたか？
+      ・ → 「グリーン開発」の公言と実際の電力消費規模のギャップ
+
+  ・ 「見えない」ことの構造（つくば市ケースから一般化）
+
+    ・ つくば市（地域）が負うコスト
+      ・ 公有地（税金で形成された資産）の売却 → 110億円で民間に移転
+      ・ 電力・水・インフラの消費
+      ・ 将来の都市計画上の選択肢の喪失（45ヘクタールが長期にわたり民間占有）
+    ・ 恩恵を受けるのは誰か
+      ・ Goodman Group（ASX上場、オーストラリア本拠）
+      ・ データセンターを利用するグローバルテック企業（AI プロバイダー）
+      ・ AIサービスのユーザー（世界中、主に先進国・都市部）
+    ・ 地理的・社会的分離 → sympathy の遮断
+      ・ AI の恩恵享受者（東京・シリコンバレー等）とコスト負担者（つくば市民）が分離
+      ・ Adam Smith TMS：sympathy は「想像できること」を前提にする
+      ・ AI ユーザーはつくば市の電力・水・土地を使っていることを想像しない
+      ・ → これが「見えないコスト」を持続させる構造的メカニズム
+
+  ・ 前回（5/7）との比較
+    ・ プーチン・ネタニヤフ・トランプのコスト外部化（政治・軍事・外交）
+    ・ ↕（構造的類比）
+    ・ テック企業のコスト外部化（経済・環境・社会）
+    ・ 共通点：受益者 ≠ 費用負担者、かつ両者は「見えない壁」で隔てられている
+    ・ 違い：暴力・侵略は「見えやすい」が、データセンターの消費は「見えにくい」
+
+  ・ 本荘 2019 論文との接続（候補）
+    ・ 雇用・マクロ経済の視点：データセンターは雇用を生むか？
+      ・ 建設時は一時的な雇用
+      ・ 運用時は自動化されており、地域雇用はほぼ生まない
+      ・ → 「投資は来るが、雇用は来ない」新型の地域格差
+    ・ AI による労働市場の変化とデータセンターの膨張は表裏一体
+    ・ ケインズ的問い：このような「投資」は誰のための完全雇用・厚生か？
+
+  ・ 問い（未整理）
+    ・ AI は「コスト外部化の道具」か「コスト削減の道具」か？
+    ・ それとも両方同時に起きているのか？
+    ・ 誰がこの問いを立てる立場にあるか？（= 政治・経済・学術の役割）
+    ・ 本荘さんはつくばの件をどう見ているか？（地元住民として、研究者として）
+
+
+<h3 id="continuation">■ 前回（5/7）からの継続テーマ</h3>
+
+  ・ フレームの問い（前回積み残し）
+    ・ 「変質社会主義 vs 民主主義・法の支配」という軸が崩れたあと、何を基準にするか
+    ・ 「コスト外部化」軸は体制を問わず使えるか？ → AI 企業の例で検証
+
+  ・ Morricone の２曲（対話後の感想があれば追記）
+    ・ 本荘さんの反応・感想
+    ・ 「静かな必然性」と sympathy の話をどこまで展開できたか
+
+  ・ 峰不二子 ＆ Adam Smith TMS（対話後の感想があれば追記）
+    ・ sympathy の成立条件について、本荘さんの見解
+
+<h3 id="world">■ 世界情勢スナップショット（2026-06-04）</h3>
+
+  ・ （当日の状況を追記）
+
+・ 参照
+  ・ <a href="../../references/honjo-2019.html">本荘 2019 論文（雇用・マクロ経済）</a>
+  ・ <a href="../../references/adam_smith/index.html">Adam Smith TMS 研究メモ</a>
+  ・ <a href="../20260507/index.html">前回 2026-05-07（コスト外部化・峰不二子・Morricone）</a>
+
+・ <a href="../../dialogs/index.html">Dialogs with Professor Y. H.</a>
+</pre>
+</body>
+</html>

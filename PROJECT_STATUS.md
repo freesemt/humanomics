@@ -1,6 +1,6 @@
 # Project Status — Humanomics
 
-**Last Updated**: 2026-05-05
+**Last Updated**: 2026-06-02
 
 > For working conventions and structure, see [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
 
@@ -8,7 +8,9 @@
 
 ## 🎯 Current Task
 
-次回対話セッションの準備
+2026-06-04 対話セッションの準備
+- `docs/dialogs/20260604/index.html` 作成済み
+- 主要トピック：AI データセンターの隠れたコスト（YouTube 動画）、コスト外部化の構造の深化
 
 ---
 
