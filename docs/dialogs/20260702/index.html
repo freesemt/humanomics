@@ -156,8 +156,8 @@ body { line-height:1.7; }
      * 2-5: 上段の流れ（4本）
      * 6-9: 交信（4本）
      * 10-13: 下段の流れ（4本）
-     * 14-15: 応答処理への合流（2本）
-     * 16: 応答処理→応答内容（1本）
+     * 14-15: AIの応答への合流（2本）
+     * 16: AIの応答→応答内容（1本）
      * 17-18: 螺旋フィードバック（2本）
    - 情報ノード: nth-child(19～24) … 6個
    - 処理ノード: nth-child(25～30) … 6個
@@ -317,15 +317,15 @@ body { line-height:1.7; }
 .ci-node:nth-child(28).active text { animation-delay: 9.6s; }
 /* 矢印12: 発信（下段） → WEB */
 .ci-arrow:nth-child(13).active { animation-delay: 10.2s; }
-/* WEBまで到達してから、応答処理へ */
-/* 矢印13: 質問 → 応答処理 (2つの矢印を同時) */
+/* WEBまで到達してから、AIの応答へ */
+/* 矢印13: 質問 → AIの応答 (2つの矢印を同時) */
 .ci-arrow:nth-child(14).active { animation-delay: 10.8s; }
-/* 矢印14: LLM → 応答処理 (2つの矢印を同時) */
+/* 矢印14: LLM → AIの応答 (2つの矢印を同時) */
 .ci-arrow:nth-child(15).active { animation-delay: 10.8s; }
-/* ノード8: 応答処理 */
+/* ノード8: AIの応答 */
 .ci-node:nth-child(27).active,
 .ci-node:nth-child(27).active text { animation-delay: 11.4s; }
-/* 矢印15: 応答処理 → 応答内容 */
+/* 知印15: AIの応答 → 応答内容 */
 .ci-arrow:nth-child(16).active { animation-delay: 12.0s; }
 /* ノード9: 応答内容 */
 .ci-node:nth-child(24).active,
@@ -421,11 +421,11 @@ body { line-height:1.7; }
         <path class="ci-arrow active" d="M 280,265 L 280,205" />
         <!-- 5d. 発信（下段） → WEB -->
         <path class="ci-arrow active" d="M 280,175 L 280,115" />
-        <!-- 6. 質問 → 応答処理 -->
+        <!-- 6. 質問 → AIの応答 -->
         <path class="ci-arrow active" d="M 315,300 L 525,300" />
-        <!-- 7. LLM → 応答処理 -->
+        <!-- 7. LLM → AIの応答 -->
         <path class="ci-arrow active" d="M 555,115 L 555,285" />
-        <!-- 8. 応答処理 → 応答内容 -->
+        <!-- 8. AIの応答 → 応答内容 -->
         <path class="ci-arrow active" d="M 555,315 L 555,375" />
         <!-- 9a. 応答内容 → 理解状態A（螺旋・上ルート） -->
         <path class="ci-arrow active spiral" d="M 520,410 L -30,410 L -30,80 L 15,80" stroke-dasharray="5,5" marker-end="url(#arrowhead-spiral)" />
@@ -487,10 +487,10 @@ body { line-height:1.7; }
           <text x="405" y="85" font-size="12">AIの整理</text>
         </g>
         
-        <!-- ノード8: 応答処理 -->
+        <!-- ノード8: AIの応答 -->
         <g class="ci-node process active">
-          <rect x="525" y="285" width="60" height="30" rx="3" />
-          <text x="555" y="305" font-size="12">応答処理</text>
+          <rect x="525" y="285" width="60" height="40" rx="3" />
+          <text x="555" y="305" font-size="12">AIの応答</text>
         </g>
         
         <!-- ノード10: 発信（下段） -->
