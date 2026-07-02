@@ -119,51 +119,50 @@ body { line-height:1.7; }
   marker-end: url(#arrowhead);
 }
 
-/* アニメーション定義 */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.3;
-  }
-  50% {
-    opacity: 1;
-  }
-}
-
-@keyframes highlight-node {
-  0%, 100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
+/* アニメーション定義：時計回りに順次点灯 */
+@keyframes sequential-pulse {
+  0% { opacity: 0.2; }
+  8% { opacity: 1; }
+  16% { opacity: 0.2; }
+  100% { opacity: 0.2; }
 }
 
 .ci-node.active circle {
   fill: #bb86fc;
   stroke: #e0e0e0;
-  animation: pulse 2s ease-in-out infinite;
+  animation: sequential-pulse 3s ease-in-out infinite;
 }
 
 .ci-arrow.active {
   stroke: #bb86fc;
-  animation: pulse 2s ease-in-out infinite;
+  animation: sequential-pulse 3s ease-in-out infinite;
 }
 
-/* 各ステップに遅延を設定 */
-.ci-node:nth-child(1).active { animation-delay: 0s; }
-.ci-node:nth-child(2).active { animation-delay: 0.33s; }
-.ci-node:nth-child(3).active { animation-delay: 0.66s; }
-.ci-node:nth-child(4).active { animation-delay: 1s; }
-.ci-node:nth-child(5).active { animation-delay: 1.33s; }
-.ci-node:nth-child(6).active { animation-delay: 1.66s; }
-
-.ci-arrow:nth-child(7).active { animation-delay: 0.16s; }
-.ci-arrow:nth-child(8).active { animation-delay: 0.5s; }
-.ci-arrow:nth-child(9).active { animation-delay: 0.83s; }
-.ci-arrow:nth-child(10).active { animation-delay: 1.16s; }
-.ci-arrow:nth-child(11).active { animation-delay: 1.5s; }
-.ci-arrow:nth-child(12).active { animation-delay: 1.83s; }
+/* 時計回り順序で遅延を設定（3秒で1周、各ノード0.5秒間隔） */
+/* ノード1: 個人の発信（上） */
+.ci-node:nth-child(7).active { animation-delay: 0s; }
+/* 矢印1→2 */
+.ci-arrow:nth-child(1).active { animation-delay: 0.25s; }
+/* ノード2: AIの整理（右上） */
+.ci-node:nth-child(8).active { animation-delay: 0.5s; }
+/* 矢印2→3 */
+.ci-arrow:nth-child(2).active { animation-delay: 0.75s; }
+/* ノード3: 他者の質問（右下） */
+.ci-node:nth-child(9).active { animation-delay: 1.0s; }
+/* 矢印3→4 */
+.ci-arrow:nth-child(3).active { animation-delay: 1.25s; }
+/* ノード4: AIの応答（下） */
+.ci-node:nth-child(10).active { animation-delay: 1.5s; }
+/* 矢印4→5 */
+.ci-arrow:nth-child(4).active { animation-delay: 1.75s; }
+/* ノード5: 個人の理解（左下） */
+.ci-node:nth-child(11).active { animation-delay: 2.0s; }
+/* 矢印5→6 */
+.ci-arrow:nth-child(5).active { animation-delay: 2.25s; }
+/* ノード6: 再発信（左上） */
+.ci-node:nth-child(12).active { animation-delay: 2.5s; }
+/* 矢印6→1 */
+.ci-arrow:nth-child(6).active { animation-delay: 2.75s; }
 
 .ci-title {
   text-align: center;
