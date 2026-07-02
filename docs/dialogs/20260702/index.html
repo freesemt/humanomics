@@ -86,6 +86,7 @@ body { line-height:1.7; }
   max-width: 100%;
   background-color: transparent;
   padding: 20px 0;
+  text-align: center;
 }
 
 .ci-cycle-svg {
@@ -98,13 +99,29 @@ body { line-height:1.7; }
   transition: all 0.3s ease;
 }
 
-.ci-node circle {
+/* 情報ノード（円） */
+.ci-node.info circle {
   fill: #2a2a2a;
   stroke: #666;
   stroke-width: 2;
 }
 
-.ci-node text {
+.ci-node.info text {
+  fill: #e0e0e0;
+  font-size: 13px;
+  font-weight: 500;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+/* 処理ノード（四角） */
+.ci-node.process rect {
+  fill: #1a1a1a;
+  stroke: #666;
+  stroke-width: 2;
+}
+
+.ci-node.process text {
   fill: #e0e0e0;
   font-size: 13px;
   font-weight: 500;
@@ -119,30 +136,89 @@ body { line-height:1.7; }
   marker-end: url(#arrowhead);
 }
 
-/* アニメーション定義：時計回りに順次点灯 */
+/* ========================================
+   CI構想アニメーション システム設計メモ
+   ========================================
+   
+   【基本構造】
+   - SVGの要素順序: 矢印 → 情報ノード → 処理ノード
+   - CSSセレクタ: nth-child(N) で要素を指定
+   - アニメーション: opacity変化のみ（位置変化なし）
+   
+   【重要】nth-child番号の決定方法
+   1. SVG内の要素は描画順に番号が振られる（1から開始）
+   2. <defs>内の要素はカウントされない
+   3. コメントはカウントされない
+   4. <g>タグ、<path>タグなどの実要素のみカウント
+   
+   【現在の要素構成】（2026-07-02時点）
+   - 矢印: nth-child(2～18) … 17本
+     * 2-5: 上段の流れ（4本）
+     * 6-9: 交信（4本）
+     * 10-13: 下段の流れ（4本）
+     * 14-15: 応答処理への合流（2本）
+     * 16: 応答処理→応答内容（1本）
+     * 17-18: 螺旋フィードバック（2本）
+   - 情報ノード: nth-child(19～24) … 6個
+   - 処理ノード: nth-child(25～30) … 6個
+   
+   【アニメーション周期設計】
+   - 総周期: 20秒
+   - アクティブ期間: 0s～13.5s（13.5秒間）
+   - 休憩期間: 13.5s～20s（6.5秒間）
+   - 要素間の間隔: 0.6秒
+   
+   【要素追加時の注意】
+   ⚠️ SVGに矢印やノードを追加すると、後続の全要素のnth-child番号がシフトする
+   → CSSのnth-child番号を全て更新する必要あり
+   
+   【デバッグ方法】
+   1. ブラウザ開発者ツールでSVG要素を調査
+   2. nth-child番号を確認: document.querySelectorAll('.ci-arrow, .ci-node')
+   3. アニメーションが意図通りか確認: animation-delayの値を調整
+   
+   【周期の延長方法】
+   - 休憩時間を長くしたい場合:
+     animation: sequential-pulse-* XXs ... の XXs を増やす
+     （現在は20s）
+   
+   ======================================== */
+
+/* アニメーション定義：情報と処理の流れ */
 @keyframes sequential-pulse-arrow {
   0% { opacity: 0.2; }
   8% { opacity: 1; }
-  16% { opacity: 0.2; }
+  20% { opacity: 0.2; }
   100% { opacity: 0.2; }
 }
 
-@keyframes sequential-pulse-node {
+@keyframes sequential-pulse-info {
   0% { 
     opacity: 0.3;
-    transform: scale(1);
   }
   8% { 
     opacity: 1;
-    transform: scale(1.15);
   }
-  16% { 
+  20% { 
     opacity: 0.3;
-    transform: scale(1);
   }
   100% { 
     opacity: 0.3;
-    transform: scale(1);
+  }
+}
+
+@keyframes sequential-pulse-process {
+  0% { 
+    opacity: 0.3;
+  }
+  8% { 
+    opacity: 1;
+  }
+  20% { 
+    opacity: 0.3;
+  }
+  100% { 
+    opacity: 0.3;
   }
 }
 
@@ -154,7 +230,7 @@ body { line-height:1.7; }
     fill: #ffffff;
     font-weight: bold;
   }
-  16% { 
+  20% { 
     fill: #888;
   }
   100% { 
@@ -162,56 +238,112 @@ body { line-height:1.7; }
   }
 }
 
-.ci-node.active {
-  animation: sequential-pulse-node 3s ease-in-out infinite;
-  transform-origin: center;
+.ci-node.info.active {
+  animation: sequential-pulse-info 20s ease-in-out infinite;
 }
 
-.ci-node.active circle {
+.ci-node.info.active circle {
   fill: #bb86fc;
   stroke: #e0e0e0;
 }
 
+.ci-node.process.active {
+  animation: sequential-pulse-process 20s ease-in-out infinite;
+}
+
+.ci-node.process.active rect {
+  fill: #ff9800;
+  stroke: #e0e0e0;
+}
+
 .ci-node.active text {
-  animation: sequential-pulse-text 3s ease-in-out infinite;
+  animation: sequential-pulse-text 20s ease-in-out infinite;
 }
 
 .ci-arrow.active {
   stroke: #bb86fc;
-  animation: sequential-pulse-arrow 3s ease-in-out infinite;
+  animation: sequential-pulse-arrow 20s ease-in-out infinite;
 }
 
-/* 時計回り順序で遅延を設定（3秒で1周、各ノード0.5秒間隔） */
-/* ノード1: 個人の発信（上） */
-.ci-node:nth-child(7).active,
-.ci-node:nth-child(7).active text { animation-delay: 0s; }
-/* 矢印1→2 */
-.ci-arrow:nth-child(1).active { animation-delay: 0.25s; }
-/* ノード2: AIの整理（右上） */
-.ci-node:nth-child(8).active,
-.ci-node:nth-child(8).active text { animation-delay: 0.5s; }
-/* 矢印2→3 */
-.ci-arrow:nth-child(2).active { animation-delay: 0.75s; }
-/* ノード3: 他者の質問（右下） */
-.ci-node:nth-child(9).active,
-.ci-node:nth-child(9).active text { animation-delay: 1.0s; }
-/* 矢印3→4 */
-.ci-arrow:nth-child(3).active { animation-delay: 1.25s; }
-/* ノード4: AIの応答（下） */
-.ci-node:nth-child(10).active,
-.ci-node:nth-child(10).active text { animation-delay: 1.5s; }
-/* 矢印4→5 */
-.ci-arrow:nth-child(4).active { animation-delay: 1.75s; }
-/* ノード5: 個人の理解（左下） */
-.ci-node:nth-child(11).active,
-.ci-node:nth-child(11).active text { animation-delay: 2.0s; }
-/* 矢印5→6 */
-.ci-arrow:nth-child(5).active { animation-delay: 2.25s; }
-/* ノード6: 再発信（左上） */
-.ci-node:nth-child(12).active,
-.ci-node:nth-child(12).active text { animation-delay: 2.5s; }
-/* 矢印6→1 */
-.ci-arrow:nth-child(6).active { animation-delay: 2.75s; }
+.ci-arrow.spiral {
+  stroke: #bb86fc;
+  opacity: 0.5;
+}
+
+/* 20秒周期でフェーズ1（上段）: 各要素0.6秒間隔 */
+/* フェーズ1: 上段の流れ（理解状態A → LLM） */
+/* ノード1: 理解状態A */
+.ci-node:nth-child(19).active,
+.ci-node:nth-child(19).active text { animation-delay: 0s; }
+/* 矢印1: 理解状態A → 発信 */
+.ci-arrow:nth-child(2).active { animation-delay: 0.6s; }
+/* ノード2: 発信（上段） */
+.ci-node:nth-child(25).active,
+.ci-node:nth-child(25).active text { animation-delay: 1.2s; }
+/* 矢印2: 発信 → WEB */
+.ci-arrow:nth-child(3).active { animation-delay: 1.8s; }
+/* ノード3: WEB */
+.ci-node:nth-child(20).active,
+.ci-node:nth-child(20).active text { animation-delay: 2.4s; }
+/* 矢印3: WEB → AIの整理 */
+.ci-arrow:nth-child(4).active { animation-delay: 3.0s; }
+/* ノード4: AIの整理 */
+.ci-node:nth-child(26).active,
+.ci-node:nth-child(26).active text { animation-delay: 3.6s; }
+/* 矢印4: AIの整理 → LLM */
+.ci-arrow:nth-child(5).active { animation-delay: 4.2s; }
+/* ノード5: LLM */
+.ci-node:nth-child(21).active,
+.ci-node:nth-child(21).active text { animation-delay: 4.8s; }
+
+/* フェーズ2: 下段とフィードバック（フェーズ1の後、一呼吸） */
+/* ノード6: 理解状態B */
+.ci-node:nth-child(22).active,
+.ci-node:nth-child(22).active text { animation-delay: 6.0s; }
+/* 矢印9: 理解状態B → 考察 */
+.ci-arrow:nth-child(10).active { animation-delay: 6.6s; }
+/* ノード12: 考察 */
+.ci-node:nth-child(30).active,
+.ci-node:nth-child(30).active text { animation-delay: 7.2s; }
+/* 矢印10: 考察 → 質問 */
+.ci-arrow:nth-child(11).active { animation-delay: 7.8s; }
+/* ノード7: 質問 */
+.ci-node:nth-child(23).active,
+.ci-node:nth-child(23).active text { animation-delay: 8.4s; }
+/* 矢印11: 質問 → 発信（下段） */
+.ci-arrow:nth-child(12).active { animation-delay: 9.0s; }
+/* ノード10: 発信（下段） */
+.ci-node:nth-child(28).active,
+.ci-node:nth-child(28).active text { animation-delay: 9.6s; }
+/* 矢印12: 発信（下段） → WEB */
+.ci-arrow:nth-child(13).active { animation-delay: 10.2s; }
+/* WEBまで到達してから、応答処理へ */
+/* 矢印13: 質問 → 応答処理 (2つの矢印を同時) */
+.ci-arrow:nth-child(14).active { animation-delay: 10.8s; }
+/* 矢印14: LLM → 応答処理 (2つの矢印を同時) */
+.ci-arrow:nth-child(15).active { animation-delay: 10.8s; }
+/* ノード8: 応答処理 */
+.ci-node:nth-child(27).active,
+.ci-node:nth-child(27).active text { animation-delay: 11.4s; }
+/* 矢印15: 応答処理 → 応答内容 */
+.ci-arrow:nth-child(16).active { animation-delay: 12.0s; }
+/* ノード9: 応答内容 */
+.ci-node:nth-child(24).active,
+.ci-node:nth-child(24).active text { animation-delay: 12.6s; }
+/* 矢印16: 応答内容 → 理解状態A（螺旋） */
+.ci-arrow:nth-child(17).active { animation-delay: 12.9s; }
+/* 矢印17: 応答内容 → 理解状態B（螺旋） */
+.ci-arrow:nth-child(18).active { animation-delay: 12.9s; }
+
+/* フェーズ3: 交信（サイクルの最後） */
+/* ノード11: 交信 */
+.ci-node:nth-child(29).active,
+.ci-node:nth-child(29).active text { animation-delay: 13.2s; }
+/* 交信の上下矢印（4本同時） */
+.ci-arrow:nth-child(6).active { animation-delay: 13.5s; }
+.ci-arrow:nth-child(7).active { animation-delay: 13.5s; }
+.ci-arrow:nth-child(8).active { animation-delay: 13.5s; }
+.ci-arrow:nth-child(9).active { animation-delay: 13.5s; }
 
 .ci-title {
   text-align: center;
@@ -251,68 +383,145 @@ body { line-height:1.7; }
     </pre>
     
     <div class="ci-cycle-container">
-      <div class="ci-title">CI構想の知識循環モデル</div>
-      <svg class="ci-cycle-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+      <div class="ci-title">CI構想の知識循環モデル（情報と処理の分離）</div>
+      <svg class="ci-cycle-svg" viewBox="-50 0 700 580" xmlns="http://www.w3.org/2000/svg">
         <!-- 矢印の定義 -->
         <defs>
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
             <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
           </marker>
+          <marker id="arrowhead-spiral" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#bb86fc" />
+          </marker>
         </defs>
         
         <!-- 矢印（ノードより先に描画） -->
-        <path class="ci-arrow active" d="M 250,100 C 300,110 300,140 285,170" />
-        <path class="ci-arrow active" d="M 350,250 C 340,300 310,300 280,285" />
-        <path class="ci-arrow active" d="M 250,400 C 200,390 200,360 215,330" />
-        <path class="ci-arrow active" d="M 150,250 C 160,200 190,200 220,215" />
-        <path class="ci-arrow active" d="M 100,150 C 130,130 170,130 195,145" />
-        <path class="ci-arrow active" d="M 220,85 C 230,70 240,70 250,80" />
+        <!-- 1. 理解状態A → 発信 -->
+        <path class="ci-arrow active" d="M 85,80 L 145,80" />
+        <!-- 2. 発信 → WEB -->
+        <path class="ci-arrow active" d="M 185,80 L 245,80" />
+        <!-- 3. WEB → AIの整理 -->
+        <path class="ci-arrow active" d="M 315,80 L 375,80" />
+        <!-- 4. AIの整理 → LLM -->
+        <path class="ci-arrow active" d="M 435,80 L 520,80" />
+        <!-- 交信矢印（双方向） -->
+        <!-- 理解状態A → 交信（下向き） -->
+        <path class="ci-arrow active" d="M 45,115 L 45,175" />
+        <!-- 交信 → 理解状態A（上向き） -->
+        <path class="ci-arrow active" d="M 55,175 L 55,115" />
+        <!-- 理解状態B → 交信（上向き） -->
+        <path class="ci-arrow active" d="M 45,265 L 45,205" />
+        <!-- 交信 → 理解状態B（下向き） -->
+        <path class="ci-arrow active" d="M 55,205 L 55,265" />
+        <!-- 5. 理解状態B → 考察 -->
+        <path class="ci-arrow active" d="M 85,300 L 150,300" />
+        <!-- 5b. 考察 → 質問 -->
+        <path class="ci-arrow active" d="M 190,300 L 245,300" />
+        <!-- 5c. 質問 → 発信（下段） -->
+        <path class="ci-arrow active" d="M 280,265 L 280,205" />
+        <!-- 5d. 発信（下段） → WEB -->
+        <path class="ci-arrow active" d="M 280,175 L 280,115" />
+        <!-- 6. 質問 → 応答処理 -->
+        <path class="ci-arrow active" d="M 315,300 L 525,300" />
+        <!-- 7. LLM → 応答処理 -->
+        <path class="ci-arrow active" d="M 555,115 L 555,285" />
+        <!-- 8. 応答処理 → 応答内容 -->
+        <path class="ci-arrow active" d="M 555,315 L 555,375" />
+        <!-- 9a. 応答内容 → 理解状態A（螺旋・上ルート） -->
+        <path class="ci-arrow active spiral" d="M 520,410 L -30,410 L -30,80 L 15,80" stroke-dasharray="5,5" marker-end="url(#arrowhead-spiral)" />
+        <!-- 9b. 応答内容 → 理解状態B（螺旋・下ルート） -->
+        <path class="ci-arrow active spiral" d="M 520,410 L -30,410 L -30,300 L 15,300" stroke-dasharray="5,5" marker-end="url(#arrowhead-spiral)" />
         
-        <!-- ノード1: 個人の発信 -->
-        <g class="ci-node active">
-          <circle cx="250" cy="80" r="50" />
-          <text x="250" y="75">個人の</text>
-          <text x="250" y="90">発信</text>
+        <!-- 情報ノード（円） -->
+        
+        <!-- ノード1: 理解状態A -->
+        <g class="ci-node info active">
+          <circle cx="50" cy="80" r="35" />
+          <text x="50" y="78" font-size="12">理解状態</text>
+          <text x="50" y="90" font-size="11">(発信側)</text>
         </g>
         
-        <!-- ノード2: AIの整理 -->
-        <g class="ci-node active">
-          <circle cx="380" cy="180" r="50" />
-          <text x="380" y="175">AIの</text>
-          <text x="380" y="190">整理</text>
+        <!-- ノード3: WEB -->
+        <g class="ci-node info active">
+          <circle cx="280" cy="80" r="35" />
+          <text x="280" y="85" font-size="14">WEB</text>
         </g>
         
-        <!-- ノード3: 他者の質問 -->
-        <g class="ci-node active">
-          <circle cx="380" cy="320" r="50" />
-          <text x="380" y="315">他者の</text>
-          <text x="380" y="330">質問</text>
+        <!-- ノード5: LLM -->
+        <g class="ci-node info active">
+          <circle cx="555" cy="80" r="35" />
+          <text x="555" y="85" font-size="14">LLM</text>
         </g>
         
-        <!-- ノード4: AIの応答 -->
-        <g class="ci-node active">
-          <circle cx="250" cy="420" r="50" />
-          <text x="250" y="415">AIの</text>
-          <text x="250" y="430">応答</text>
+        <!-- ノード6: 理解状態B -->
+        <g class="ci-node info active">
+          <circle cx="50" cy="300" r="35" />
+          <text x="50" y="298" font-size="12">理解状態</text>
+          <text x="50" y="310" font-size="11">(質問側)</text>
         </g>
         
-        <!-- ノード5: 個人の理解 -->
-        <g class="ci-node active">
-          <circle cx="120" cy="320" r="50" />
-          <text x="120" y="315">個人の</text>
-          <text x="120" y="330">理解</text>
+        <!-- ノード7: 質問 -->
+        <g class="ci-node info active">
+          <circle cx="280" cy="300" r="35" />
+          <text x="280" y="305" font-size="14">質問</text>
         </g>
         
-        <!-- ノード6: 再発信 -->
-        <g class="ci-node active">
-          <circle cx="120" cy="180" r="50" />
-          <text x="120" y="180">再発信</text>
+        <!-- ノード9: 応答内容 -->
+        <g class="ci-node info active">
+          <circle cx="555" cy="410" r="35" />
+          <text x="555" y="408" font-size="12">応答</text>
+          <text x="555" y="420" font-size="12">内容</text>
         </g>
         
-        <!-- 中央のCI表示 -->
-        <text x="250" y="245" text-anchor="middle" fill="#bb86fc" font-size="24" font-weight="bold">CI</text>
-        <text x="250" y="265" text-anchor="middle" fill="#aaa" font-size="12">Collective</text>
-        <text x="250" y="280" text-anchor="middle" fill="#aaa" font-size="12">Intelligence</text>
+        <!-- 処理ノード（四角） -->
+        
+        <!-- ノード2: 発信 -->
+        <g class="ci-node process active">
+          <rect x="145" y="65" width="40" height="30" rx="3" />
+          <text x="165" y="85" font-size="13">発信</text>
+        </g>
+        
+        <!-- ノード4: AIの整理 -->
+        <g class="ci-node process active">
+          <rect x="375" y="65" width="60" height="30" rx="3" />
+          <text x="405" y="85" font-size="12">AIの整理</text>
+        </g>
+        
+        <!-- ノード8: 応答処理 -->
+        <g class="ci-node process active">
+          <rect x="525" y="285" width="60" height="30" rx="3" />
+          <text x="555" y="305" font-size="12">応答処理</text>
+        </g>
+        
+        <!-- ノード10: 発信（下段） -->
+        <g class="ci-node process active">
+          <rect x="260" y="175" width="40" height="30" rx="3" />
+          <text x="280" y="195" font-size="13">発信</text>
+        </g>
+        
+        <!-- ノード11: 交信 -->
+        <g class="ci-node process active">
+          <rect x="30" y="175" width="40" height="30" rx="3" />
+          <text x="50" y="195" font-size="13">交信</text>
+        </g>
+        
+        <!-- ノード12: 考察 -->
+        <g class="ci-node process active">
+          <rect x="150" y="285" width="40" height="30" rx="3" />
+          <text x="170" y="305" font-size="13">考察</text>
+        </g>
+        
+        <!-- 凡例 -->
+        <g transform="translate(20, 520)">
+          <circle cx="15" cy="15" r="12" fill="#bb86fc" opacity="0.3" stroke="#666" stroke-width="2" />
+          <text x="35" y="20" font-size="11" fill="#e0e0e0">○ 情報ノード</text>
+          
+          <rect x="140" y="5" width="20" height="20" rx="2" fill="#ff9800" opacity="0.3" stroke="#666" stroke-width="2" />
+          <text x="168" y="20" font-size="11" fill="#e0e0e0">□ 処理ノード</text>
+          
+          <path d="M 300,15 L 360,15" stroke="#bb86fc" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrowhead-spiral)" />
+          <text x="370" y="20" font-size="11" fill="#e0e0e0">理解の深化（螺旋）</text>
+        </g>
       </svg>
     </div>
   </div>
