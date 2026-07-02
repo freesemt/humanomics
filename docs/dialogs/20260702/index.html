@@ -42,6 +42,100 @@
 <style type="text/css">
 img.middle { vertical-align: middle; }
 body { line-height:1.7; }
+
+/* CI構想循環図のスタイル */
+.ci-cycle-container {
+  margin: 30px auto;
+  max-width: 600px;
+  background-color: #1a1a1a;
+  padding: 40px;
+  border-radius: 12px;
+}
+
+.ci-cycle-svg {
+  width: 100%;
+  height: auto;
+}
+
+.ci-node {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.ci-node circle {
+  fill: #2a2a2a;
+  stroke: #666;
+  stroke-width: 2;
+}
+
+.ci-node text {
+  fill: #e0e0e0;
+  font-size: 13px;
+  font-weight: 500;
+  text-anchor: middle;
+  pointer-events: none;
+}
+
+.ci-arrow {
+  stroke: #666;
+  stroke-width: 2;
+  fill: none;
+  marker-end: url(#arrowhead);
+}
+
+/* アニメーション定義 */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes highlight-node {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.ci-node.active circle {
+  fill: #bb86fc;
+  stroke: #e0e0e0;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.ci-arrow.active {
+  stroke: #bb86fc;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* 各ステップに遅延を設定 */
+.ci-node:nth-child(1).active { animation-delay: 0s; }
+.ci-node:nth-child(2).active { animation-delay: 0.33s; }
+.ci-node:nth-child(3).active { animation-delay: 0.66s; }
+.ci-node:nth-child(4).active { animation-delay: 1s; }
+.ci-node:nth-child(5).active { animation-delay: 1.33s; }
+.ci-node:nth-child(6).active { animation-delay: 1.66s; }
+
+.ci-arrow:nth-child(7).active { animation-delay: 0.16s; }
+.ci-arrow:nth-child(8).active { animation-delay: 0.5s; }
+.ci-arrow:nth-child(9).active { animation-delay: 0.83s; }
+.ci-arrow:nth-child(10).active { animation-delay: 1.16s; }
+.ci-arrow:nth-child(11).active { animation-delay: 1.5s; }
+.ci-arrow:nth-child(12).active { animation-delay: 1.83s; }
+
+.ci-title {
+  text-align: center;
+  color: #e0e0e0;
+  font-size: 1.1em;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
 </style>
 <body>
 <pre>
@@ -123,16 +217,112 @@ body { line-height:1.7; }
     ・ セクション別の要約・コメント欄
     ・ 関連論文へのリンク集
 
+<h3 id="ci-concept">■ CI構想（Collective Intelligence）との関連</h3>
+
+  ・ 今回の作業はCI構想の実践例
+    ・ **CI構想の定義**（再掲）
+      ・ 個人の発信 → AIの整理 → 他者の質問 → AIの応答 → 個人の理解 → 再発信
+      ・ この循環を通じて、個人の知識を深め、集団の知性を高める
+    ・ **本荘論文HTML化におけるCI循環**
+      1. **個人の発信**：本荘先生の論文（専門的研究成果）
+      2. **AIの整理**：PDF抽出、HTML構造化、グラフ・表の視覚化
+      3. **他者への還元**：読者が理解しやすい形式で公開
+      4. **個人の理解の深化**：インタラクティブなグラフ・表で視覚的理解
+      5. **再発信**：引用・議論・新たな研究の基盤に
+    ・ **単なる技術作業ではなく、知識循環を促進する実践**
+
+  ・ CI構想の循環図（視覚化）
+</pre>
+
+<div class="ci-cycle-container">
+  <div class="ci-title">CI構想の知識循環モデル</div>
+  <svg class="ci-cycle-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- 矢印の定義 -->
+    <defs>
+      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+        <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+      </marker>
+    </defs>
+    
+    <!-- 矢印（ノードより先に描画） -->
+    <path class="ci-arrow active" d="M 250,100 C 300,110 300,140 285,170" />
+    <path class="ci-arrow active" d="M 350,250 C 340,300 310,300 280,285" />
+    <path class="ci-arrow active" d="M 250,400 C 200,390 200,360 215,330" />
+    <path class="ci-arrow active" d="M 150,250 C 160,200 190,200 220,215" />
+    <path class="ci-arrow active" d="M 100,150 C 130,130 170,130 195,145" />
+    <path class="ci-arrow active" d="M 220,85 C 230,70 240,70 250,80" />
+    
+    <!-- ノード1: 個人の発信 -->
+    <g class="ci-node active">
+      <circle cx="250" cy="80" r="50" />
+      <text x="250" y="75">個人の</text>
+      <text x="250" y="90">発信</text>
+    </g>
+    
+    <!-- ノード2: AIの整理 -->
+    <g class="ci-node active">
+      <circle cx="380" cy="180" r="50" />
+      <text x="380" y="175">AIの</text>
+      <text x="380" y="190">整理</text>
+    </g>
+    
+    <!-- ノード3: 他者の質問 -->
+    <g class="ci-node active">
+      <circle cx="380" cy="320" r="50" />
+      <text x="380" y="315">他者の</text>
+      <text x="380" y="330">質問</text>
+    </g>
+    
+    <!-- ノード4: AIの応答 -->
+    <g class="ci-node active">
+      <circle cx="250" cy="420" r="50" />
+      <text x="250" y="415">AIの</text>
+      <text x="250" y="430">応答</text>
+    </g>
+    
+    <!-- ノード5: 個人の理解 -->
+    <g class="ci-node active">
+      <circle cx="120" cy="320" r="50" />
+      <text x="120" y="315">個人の</text>
+      <text x="120" y="330">理解</text>
+    </g>
+    
+    <!-- ノード6: 再発信 -->
+    <g class="ci-node active">
+      <circle cx="120" cy="180" r="50" />
+      <text x="120" y="180">再発信</text>
+    </g>
+    
+    <!-- 中央のCI表示 -->
+    <text x="250" y="245" text-anchor="middle" fill="#bb86fc" font-size="24" font-weight="bold">CI</text>
+    <text x="250" y="265" text-anchor="middle" fill="#aaa" font-size="12">Collective</text>
+    <text x="250" y="280" text-anchor="middle" fill="#aaa" font-size="12">Intelligence</text>
+  </svg>
+</div>
+
+<pre>
+  ・ この循環が本荘論文HTML化で実現されたこと
+    ・ **視覚化による理解促進** = 「他者への還元」の質を高める
+    ・ **構造化されたデータ** = 「AIの整理」が将来の学習に使える形に
+    ・ **再利用可能な形式** = 次の研究者が「再発信」しやすい基盤
+
+  ・ CI構想 vs CS（Collective Stupidity）
+    ・ **CI**: 個人の知識を深め、集団の知性を高める
+    ・ **CS**: 個人の知識が浅いまま、集団の愚かさを増幅
+    ・ 今回の作業は、専門知識を広く共有可能にすることで、CI側に貢献
+
   ・ 本荘さんへの質問（対話後に追記）
     ・ グラフの見せ方について
     ・ 他の図表のHTML化の優先順位
     ・ 論文へのコメント・注釈の追加方針
+    ・ CI構想の視覚化について（この図で伝わるか）
 
 ・ 参照
   ・ <a href="../../references/honjo-2019-full.html">本荘 2019 論文（フル版・HTML）</a>
   ・ <a href="../../references/honjo-2019.html">本荘 2019 論文（要約版）</a>
   ・ <a href="../../references/2019, Yasuo, Honjo.pdf">本荘 2019 論文（PDF）</a>
   ・ <a href="../../references/adam_smith/index.html">Adam Smith TMS 研究メモ</a>
+  ・ <a href="https://shudo25.github.io/homepage/ci_initiative/overview.html">CI構想 概要（修道25回）</a>
 
 ・ <a href="../../dialogs/index.html">Dialogs with Professor Y. H.</a>
 </pre>
