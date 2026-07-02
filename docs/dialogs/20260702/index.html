@@ -43,13 +43,49 @@
 img.middle { vertical-align: middle; }
 body { line-height:1.7; }
 
+/* 2カラムレイアウト */
+.two-column-layout {
+  display: flex;
+  gap: 30px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+
+.column-left, .column-right {
+  flex: 1;
+  min-width: 300px;
+}
+
+.column-left {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #333;
+}
+
+.column-right {
+  background-color: #0a0a0a;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #333;
+}
+
+/* セクションタイトル */
+.section-title {
+  color: #bb86fc;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #bb86fc;
+  padding-bottom: 5px;
+}
+
 /* CI構想循環図のスタイル */
 .ci-cycle-container {
-  margin: 30px auto;
-  max-width: 600px;
-  background-color: #1a1a1a;
-  padding: 40px;
-  border-radius: 12px;
+  margin: 20px auto;
+  max-width: 100%;
+  background-color: transparent;
+  padding: 20px 0;
 }
 
 .ci-cycle-svg {
@@ -142,73 +178,166 @@ body { line-height:1.7; }
 ・ Music Selection
   ・ （準備中）
 
-<h3 id="honjo-html">■ 今回 7/2 の話題：本荘 2019 論文のHTML化</h3>
+<h3>■ 今回 7/2 の話題：CI構想と本荘論文HTML化</h3>
+</pre>
 
-  ・ 背景
-    ・ <a href="../../references/honjo-2019.html">本荘 2019 論文（要約版）</a>は既にHTML化されていた
-    ・ しかし、図表が含まれていないため、データの詳細が見えなかった
-    ・ 特に「表-1：主要経済指標の推移（1996-2017年度）」は重要なデータ
+<div class="two-column-layout">
+  <!-- 左カラム: CI構想 -->
+  <div class="column-left">
+    <div class="section-title">CI構想（Collective Intelligence）</div>
+    <pre>
+  ・ **CI構想の定義**
+    ・ 個人の発信 → AIの整理 → 他者の質問 
+      → AIの応答 → 個人の理解 → 再発信
+    ・ この循環を通じて、個人の知識を深め、
+      集団の知性を高める
 
-  ・ 今回の作業：フル版HTML化
+  ・ **CI vs CS**
+    ・ **CI (Collective Intelligence)**
+      集団の知性を高める
+    ・ **CS (Collective Stupidity)**
+      個人の知識が浅いまま、
+      集団の愚かさを増幅
+
+  ・ **知識循環の可視化**
+    </pre>
+    
+    <div class="ci-cycle-container">
+      <div class="ci-title">CI構想の知識循環モデル</div>
+      <svg class="ci-cycle-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- 矢印の定義 -->
+        <defs>
+          <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+          </marker>
+        </defs>
+        
+        <!-- 矢印（ノードより先に描画） -->
+        <path class="ci-arrow active" d="M 250,100 C 300,110 300,140 285,170" />
+        <path class="ci-arrow active" d="M 350,250 C 340,300 310,300 280,285" />
+        <path class="ci-arrow active" d="M 250,400 C 200,390 200,360 215,330" />
+        <path class="ci-arrow active" d="M 150,250 C 160,200 190,200 220,215" />
+        <path class="ci-arrow active" d="M 100,150 C 130,130 170,130 195,145" />
+        <path class="ci-arrow active" d="M 220,85 C 230,70 240,70 250,80" />
+        
+        <!-- ノード1: 個人の発信 -->
+        <g class="ci-node active">
+          <circle cx="250" cy="80" r="50" />
+          <text x="250" y="75">個人の</text>
+          <text x="250" y="90">発信</text>
+        </g>
+        
+        <!-- ノード2: AIの整理 -->
+        <g class="ci-node active">
+          <circle cx="380" cy="180" r="50" />
+          <text x="380" y="175">AIの</text>
+          <text x="380" y="190">整理</text>
+        </g>
+        
+        <!-- ノード3: 他者の質問 -->
+        <g class="ci-node active">
+          <circle cx="380" cy="320" r="50" />
+          <text x="380" y="315">他者の</text>
+          <text x="380" y="330">質問</text>
+        </g>
+        
+        <!-- ノード4: AIの応答 -->
+        <g class="ci-node active">
+          <circle cx="250" cy="420" r="50" />
+          <text x="250" y="415">AIの</text>
+          <text x="250" y="430">応答</text>
+        </g>
+        
+        <!-- ノード5: 個人の理解 -->
+        <g class="ci-node active">
+          <circle cx="120" cy="320" r="50" />
+          <text x="120" y="315">個人の</text>
+          <text x="120" y="330">理解</text>
+        </g>
+        
+        <!-- ノード6: 再発信 -->
+        <g class="ci-node active">
+          <circle cx="120" cy="180" r="50" />
+          <text x="120" y="180">再発信</text>
+        </g>
+        
+        <!-- 中央のCI表示 -->
+        <text x="250" y="245" text-anchor="middle" fill="#bb86fc" font-size="24" font-weight="bold">CI</text>
+        <text x="250" y="265" text-anchor="middle" fill="#aaa" font-size="12">Collective</text>
+        <text x="250" y="280" text-anchor="middle" fill="#aaa" font-size="12">Intelligence</text>
+      </svg>
+    </div>
+  </div>
+
+  <!-- 右カラム: 本荘論文HTML化 (CI構想の実践例) -->
+  <div class="column-right">
+    <div class="section-title">CI構想の実践例：本荘論文HTML化</div>
+    <pre>
+  ・ **本荘論文HTML化におけるCI循環**
+    1. **個人の発信**
+       本荘先生の論文（専門的研究成果）
+    2. **AIの整理**
+       PDF抽出、HTML構造化、
+       グラフ・表の視覚化
+    3. **他者への還元**
+       読者が理解しやすい形式で公開
+    4. **個人の理解の深化**
+       インタラクティブなグラフ・表で
+       視覚的理解
+    5. **再発信**
+       引用・議論・新たな研究の基盤に
+
+  ・ **作業内容**
     ・ PDFから全文をテキスト抽出
-      ・ Python pypdf2 を使用
-      ・ 抽出結果を <a href="../../references/honjo-2019-extracted.txt">honjo-2019-extracted.txt</a> に保存
-    ・ HTML構造化
-      ・ セクション区切り（目次からのアンカーリンク）
-      ・ 数式のMathJax対応
-      ・ 参考文献の整形
+    ・ HTML構造化（セクション区切り、
+      数式MathJax対応、参考文献整形）
     ・ インタラクティブグラフの追加
-      ・ Chart.js を使用
-      ・ 実質GDP成長率、完全失業率、消費者物価指数上昇率の3指標を可視化
-      ・ ダークモード対応
+      （Chart.js、ダークモード対応）
     ・ 折りたたみ可能な詳細表
-      ・ &lt;details&gt; タグで実装
-      ・ デフォルトは閉じた状態（グラフを先に見せる）
-      ・ 「📊 表-1：主要経済指標の詳細データを表示」をクリックで展開
-    ・ トップページの更新
-      ・ 要約版・フル版・PDFへのリンクを並列表示
-      ・ ユーザーが用途に応じて選択できる構成
+      （&lt;details&gt;タグで実装）
 
-  ・ HTML化のメリット（PDFとの比較）
-    ・ **視覚的理解の向上**
-      ・ グラフで一目で傾向がわかる
-      ・ 色分け・凡例で3指標の関係が把握しやすい
-    ・ **インタラクティブ性**
-      ・ グラフにマウスを乗せると詳細値が表示
-      ・ 凡例クリックで指標の表示/非表示を切り替え可能
-    ・ **情報の階層化**
-      ・ グラフ（概要）を先に見せる
-      ・ 詳細データ（表）は必要に応じて展開
-      ・ ページの読み込みが軽い
-    ・ **アクセシビリティ**
-      ・ モバイル対応（レスポンシブ）
-      ・ スクリーンリーダー対応
-      ・ テキスト選択・コピーが容易
-    ・ **リンク・参照の利便性**
-      ・ セクション間のアンカーリンク
-      ・ 外部リンク（出所：内閣府、総務省統計局など）
+  ・ **HTML化のメリット**
+    ・ 視覚的理解の向上
+      グラフで一目で傾向がわかる
+    ・ インタラクティブ性
+      マウスオーバーで詳細値表示
+    ・ 情報の階層化
+      グラフ（概要）→ 表（詳細）
+    ・ アクセシビリティ
+      モバイル対応、スクリーンリーダー対応
+    ・ リンク・参照の利便性
+      セクション間ジャンプ、外部リンク
 
-  ・ 作成されたファイル
-    ・ <a href="../../references/honjo-2019-full.html">honjo-2019-full.html</a> - フル版HTML
-    ・ <a href="../../references/honjo-2019-extracted.txt">honjo-2019-extracted.txt</a> - PDF抽出テキスト（作業用）
-    ・ scripts/convert_honjo_2019.py - メイン変換スクリプト
-    ・ scripts/convert_table1_to_html.py - 表-1データ変換スクリプト
-    ・ scripts/add_cross_references.py - 相互参照追加スクリプト
-
-  ・ 技術的工夫
+  ・ **技術的工夫**
     ・ グラフの配色
-      ・ GDP成長率：緑（#4CAF50）- 経済成長を示すポジティブな印象
-      ・ 完全失業率：赤（#F44336）- 注意を引く色
-      ・ 消費者物価指数：青（#2196F3）- 中立的な印象
+      GDP: 緑、失業率: 赤、物価: 青
     ・ ダークモード対応
-      ・ グラフの背景色：#1a1a1a
-      ・ テキスト色：#e0e0e0
-      ・ グリッド線：半透明の白
+      背景 #1a1a1a、テキスト #e0e0e0
     ・ データの整合性
-      ・ PDFの表データを手作業で確認・転記
-      ・ 合計22年分（1996-2017年度）× 7列のデータ
-      ・ 出所リンクも元論文のまま記載
+      22年分×7列を手作業確認
 
+  ・ **作成されたファイル**
+    ・ <a href="../../references/honjo-2019-full.html">honjo-2019-full.html</a>
+      フル版HTML
+    ・ scripts/convert_honjo_2019.py
+      メイン変換スクリプト
+    ・ scripts/convert_table1_to_html.py
+      表-1データ変換スクリプト
+
+  ・ **CI循環における意義**
+    ・ 視覚化による理解促進
+      = 「他者への還元」の質を高める
+    ・ 構造化されたデータ
+      = 「AIの整理」が将来の学習に使える
+    ・ 再利用可能な形式
+      = 次の研究者が「再発信」しやすい基盤
+    ・ **単なる技術作業ではなく、
+      知識循環を促進する実践**
+    </pre>
+  </div>
+</div>
+
+<pre>
   ・ 今後の展開（候補）
     ・ 他の図表もインタラクティブ化？
       ・ 図-1：古典派の労働需要曲線と労働供給曲線（SVGで描画？）
@@ -216,100 +345,6 @@ body { line-height:1.7; }
     ・ 論文内検索機能の追加
     ・ セクション別の要約・コメント欄
     ・ 関連論文へのリンク集
-
-<h3 id="ci-concept">■ CI構想（Collective Intelligence）との関連</h3>
-
-  ・ 今回の作業はCI構想の実践例
-    ・ **CI構想の定義**（再掲）
-      ・ 個人の発信 → AIの整理 → 他者の質問 → AIの応答 → 個人の理解 → 再発信
-      ・ この循環を通じて、個人の知識を深め、集団の知性を高める
-    ・ **本荘論文HTML化におけるCI循環**
-      1. **個人の発信**：本荘先生の論文（専門的研究成果）
-      2. **AIの整理**：PDF抽出、HTML構造化、グラフ・表の視覚化
-      3. **他者への還元**：読者が理解しやすい形式で公開
-      4. **個人の理解の深化**：インタラクティブなグラフ・表で視覚的理解
-      5. **再発信**：引用・議論・新たな研究の基盤に
-    ・ **単なる技術作業ではなく、知識循環を促進する実践**
-
-  ・ CI構想の循環図（視覚化）
-</pre>
-
-<div class="ci-cycle-container">
-  <div class="ci-title">CI構想の知識循環モデル</div>
-  <svg class="ci-cycle-svg" viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-    <!-- 矢印の定義 -->
-    <defs>
-      <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
-        <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
-      </marker>
-    </defs>
-    
-    <!-- 矢印（ノードより先に描画） -->
-    <path class="ci-arrow active" d="M 250,100 C 300,110 300,140 285,170" />
-    <path class="ci-arrow active" d="M 350,250 C 340,300 310,300 280,285" />
-    <path class="ci-arrow active" d="M 250,400 C 200,390 200,360 215,330" />
-    <path class="ci-arrow active" d="M 150,250 C 160,200 190,200 220,215" />
-    <path class="ci-arrow active" d="M 100,150 C 130,130 170,130 195,145" />
-    <path class="ci-arrow active" d="M 220,85 C 230,70 240,70 250,80" />
-    
-    <!-- ノード1: 個人の発信 -->
-    <g class="ci-node active">
-      <circle cx="250" cy="80" r="50" />
-      <text x="250" y="75">個人の</text>
-      <text x="250" y="90">発信</text>
-    </g>
-    
-    <!-- ノード2: AIの整理 -->
-    <g class="ci-node active">
-      <circle cx="380" cy="180" r="50" />
-      <text x="380" y="175">AIの</text>
-      <text x="380" y="190">整理</text>
-    </g>
-    
-    <!-- ノード3: 他者の質問 -->
-    <g class="ci-node active">
-      <circle cx="380" cy="320" r="50" />
-      <text x="380" y="315">他者の</text>
-      <text x="380" y="330">質問</text>
-    </g>
-    
-    <!-- ノード4: AIの応答 -->
-    <g class="ci-node active">
-      <circle cx="250" cy="420" r="50" />
-      <text x="250" y="415">AIの</text>
-      <text x="250" y="430">応答</text>
-    </g>
-    
-    <!-- ノード5: 個人の理解 -->
-    <g class="ci-node active">
-      <circle cx="120" cy="320" r="50" />
-      <text x="120" y="315">個人の</text>
-      <text x="120" y="330">理解</text>
-    </g>
-    
-    <!-- ノード6: 再発信 -->
-    <g class="ci-node active">
-      <circle cx="120" cy="180" r="50" />
-      <text x="120" y="180">再発信</text>
-    </g>
-    
-    <!-- 中央のCI表示 -->
-    <text x="250" y="245" text-anchor="middle" fill="#bb86fc" font-size="24" font-weight="bold">CI</text>
-    <text x="250" y="265" text-anchor="middle" fill="#aaa" font-size="12">Collective</text>
-    <text x="250" y="280" text-anchor="middle" fill="#aaa" font-size="12">Intelligence</text>
-  </svg>
-</div>
-
-<pre>
-  ・ この循環が本荘論文HTML化で実現されたこと
-    ・ **視覚化による理解促進** = 「他者への還元」の質を高める
-    ・ **構造化されたデータ** = 「AIの整理」が将来の学習に使える形に
-    ・ **再利用可能な形式** = 次の研究者が「再発信」しやすい基盤
-
-  ・ CI構想 vs CS（Collective Stupidity）
-    ・ **CI**: 個人の知識を深め、集団の知性を高める
-    ・ **CS**: 個人の知識が浅いまま、集団の愚かさを増幅
-    ・ 今回の作業は、専門知識を広く共有可能にすることで、CI側に貢献
 
   ・ 本荘さんへの質問（対話後に追記）
     ・ グラフの見せ方について
