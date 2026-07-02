@@ -182,6 +182,26 @@ body { line-height:1.7; }
      animation: sequential-pulse-* XXs ... の XXs を増やす
      （現在は20s）
    
+   【SVG座標調整の実践知】（2026-07-02 経験）
+   - 双方向矢印: marker-start/marker-end で両端に矢尻
+     * arrowhead-start に orient="auto-start-reverse" を指定
+     * refX値の調整: 始点用は refX="1"、終点用は refX="9"
+   - 矢印位置の微調整:
+     * マーカーサイズ（約10px）を考慮して矢印の始点・終点を調整
+     * 円ノード: 中心座標±半径±マーカーサイズ
+     * 矩形ノード: 辺の座標±マーカーサイズ
+   - 調整プロセスの課題:
+     * AIは視覚的フィードバックなしで座標を推測
+     * 「少し上にずれている」などの言語的指示のみでは精度に限界
+   
+   【今後の改善案】
+   - Phase 1: 既存ツールでテスト（次回の図編集時）
+     * open_browser_page + screenshot_page で視覚的確認
+     * AIが画像を見て座標ずれを判断
+   - Phase 2: ai-context-vscode への統合（効果確認後）
+     * aicRenderHTMLPreview ツール候補
+     * Live Server起動 → スクリーンショット → 座標情報返却
+   
    ======================================== */
 
 /* アニメーション定義：情報と処理の流れ */
