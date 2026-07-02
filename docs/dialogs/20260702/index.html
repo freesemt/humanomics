@@ -154,13 +154,13 @@ body { line-height:1.7; }
    【現在の要素構成】（2026-07-02時点）
    - 矢印: nth-child(2～18) … 17本
      * 2-5: 上段の流れ（4本）
-     * 6-9: 交信（4本）
-     * 10-13: 下段の流れ（4本）
-     * 14-15: AIの応答への合流（2本）
-     * 16: AIの応答→応答内容（1本）
-     * 17-18: 螺旋フィードバック（2本）
-   - 情報ノード: nth-child(19～24) … 6個
-   - 処理ノード: nth-child(25～30) … 6個
+     * 6-7: 交信（2本・双方向）
+     * 8-11: 下段の流れ（4本）
+     * 12-13: AIの応答への合流（2本）
+     * 14: AIの応答→応答内容（1本）
+     * 15-16: 螺旋フィードバック（2本）
+   - 情報ノード: nth-child(17～22) … 6個
+   - 処理ノード: nth-child(23～28) … 6個
    
    【アニメーション周期設計】
    - 総周期: 20秒
@@ -273,77 +273,75 @@ body { line-height:1.7; }
 /* 20秒周期でフェーズ1（上段）: 各要素0.6秒間隔 */
 /* フェーズ1: 上段の流れ（理解状態A → LLM） */
 /* ノード1: 理解状態A */
-.ci-node:nth-child(19).active,
-.ci-node:nth-child(19).active text { animation-delay: 0s; }
+.ci-node:nth-child(17).active,
+.ci-node:nth-child(17).active text { animation-delay: 0s; }
 /* 矢印1: 理解状態A → 発信 */
 .ci-arrow:nth-child(2).active { animation-delay: 0.6s; }
 /* ノード2: 発信（上段） */
-.ci-node:nth-child(25).active,
-.ci-node:nth-child(25).active text { animation-delay: 1.2s; }
+.ci-node:nth-child(23).active,
+.ci-node:nth-child(23).active text { animation-delay: 1.2s; }
 /* 矢印2: 発信 → WEB */
 .ci-arrow:nth-child(3).active { animation-delay: 1.8s; }
 /* ノード3: WEB */
-.ci-node:nth-child(20).active,
-.ci-node:nth-child(20).active text { animation-delay: 2.4s; }
+.ci-node:nth-child(18).active,
+.ci-node:nth-child(18).active text { animation-delay: 2.4s; }
 /* 矢印3: WEB → AIの整理 */
 .ci-arrow:nth-child(4).active { animation-delay: 3.0s; }
 /* ノード4: AIの整理 */
-.ci-node:nth-child(26).active,
-.ci-node:nth-child(26).active text { animation-delay: 3.6s; }
+.ci-node:nth-child(24).active,
+.ci-node:nth-child(24).active text { animation-delay: 3.6s; }
 /* 矢印4: AIの整理 → LLM */
 .ci-arrow:nth-child(5).active { animation-delay: 4.2s; }
 /* ノード5: LLM */
-.ci-node:nth-child(21).active,
-.ci-node:nth-child(21).active text { animation-delay: 4.8s; }
+.ci-node:nth-child(19).active,
+.ci-node:nth-child(19).active text { animation-delay: 4.8s; }
 
 /* フェーズ2: 下段とフィードバック（フェーズ1の後、一呼吸） */
 /* ノード6: 理解状態B */
-.ci-node:nth-child(22).active,
-.ci-node:nth-child(22).active text { animation-delay: 6.0s; }
+.ci-node:nth-child(20).active,
+.ci-node:nth-child(20).active text { animation-delay: 6.0s; }
 /* 矢印9: 理解状態B → 考察 */
-.ci-arrow:nth-child(10).active { animation-delay: 6.6s; }
+.ci-arrow:nth-child(8).active { animation-delay: 6.6s; }
 /* ノード12: 考察 */
-.ci-node:nth-child(30).active,
-.ci-node:nth-child(30).active text { animation-delay: 7.2s; }
-/* 矢印10: 考察 → 質問 */
-.ci-arrow:nth-child(11).active { animation-delay: 7.8s; }
-/* ノード7: 質問 */
-.ci-node:nth-child(23).active,
-.ci-node:nth-child(23).active text { animation-delay: 8.4s; }
-/* 矢印11: 質問 → 発信（下段） */
-.ci-arrow:nth-child(12).active { animation-delay: 9.0s; }
-/* ノード10: 発信（下段） */
 .ci-node:nth-child(28).active,
-.ci-node:nth-child(28).active text { animation-delay: 9.6s; }
+.ci-node:nth-child(28).active text { animation-delay: 7.2s; }
+/* 矢印10: 考察 → 質問 */
+.ci-arrow:nth-child(9).active { animation-delay: 7.8s; }
+/* ノード7: 質問 */
+.ci-node:nth-child(21).active,
+.ci-node:nth-child(21).active text { animation-delay: 8.4s; }
+/* 矢印11: 質問 → 発信（下段） */
+.ci-arrow:nth-child(10).active { animation-delay: 9.0s; }
+/* ノード10: 発信（下段） */
+.ci-node:nth-child(26).active,
+.ci-node:nth-child(26).active text { animation-delay: 9.6s; }
 /* 矢印12: 発信（下段） → WEB */
-.ci-arrow:nth-child(13).active { animation-delay: 10.2s; }
+.ci-arrow:nth-child(11).active { animation-delay: 10.2s; }
 /* WEBまで到達してから、AIの応答へ */
 /* 矢印13: 質問 → AIの応答 (2つの矢印を同時) */
-.ci-arrow:nth-child(14).active { animation-delay: 10.8s; }
+.ci-arrow:nth-child(12).active { animation-delay: 10.8s; }
 /* 矢印14: LLM → AIの応答 (2つの矢印を同時) */
-.ci-arrow:nth-child(15).active { animation-delay: 10.8s; }
+.ci-arrow:nth-child(13).active { animation-delay: 10.8s; }
 /* ノード8: AIの応答 */
-.ci-node:nth-child(27).active,
-.ci-node:nth-child(27).active text { animation-delay: 11.4s; }
+.ci-node:nth-child(25).active,
+.ci-node:nth-child(25).active text { animation-delay: 11.4s; }
 /* 知印15: AIの応答 → 応答内容 */
-.ci-arrow:nth-child(16).active { animation-delay: 12.0s; }
+.ci-arrow:nth-child(14).active { animation-delay: 12.0s; }
 /* ノード9: 応答内容 */
-.ci-node:nth-child(24).active,
-.ci-node:nth-child(24).active text { animation-delay: 12.6s; }
+.ci-node:nth-child(22).active,
+.ci-node:nth-child(22).active text { animation-delay: 12.6s; }
 /* 矢印16: 応答内容 → 理解状態A（螺旋） */
-.ci-arrow:nth-child(17).active { animation-delay: 12.9s; }
+.ci-arrow:nth-child(15).active { animation-delay: 12.9s; }
 /* 矢印17: 応答内容 → 理解状態B（螺旋） */
-.ci-arrow:nth-child(18).active { animation-delay: 12.9s; }
+.ci-arrow:nth-child(16).active { animation-delay: 12.9s; }
 
 /* フェーズ3: 交信（サイクルの最後） */
 /* ノード11: 交信 */
-.ci-node:nth-child(29).active,
-.ci-node:nth-child(29).active text { animation-delay: 13.2s; }
-/* 交信の上下矢印（4本同時） */
+.ci-node:nth-child(27).active,
+.ci-node:nth-child(27).active text { animation-delay: 13.2s; }
+/* 交信の双方向矢印（2本同時） */
 .ci-arrow:nth-child(6).active { animation-delay: 13.5s; }
 .ci-arrow:nth-child(7).active { animation-delay: 13.5s; }
-.ci-arrow:nth-child(8).active { animation-delay: 13.5s; }
-.ci-arrow:nth-child(9).active { animation-delay: 13.5s; }
 
 .ci-title {
   text-align: center;
@@ -390,6 +388,9 @@ body { line-height:1.7; }
           <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
             <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
           </marker>
+          <marker id="arrowhead-start" markerWidth="10" markerHeight="7" refX="1" refY="3.5" orient="auto-start-reverse">
+            <polygon points="0 0, 10 3.5, 0 7" fill="#666" />
+          </marker>
           <marker id="arrowhead-spiral" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
             <polygon points="0 0, 10 3.5, 0 7" fill="#bb86fc" />
           </marker>
@@ -405,14 +406,10 @@ body { line-height:1.7; }
         <!-- 4. AIの整理 → LLM -->
         <path class="ci-arrow active" d="M 435,80 L 520,80" />
         <!-- 交信矢印（双方向） -->
-        <!-- 理解状態A → 交信（下向き） -->
-        <path class="ci-arrow active" d="M 45,115 L 45,175" />
-        <!-- 交信 → 理解状態A（上向き） -->
-        <path class="ci-arrow active" d="M 55,175 L 55,115" />
-        <!-- 理解状態B → 交信（上向き） -->
-        <path class="ci-arrow active" d="M 45,265 L 45,205" />
-        <!-- 交信 → 理解状態B（下向き） -->
-        <path class="ci-arrow active" d="M 55,205 L 55,265" />
+        <!-- 理解状態A ↔ 交信 -->
+        <path class="ci-arrow active" d="M 50,133 L 50,173" style="marker-start: url(#arrowhead-start); marker-end: url(#arrowhead);" />
+        <!-- 理解状態B ↔ 交信 -->
+        <path class="ci-arrow active" d="M 50,223 L 50,263" style="marker-start: url(#arrowhead-start); marker-end: url(#arrowhead);" />
         <!-- 5. 理解状態B → 考察 -->
         <path class="ci-arrow active" d="M 85,300 L 150,300" />
         <!-- 5b. 考察 → 質問 -->
