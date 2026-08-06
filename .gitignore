@@ -1,2 +1,4 @@
 temp/
+temp*
+*.bak
 .github/vscode-version.txt
