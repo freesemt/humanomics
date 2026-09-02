@@ -1,6 +1,6 @@
 # Project Status — Humanomics
 
-**Last Updated**: 2026-09-02
+**Last Updated**: 2026-09-03
 
 > For working conventions and structure, see [`.github/copilot-instructions.md`](.github/copilot-instructions.md).
 
@@ -19,6 +19,7 @@
     - 核心的な問い（追記）：頻発する被害がCO2削減という大局的対策と結び付けて報道・議論されない「大局的なラグ」はなぜ生じるか
       → 心理的距離・因果帰属の難しさ・報道の分業・時間スケールの不一致・政治的忌避・馴化効果・抽象の質の問題、の7仮説を整理
   - いずれも「これまでの非自発性・総需要不足というテーマとの接続候補」を整理
+- 最初の2トピックに共通する問題意識として、地域の被害・負担が地球規模の温暖化抑制（CO2削減）と結び付けて論じられにくい「大局的なラグ」を明記
 - `docs/dialogs/20260903/nonregular_employment_data.md` を作成
   - 不本意非正規雇用の一次統計、賃金・所得、雇用者報酬・消費・GDPのデータ源を整理
   - 不本意非正規の統計上の定義と、非正規雇用全体の雇用の質を区別して分析する方針を明記
