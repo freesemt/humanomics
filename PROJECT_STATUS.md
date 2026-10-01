@@ -18,8 +18,10 @@
 - 活用資料：`docs/dialogs/20260903/nonregular_employment_data.md`（非正規雇用データ台帳）
 - AIと所得分配の関連資料を追加：`docs/ai/bbc-ai-ubiquitous-basic-income.html`
   - BBCのHinton氏インタビューを日本語で要約し、雇用・分配・UBIの論点と関連資料を整理
-- 日本のベーシックインカム資料案内を追加：`docs/references/basic-income-japan.html`
+- 日本のベーシックインカム資料案内を `docs/references/basic-income/` に整理
   - 公的制度・研究資料と、ABC「MVMNT」のような民間Web3構想を区別する基準を整理
+  - フィンランド実験・アラスカ恒久基金配当を参照し、就労意欲と「怠け」への懸念を整理
+  - NBER Working Paper 24312 の日本語要約ページを追加
 
 ---
 
