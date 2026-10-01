@@ -16,6 +16,10 @@
   - 影響を与える経路：(1) YouTube で広い聴衆へ (2) 影響力のある人への働きかけ (3) ウェブサイトは狭い聴衆向けだが、CI 構想の視点から AI (LLM) 経由の影響に注目
 - `docs/dialogs/index.html` 更新（対話日を 2026-10-01 に、インデックス追加）
 - 活用資料：`docs/dialogs/20260903/nonregular_employment_data.md`（非正規雇用データ台帳）
+- AIと所得分配の関連資料を追加：`docs/ai/bbc-ai-ubiquitous-basic-income.html`
+  - BBCのHinton氏インタビューを日本語で要約し、雇用・分配・UBIの論点と関連資料を整理
+- 日本のベーシックインカム資料案内を追加：`docs/references/basic-income-japan.html`
+  - 公的制度・研究資料と、ABC「MVMNT」のような民間Web3構想を区別する基準を整理
 
 ---
 
